@@ -1,0 +1,20 @@
+image: docker:latest
+
+variables:
+    REGISTRY: "registry.cn-hangzhou.aliyuncs.com"
+
+stages:
+    - build
+
+docker-build:
+    stage: build
+    image: docker:latest
+    script:
+        - echo "Building Dockerfile-based application..."
+        - docker info
+        - docker login --username=admin@yuanfen.net registry.cn-hangzhou.aliyuncs.com -p 4J0RPue8Zgifql9J
+        - docker build -t $REGISTRY/yuanfen/yf-tools-web:$CI_COMMIT_REF_NAME -t $REGISTRY/yuanfen/yf-tools-web:latest .
+        - docker push $REGISTRY/yuanfen/yf-tools-web:$CI_COMMIT_REF_NAME
+        - docker push $REGISTRY/yuanfen/yf-tools-web:latest
+    only:
+        - tags
