@@ -1,8 +1,9 @@
 export default {
     // Global page headers (https://go.nuxtjs.dev/config-head)
     head: {
-        title: 'tools-web',
-        meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }, { hid: 'description', name: 'description', content: '' }],
+        title: '猿奋小工具集',
+        titleTemplate: '%s - 猿奋小工具集',
+        meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }, { hid: 'description', name: 'description', content: '猿奋小工具集，致力于为开发者提供最好用的工具集。' }],
         link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
     },
 
@@ -10,7 +11,7 @@ export default {
     css: ['element-ui/lib/theme-chalk/index.css'],
 
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-    plugins: ['@/plugins/element-ui'],
+    plugins: ['@/plugins/element-ui', '@/plugins/global-components.js'],
 
     // Auto import components (https://go.nuxtjs.dev/config-components)
     components: true,

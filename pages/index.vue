@@ -1,60 +1,58 @@
 <template>
-    <div class="container">
-        <div>
-            <Logo />
-            <h1 class="title">tools-web</h1>
-            <div class="links">
-                <a href="https://nuxtjs.org/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="button--green">
-                    Documentation
-                </a>
-                <a href="https://github.com/nuxt/nuxt.js"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="button--grey">
-                    GitHub
-                </a>
+    <div class="body-content page-home">
+        <el-card>
+            <div slot="header"
+                 class="card-header">
+                <h4>欢迎使用猿奋小工具集</h4>
             </div>
-        </div>
+            <p>
+                目前正在扩充小工具，致力于为开发者提供最好用的工具集。
+            </p>
+        </el-card>
+        <el-card>
+            <div slot="header"
+                 class="card-header">
+                <h4>工具列表</h4>
+            </div>
+            <el-row>
+                <el-button round
+                           type="primary"
+                           plain
+                           @click="navigateTo('/password')">随机密码生成</el-button>
+            </el-row>
+        </el-card>
     </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Vue, Component, Prop } from 'nuxt-property-decorator'
 
-export default Vue.extend({})
+@Component
+export default class Index extends Vue {
+    head() {
+        return {
+            title: '猿奋小工具集',
+            titleTemplate: ''
+        }
+    }
+
+    navigateTo(path: string) {
+        this.$router.push({
+            path: path
+        })
+    }
+}
 </script>
 
-<style>
-.container {
-    margin: 0 auto;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.title {
-    font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    display: block;
-    font-weight: 300;
-    font-size: 100px;
-    color: #35495e;
-    letter-spacing: 1px;
-}
-
-.subtitle {
-    font-weight: 300;
-    font-size: 42px;
-    color: #526488;
-    word-spacing: 5px;
-    padding-bottom: 15px;
-}
-
-.links {
-    padding-top: 15px;
+<style lang="scss">
+.page-home {
+    .el-card {
+        margin-bottom: 20px;
+        .card-header {
+            h4 {
+                font-weight: bold;
+            }
+        }
+    }
 }
 </style>
