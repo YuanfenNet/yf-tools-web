@@ -6,7 +6,7 @@
                         :sm="{ span:22, offset: 1 }"
                         :md="{ span:18, offset: 3 }">
                     <div class="header-content">
-                        <div class="title">猿奋工具集</div>
+                        <div class="title">猿奋小工具集</div>
                         <div class="description">致力于为广大开发者提供最好用的小工具</div>
                     </div>
                 </el-col>
