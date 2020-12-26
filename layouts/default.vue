@@ -152,8 +152,14 @@ a {
 
 p {
     color: $color-primary-text-black;
-    font-size: 14px;
-    line-height: 22px;
+    font-size: 16px;
+    line-height: 1.8em;
+}
+
+li {
+    color: $color-primary-text-black;
+    font-size: 16px;
+    line-height: 1.8em;
 }
 
 h1,

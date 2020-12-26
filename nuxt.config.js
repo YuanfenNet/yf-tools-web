@@ -3,7 +3,7 @@ export default {
     head: {
         title: '猿奋小工具集',
         titleTemplate: '%s - 猿奋小工具集',
-        meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }, { hid: 'description', name: 'description', content: '猿奋小工具集，致力于为开发者提供最好用的工具集。' }],
+        meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }, { hid: 'description', name: 'description', content: '猿奋小工具集，致力于为广大开发者提供最好用的小工具。' }],
         link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
     },
 
