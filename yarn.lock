@@ -1284,12 +1284,10 @@
     consola "^2.11.3"
     eslint-loader "^4.0.2"
 
-"@nuxtjs/google-analytics@^2.4.0":
-  version "2.4.0"
-  resolved "https://registry.npm.taobao.org/@nuxtjs/google-analytics/download/@nuxtjs/google-analytics-2.4.0.tgz#3bb9f398a05cc23340d1f423f8d8653dc4114f46"
-  integrity sha1-O7nzmKBcwjNA0fQj+NhlPcQRT0Y=
-  dependencies:
-    vue-analytics "^5.22.1"
+"@nuxtjs/google-gtag@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.npm.taobao.org/@nuxtjs/google-gtag/download/@nuxtjs/google-gtag-1.0.4.tgz#57562d8ec4c7694573e77edf72097da4a34b0d68"
+  integrity sha1-V1YtjsTHaUVz537fcgl9pKNLDWg=
 
 "@nuxtjs/proxy@^2.1.0":
   version "2.1.0"
@@ -8842,11 +8840,6 @@ vm-browserify@^1.0.1:
   version "1.1.2"
   resolved "https://registry.npm.taobao.org/vm-browserify/download/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha1-eGQcSIuObKkadfUR56OzKobl3aA=
-
-vue-analytics@^5.22.1:
-  version "5.22.1"
-  resolved "https://registry.npm.taobao.org/vue-analytics/download/vue-analytics-5.22.1.tgz#9d6b32da56daee1b9dfb23a267b50349a03f710f"
-  integrity sha1-nWsy2lba7hud+yOiZ7UDSaA/cQ8=
 
 vue-class-component@^7.2.6:
   version "7.2.6"
