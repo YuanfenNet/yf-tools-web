@@ -211,4 +211,10 @@ hr {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
 }
+
+@font-face {
+    font-family: Courier Prime;
+    src: url(~static/fonts/courier-prime.woff2) format('woff2'), url(~static/fonts/courier-prime.woff) format('woff'), url(~static/fonts/courier-prime.eot) format('eot');
+    font-display: swap;
+}
 </style>

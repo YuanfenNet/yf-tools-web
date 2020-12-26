@@ -99,7 +99,7 @@ export default class Password extends Vue {
         input {
             font-size: 24px;
             text-align: center;
-            font-family: Courier Prime Bits, monospace !important;
+            font-family: Courier Prime, monospace !important;
             letter-spacing: 2.5px;
         }
     }
