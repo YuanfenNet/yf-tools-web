@@ -11,7 +11,14 @@ export default {
     css: ['element-ui/lib/theme-chalk/index.css'],
 
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-    plugins: ['@/plugins/element-ui', '@/plugins/global-components.js'],
+    plugins: [
+        '@/plugins/element-ui',
+        '@/plugins/global-components.js',
+        {
+            src: '~plugins/baidu.js',
+            ssr: false
+        }
+    ],
 
     // Auto import components (https://go.nuxtjs.dev/config-components)
     components: true,
@@ -25,11 +32,16 @@ export default {
     // Modules (https://go.nuxtjs.dev/config-modules)
     modules: [
         // https://go.nuxtjs.dev/axios
-        '@nuxtjs/axios'
+        '@nuxtjs/axios',
+        '@nuxtjs/google-analytics'
     ],
 
     // Axios module configuration (https://go.nuxtjs.dev/config-axios)
     axios: {},
+
+    googleAnalytics: {
+        id: 'G-2NCGY88M1Y'
+    },
 
     // Build Configuration (https://go.nuxtjs.dev/config-build)
     build: {
