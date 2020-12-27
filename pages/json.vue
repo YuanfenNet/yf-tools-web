@@ -11,9 +11,8 @@
             <client-only>
                 <drag-zone class="zone">
                     <drag-content class="content">
-                        <codemirror v-model="jsonDataString"
-                                    placeholder="请在此输入 JSON 字符串"
-                                    :options="cmOptions" />
+                        <code-mirror v-model="jsonString"
+                                     :options="codeMirrorOptions" />
                     </drag-content>
                     <drag-handle class="handle" />
                     <drag-content class="content right">
@@ -31,15 +30,10 @@
                             <el-checkbox v-model="previewMode">预览</el-checkbox>
                         </div>
                         <json-viewer v-if="visible"
-                                     v-show="jsonDataString.length > 0 && !errorMessage"
-                                     :value="jsonData"
-                                     :expand-depth="expandDepth"
+                                     :json-string="jsonString"
                                      :sort="sort"
                                      :preview-mode="previewMode"
-                                     :copyable="{ copyText:'复制', copiedText:'已复制', timeout:2000 }"
-                                     theme="json-theme" />
-                        <div v-if="jsonDataString.length > 0 && errorMessage"
-                             class="error-message">{{ errorMessage }}</div>
+                                     :expand-depth="expandDepth" />
                     </drag-content>
                 </drag-zone>
             </client-only>
@@ -49,20 +43,21 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
-import jsonlint from 'jsonlint-mod'
-import 'codemirror/theme/material-palenight.css'
+import JsonViewer from '@/components/json-viewer.vue'
+import CodeMirror from '@/components/code-mirror.vue'
 
 @Component({
-    layout: 'full-width'
+    layout: 'full-width',
+    components: { JsonViewer, CodeMirror }
 })
 export default class Json extends Vue {
-    jsonDataString: any = ''
+    jsonString: any = ''
     sort: boolean = false
     previewMode: boolean = false
     expandDepth: number = 5
     visible: boolean = true
-    errorMessage: string = ''
-    cmOptions: any = {
+
+    codeMirrorOptions: any = {
         tabSize: 2,
         mode: { name: 'javascript', json: true },
         lineNumbers: true,
@@ -70,26 +65,15 @@ export default class Json extends Vue {
         theme: 'material-palenight'
     }
 
-    get jsonData() {
-        try {
-            this.errorMessage = ''
-            return jsonlint.parse(this.jsonDataString)
-        } catch (e) {
-            this.errorMessage = e.message
-            return e.message
-        }
-    }
-
     goBack() {
         this.$router.push('/')
     }
 
-    handleExpandeDepthChange(e: any) {
+    handleExpandeDepthChange() {
         this.visible = false
         this.$nextTick(() => {
             this.visible = true
         })
-        console.log(e)
     }
 }
 </script>
@@ -104,6 +88,7 @@ export default class Json extends Vue {
         height: calc(100vh - 240px);
         display: flex;
         justify-content: space-between;
+
         .handle {
             width: 5px;
             background: #eee;
@@ -140,109 +125,17 @@ export default class Json extends Vue {
                     }
                 }
             }
-            .json-input {
-                width: 100%;
-                min-height: 100%;
-                padding: 20px;
-                border: 0;
-                border-radius: 0;
-                outline: none;
-                resize: none;
-                font-family: Menlo, Courier Prime, monospace;
-                line-height: 1.5em;
-            }
-            .error-message {
-                color: #f1592a;
-                font-weight: bold;
-                padding: 20px;
-                font-family: Menlo, Courier Prime, monospace;
-                line-height: 1.5em;
-                white-space: pre-line;
-                word-wrap: break-word;
-            }
-            .vue-codemirror {
-                height: 100%;
-                .CodeMirror {
-                    height: 100%;
-                    pre.CodeMirror-placeholder {
-                        font-size: 14px;
-                    }
-                }
-            }
         }
     }
-
-    .json-theme {
-        background: #fff;
-        white-space: nowrap;
-        color: #525252;
-        font-size: 14px;
-        font-weight: bold;
-        line-height: 1.5em;
-        font-family: Menlo, Courier Prime, monospace;
-        flex: 1;
-        overflow-y: auto;
-
-        .jv-ellipsis {
-            color: #999;
-            background-color: #eee;
-            display: inline-block;
-            line-height: 0.9;
-            font-size: 0.9em;
-            padding: 0px 4px 2px 4px;
-            border-radius: 3px;
-            vertical-align: 2px;
-            cursor: pointer;
-            user-select: none;
-        }
-        .jv-button {
-            color: #49b3ff;
-        }
-        .jv-key {
-            color: #92278f;
-        }
-        .jv-item {
-            &.jv-array {
-                color: #525252;
-            }
-            &.jv-boolean {
-                color: #f98280;
-            }
-            &.jv-function {
-                color: #067bca;
-            }
-            &.jv-number {
-                color: #25aae2;
-            }
-            &.jv-number-float {
-                color: #25aae2;
-            }
-            &.jv-number-integer {
-                color: #25aae2;
-            }
-            &.jv-object {
-                color: #525252;
-            }
-            &.jv-undefined {
-                color: #f1592a;
-            }
-            &.jv-string {
-                color: #3ab54a;
-                word-break: break-word;
-                white-space: normal;
-            }
-        }
-        .jv-code {
-            .jv-toggle {
-                &:before {
-                    padding: 0px 2px;
-                    border-radius: 2px;
-                }
-                &:hover {
-                    &:before {
-                        background: #eee;
-                    }
-                }
+}
+@media only screen and (max-width: 700px) {
+    .page-json {
+        .zone {
+            flex-direction: column;
+            height: auto;
+            .content {
+                width: 100%;
+                height: calc((100vh - 240px) / 2);
             }
         }
     }

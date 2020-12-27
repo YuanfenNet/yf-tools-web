@@ -8,10 +8,10 @@ export default {
     },
 
     // Global CSS (https://go.nuxtjs.dev/config-css)
-    css: ['element-ui/lib/theme-chalk/index.css', 'vue-json-viewer/style.css', 'codemirror/lib/codemirror.css', '~/assets/common.scss'],
+    css: ['element-ui/lib/theme-chalk/index.css', '~/assets/common.scss'],
 
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-    plugins: ['@/plugins/element-ui', '@/plugins/global-components.js', '@/plugins/json-viewer.js', { src: '@/plugins/code-mirror.js', ssr: false }, { src: '@/plugins/vue-drag-zone.js', ssr: false }, { src: '@/plugins/baidu.js', ssr: false }],
+    plugins: ['@/plugins/element-ui', '@/plugins/global-components.js', { src: '@/plugins/code-mirror.js', ssr: false }, { src: '@/plugins/drag-zone.js', ssr: false }, { src: '@/plugins/baidu.js', ssr: false }],
 
     // Auto import components (https://go.nuxtjs.dev/config-components)
     components: true,
