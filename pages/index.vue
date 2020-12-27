@@ -6,14 +6,10 @@
                 <h4>工具列表</h4>
             </div>
             <el-row>
-                <el-button round
-                           type="primary"
-                           plain
-                           @click="navigateTo('/json')">JSON 解析&格式化</el-button>
-                <el-button round
-                           type="primary"
-                           plain
-                           @click="navigateTo('/password')">随机密码生成</el-button>
+                <a class="btn-primary"
+                   href="/json">JSON 解析&格式化</a>
+                <a class="btn-primary"
+                   href="/password">随机密码生成</a>
             </el-row>
         </el-card>
         <el-card>
@@ -56,6 +52,8 @@ export default class Index extends Vue {
 </script>
 
 <style lang="scss">
+@import '~/assets/variables.scss';
+
 .page-home {
     .el-card {
         margin-bottom: 20px;
@@ -63,6 +61,33 @@ export default class Index extends Vue {
             h4 {
                 font-weight: bold;
             }
+        }
+        .el-card__body {
+            padding: 15px;
+        }
+    }
+    .btn-primary {
+        border: 1px solid $color-main-p40;
+        padding: 10px 20px;
+        border-radius: 20px;
+        background-color: $color-main-p10;
+        font-size: 14px;
+        line-height: 18px;
+        display: inline-block;
+        font-weight: 500;
+        margin: 5px;
+        &:hover {
+            background: $color-main;
+            border-color: $color-main;
+            color: #fff;
+            opacity: 1;
+            transition: none;
+        }
+        &:active {
+            background: #3a8ee6;
+            border-color: #3a8ee6;
+            color: #fff;
+            outline: 0;
         }
     }
 }
