@@ -22,9 +22,13 @@
         "@nuxtjs/google-gtag": "^1.0.4",
         "core-js": "^3.6.5",
         "element-ui": "^2.13.2",
+        "jsonlint-mod": "^1.7.6",
         "nuxt": "^2.14.6",
         "nuxt-property-decorator": "^2.8.8",
-        "vue-footer": "https://nexus.monkey.run:5443/repository/npm-hosted/vue-footer/-/vue-footer-0.7.0.tgz"
+        "vue-codemirror": "^4.0.6",
+        "vue-drag-zone": "^2.0.0-rc1",
+        "vue-footer": "https://nexus.monkey.run:5443/repository/npm-hosted/vue-footer/-/vue-footer-0.7.0.tgz",
+        "vue-json-viewer": "https://nexus.monkey.run:5443/repository/npm-hosted/vue-json-viewer/-/vue-json-viewer-2.2.17.tgz"
     },
     "devDependencies": {
         "@nuxt/types": "^2.14.6",

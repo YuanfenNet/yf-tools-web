@@ -9,6 +9,10 @@
                 <el-button round
                            type="primary"
                            plain
+                           @click="navigateTo('/json')">JSON 解析&格式化</el-button>
+                <el-button round
+                           type="primary"
+                           plain
                            @click="navigateTo('/password')">随机密码生成</el-button>
             </el-row>
         </el-card>
@@ -21,6 +25,7 @@
             <p>TODO：</p>
             <ul>
                 <li><del>随机密码生成</del>(2020.12.20)</li>
+                <li><del>JSON 解析&格式化</del>(2020.12.27)</li>
                 <li>图片 base64 编码、解码</li>
                 <li>二维码编码、解码、美化</li>
                 <li>图片压缩</li>
@@ -45,9 +50,7 @@ export default class Index extends Vue {
     }
 
     navigateTo(path: string) {
-        this.$router.push({
-            path: path
-        })
+        this.$router.push(path)
     }
 }
 </script>

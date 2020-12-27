@@ -68,7 +68,7 @@ export default class Password extends Vue {
     }
 
     goBack() {
-        this.$router.back()
+        this.$router.push('/')
     }
 
     passwordFocus(event: any) {

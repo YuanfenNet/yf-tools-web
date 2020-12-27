@@ -13,14 +13,7 @@
             </el-row>
         </div>
         <div class="body-container">
-            <el-row>
-                <el-col :xs="{ span:24 }"
-                        :sm="{ span:22, offset: 1 }"
-                        :md="{ span:16, offset: 4 }"
-                        :lg="{ span:12, offset: 6 }">
-                    <Nuxt />
-                </el-col>
-            </el-row>
+            <Nuxt />
         </div>
         <vue-footer>
             <h6>Copyright ©
