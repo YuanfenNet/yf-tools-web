@@ -33,6 +33,9 @@ export default class CodeMirror extends Vue {
     height: 100%;
     .CodeMirror {
         height: 100%;
+        font-family: Menlo, Consolas, Courier Prime, monospace;
+        font-size: 14px;
+        line-height: 1.5em;
         pre.CodeMirror-placeholder {
             font-size: 14px;
         }

@@ -57,7 +57,7 @@ export default class JsonViewer extends Vue {
         font-size: 14px;
         font-weight: bold;
         line-height: 1.5em;
-        font-family: Menlo, Courier Prime, monospace;
+        font-family: Menlo, Consolas, Courier Prime, monospace;
 
         .jv-ellipsis {
             color: #999;
@@ -126,8 +126,9 @@ export default class JsonViewer extends Vue {
         color: #f1592a;
         font-weight: bold;
         padding: 20px;
-        font-family: Menlo, Courier Prime, monospace;
+        font-family: Menlo, Consolas, Courier Prime, monospace;
         line-height: 1.5em;
+        font-size: 14px;
         white-space: pre-line;
         word-wrap: break-word;
     }
