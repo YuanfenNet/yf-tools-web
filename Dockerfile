@@ -6,8 +6,8 @@ COPY package.json /app
 COPY yarn.lock /app
 RUN yarn install
 COPY . /app
-RUN npm run build
+RUN yarn build
 
-EXPOSE 3000
+EXPOSE 8888
 ENV APP_ENV $APP_ENV
-CMD ["npm", "run", "start"]
+CMD ["yarn", "start"]
