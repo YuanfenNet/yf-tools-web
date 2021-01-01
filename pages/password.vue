@@ -37,7 +37,8 @@
                         <el-input v-model="symbols"
                                   size="mini"
                                   class="symbols-input"
-                                  placeholder="请输入特殊符号" />
+                                  placeholder="请输入特殊符号"
+                                  @change="handleSymbolsInputChange" />
                     </div>
                 </el-col>
             </el-row>
@@ -85,20 +86,49 @@ export default class Password extends Vue {
         event.currentTarget.select()
     }
 
+    handleSymbolsInputChange(e: string) {
+        if (e.length === 0) {
+            this.symbolChecked = false
+        }
+    }
+
     generate() {
+        if (this.symbolChecked && this.symbols.length === 0) {
+            this.symbolChecked = false
+        }
+
         var charset = ''
         if (this.upperLetterChecked) charset += this.upperLetters
         if (this.lowerLetterChecked) charset += this.lowerLetters
         if (this.numberChecked) charset += this.numbers
         if (this.symbolChecked) charset += this.symbols
+
         if (charset.length > 0) {
             this.password = ''
             for (var i = 0, n = charset.length; i < this.length; i++) {
                 this.password += charset.charAt(Math.floor(Math.random() * n))
             }
+            if (this.upperLetterChecked && !this.containsChar(this.password, this.upperLetters)) {
+                this.generate()
+            } else if (this.lowerLetterChecked && !this.containsChar(this.password, this.lowerLetters)) {
+                this.generate()
+            } else if (this.numberChecked && !this.containsChar(this.password, this.numbers)) {
+                this.generate()
+            } else if (this.symbolChecked && !this.containsChar(this.password, this.symbols)) {
+                this.generate()
+            }
         } else {
             alert('至少选择一项')
         }
+    }
+
+    containsChar(a: string, b: string) {
+        for (let char of b) {
+            if (a.indexOf(char) > -1) {
+                return true
+            }
+        }
+        return false
     }
 }
 </script>
