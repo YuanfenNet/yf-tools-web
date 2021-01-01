@@ -13,7 +13,7 @@
                       class="password"></el-input>
             <el-row>
                 <el-col :xs="{ span:24 }"
-                        :sm="{ span:10 }">
+                        :sm="{ span:8 }">
                     <div class="flex-wrapper slider">
                         <span class="text">长度</span>
                         <el-slider v-model="length"
@@ -23,12 +23,21 @@
                     </div>
                 </el-col>
                 <el-col :xs="{ span:24 }"
-                        :sm="{ span:12, offset:2 }">
+                        :sm="{ span:9, offset:1 }">
                     <div class="flex-wrapper checkbox">
                         <el-checkbox v-model="upperLetterChecked">大写字母</el-checkbox>
                         <el-checkbox v-model="lowerLetterChecked">小写字母</el-checkbox>
                         <el-checkbox v-model="numberChecked">数字</el-checkbox>
+                    </div>
+                </el-col>
+                <el-col :xs="{ span:24 }"
+                        :sm="{ span:6}">
+                    <div class="flex-wrapper">
                         <el-checkbox v-model="symbolChecked">符号</el-checkbox>
+                        <el-input v-model="symbols"
+                                  size="mini"
+                                  class="symbols-input"
+                                  placeholder="请输入特殊符号" />
                     </div>
                 </el-col>
             </el-row>
@@ -109,6 +118,19 @@ export default class Password extends Vue {
         height: 60px;
         align-items: center;
 
+        .el-checkbox {
+            margin-right: 10px;
+        }
+
+        .symbols-input {
+            flex: 1;
+            input {
+                font-family: Courier Prime, monospace !important;
+                padding: 0 5px;
+                font-size: 14px;
+            }
+        }
+
         &.slider {
             .text {
                 font-size: 14px;
@@ -124,10 +146,7 @@ export default class Password extends Vue {
             flex: 1;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            .el-checkbox {
-                margin-right: 10px;
-            }
+            justify-content: flex-end;
         }
     }
     .btn-wrapper {
@@ -136,6 +155,15 @@ export default class Password extends Vue {
         justify-content: center;
         .el-button {
             width: 200px;
+        }
+    }
+}
+@media only screen and (max-width: 767px) {
+    .page-password {
+        .flex-wrapper {
+            &.checkbox {
+                justify-content: space-between;
+            }
         }
     }
 }
