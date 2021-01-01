@@ -17,7 +17,7 @@
                     <div class="flex-wrapper slider">
                         <span class="text">长度</span>
                         <el-slider v-model="length"
-                                   :min="1">
+                                   :min="4">
                         </el-slider>
                         <span class="text">{{ length }}位</span>
                     </div>
