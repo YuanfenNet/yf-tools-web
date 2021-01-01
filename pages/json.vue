@@ -92,7 +92,7 @@ export default class Json extends Vue {
     }
     .zone {
         width: 100%;
-        height: calc(100vh - 240px);
+        height: calc(100vh - 200px);
         display: flex;
         justify-content: space-between;
 
@@ -142,7 +142,7 @@ export default class Json extends Vue {
             height: auto;
             .content {
                 width: 100%;
-                height: calc((100vh - 240px) / 2);
+                height: calc(100vh - 180px);
             }
         }
     }

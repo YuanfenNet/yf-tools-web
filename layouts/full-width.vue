@@ -1,16 +1,7 @@
 <template>
     <div class="page">
         <div class="header">
-            <el-row>
-                <el-col :xs="{ span:24 }"
-                        :sm="{ span:22, offset: 1 }"
-                        :md="{ span:18, offset: 3 }">
-                    <div class="header-content">
-                        <div class="title">猿奋小工具集</div>
-                        <div class="description">致力于为广大开发者提供最好用的小工具</div>
-                    </div>
-                </el-col>
-            </el-row>
+            <header-content />
         </div>
         <div class="body-container">
             <Nuxt />
@@ -31,3 +22,11 @@
         </vue-footer>
     </div>
 </template>
+
+<script lang="ts">
+import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import HeaderContent from '@/components/header-content.vue'
+
+@Component({ components: { HeaderContent } })
+export default class FullWidth extends Vue {}
+</script>

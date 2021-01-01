@@ -1,7 +1,8 @@
 @import '~/assets/variables.scss';
 
 html {
-    font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+        sans-serif;
     font-size: 16px;
     word-spacing: 1px;
     -ms-text-size-adjust: 100%;
@@ -29,26 +30,11 @@ html {
         width: 100%;
         border-bottom: $border;
         background-color: #409eff;
-        .header-content {
-            padding: 10px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            .title {
-                font-size: 24px;
-                color: #fff;
-            }
-            .description {
-                font-size: 12px;
-                color: #fff;
-                margin-top: 10px;
-            }
-        }
+
     }
     .body-container {
         width: 100%;
-        padding: 20px 10px;
+        padding: 10px;
         .el-page-header__content {
             font-weight: bold;
         }
@@ -157,6 +143,7 @@ hr {
 
 @font-face {
     font-family: Courier Prime;
-    src: url(~static/fonts/courier-prime.woff2) format('woff2'), url(~static/fonts/courier-prime.woff) format('woff'), url(~static/fonts/courier-prime.eot) format('eot');
+    src: url(~static/fonts/courier-prime.woff2) format('woff2'), url(~static/fonts/courier-prime.woff) format('woff'),
+        url(~static/fonts/courier-prime.eot) format('eot');
     font-display: swap;
 }

@@ -6,7 +6,7 @@ export default {
         meta: [
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { hid: 'description', name: 'description', content: '猿奋小工具集，致力于为广大开发者提供最好用的小工具。' }
+            { hid: 'description', name: 'description', content: '猿奋小工具集，做最好用的小工具集。' }
         ],
         link: [
             { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon/apple-touch-icon.png' },
