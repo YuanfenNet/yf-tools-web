@@ -43,7 +43,10 @@ export default class Index extends Vue {
     head() {
         return {
             title: '猿奋工具箱',
-            titleTemplate: ''
+            titleTemplate: '',
+            meta: [
+                { hid: 'description', name: 'description', content: '致力于做最好用的小工具，免费为广大开发者提供 JSON 解析&格式化、随机密码生成、图片 Base64 编码&解码等小工具。' }
+            ]
         }
     }
 

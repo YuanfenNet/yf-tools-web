@@ -60,7 +60,13 @@ export default class Json extends Vue {
     head() {
         return {
             title: 'JSON 解析&格式化',
-            meta: [{ hid: 'description', name: 'description', content: '猿奋工具箱：在线 JSON 解析&格式化' }]
+            meta: [
+                {
+                    hid: 'description',
+                    name: 'description',
+                    content: '在线 JSON 解析&格式化 小工具，支持解析和校验 JSON 数据、树形结构格式化、调整默认展开层级、字段排序等功能。'
+                }
+            ]
         }
     }
 
