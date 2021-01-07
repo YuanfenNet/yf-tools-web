@@ -1,10 +1,11 @@
 <template>
     <div class="header-content">
         <div class="left">
-            <div class="icon" />
-            <div class="title">猿奋小工具集</div>
+            <img src="~/static/img/logo.svg"
+                 class="icon" />
+            <div class="title">猿奋工具箱</div>
         </div>
-        <div class="description">做最好用的小工具集</div>
+        <div class="description">做最好用的小工具</div>
     </div>
 </template>
 
@@ -29,10 +30,6 @@ export default class HeaderContent extends Vue {}
         .icon {
             width: 24px;
             height: 24px;
-            background-image: url(~static/logo.png);
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
             margin-right: 10px;
         }
         .title {

@@ -15,9 +15,9 @@
         <el-card>
             <div slot="header"
                  class="card-header">
-                <h4>欢迎使用猿奋小工具集</h4>
+                <h4>欢迎使用猿奋工具箱</h4>
             </div>
-            <p>目前正在扩充小工具，致力于为开发者提供最好用的工具集。</p>
+            <p>目前正在扩充小工具，致力于为开发者提供最好用的小工具。</p>
             <p>TODO：</p>
             <ul>
                 <li><del>随机密码生成</del>(2020.12.20)</li>
@@ -28,6 +28,8 @@
                 <li>天数计算器</li>
                 <li>时间戳转换</li>
                 <li>字体格式在线转换</li>
+                <li>Crontab</li>
+                <li>时间戳转换</li>
             </ul>
         </el-card>
     </div>
@@ -40,7 +42,7 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 export default class Index extends Vue {
     head() {
         return {
-            title: '猿奋小工具集',
+            title: '猿奋工具箱',
             titleTemplate: ''
         }
     }
@@ -84,8 +86,8 @@ export default class Index extends Vue {
             transition: none;
         }
         &:active {
-            background: #3a8ee6;
-            border-color: #3a8ee6;
+            background: #007373;
+            border-color: #007373;
             color: #fff;
             outline: 0;
         }

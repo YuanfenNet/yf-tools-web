@@ -70,7 +70,7 @@ export default class Password extends Vue {
     head() {
         return {
             title: '随机密码生成',
-            meta: [{ hid: 'description', name: 'description', content: '猿奋小工具集：在线随机密码生成' }]
+            meta: [{ hid: 'description', name: 'description', content: '猿奋工具箱：在线随机密码生成' }]
         }
     }
 

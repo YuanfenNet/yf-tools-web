@@ -60,7 +60,7 @@ export default class Json extends Vue {
     head() {
         return {
             title: 'JSON 解析&格式化',
-            meta: [{ hid: 'description', name: 'description', content: '猿奋小工具集：在线 JSON 解析&格式化' }]
+            meta: [{ hid: 'description', name: 'description', content: '猿奋工具箱：在线 JSON 解析&格式化' }]
         }
     }
 

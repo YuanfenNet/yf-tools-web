@@ -29,8 +29,7 @@ html {
     .header {
         width: 100%;
         border-bottom: $border;
-        background-color: #409eff;
-
+        background-color: $color-main;
     }
     .body-container {
         width: 100%;
@@ -74,13 +73,13 @@ a {
 }
 
 p {
-    color: $color-primary-text-black;
+    color: $color-regular-text-black;
     font-size: 16px;
     line-height: 1.8em;
 }
 
 li {
-    color: $color-primary-text-black;
+    color: $color-regular-text-black;
     font-size: 16px;
     line-height: 1.8em;
 }
@@ -92,7 +91,7 @@ h4,
 h5,
 h6 {
     font-weight: normal;
-    color: $color-title-black;
+    color: $color-primary-text-black;
 }
 
 h1 {

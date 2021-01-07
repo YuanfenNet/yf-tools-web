@@ -1,23 +1,23 @@
 export default {
     // Global page headers (https://go.nuxtjs.dev/config-head)
     head: {
-        title: '猿奋小工具集',
-        titleTemplate: '%s - 猿奋小工具集',
+        title: '猿奋工具箱',
+        titleTemplate: '%s - 猿奋工具箱',
         meta: [
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { hid: 'description', name: 'description', content: '猿奋小工具集，做最好用的小工具集。' }
+            { hid: 'description', name: 'description', content: '猿奋工具箱，做最好用的小工具' }
         ],
         link: [
-            { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon/apple-touch-icon.png' },
-            { rel: 'icon', type: 'image/image/png', sizes: '32x32', href: '/favicon/favicon-32x32.png' },
-            { rel: 'icon', type: 'image/image/png', sizes: '16x16', href: '/favicon/favicon-16x16.png' },
-            { rel: 'manifest', href: '/favicon/site.webmanifest' }
+            { rel: 'apple-touch-icon', sizes: '180x180', href: '/img/favicon/apple-touch-icon.png' },
+            { rel: 'icon', type: 'image/image/png', sizes: '32x32', href: '/img/favicon/favicon-32x32.png' },
+            { rel: 'icon', type: 'image/image/png', sizes: '16x16', href: '/img/favicon/favicon-16x16.png' },
+            { rel: 'manifest', href: '/img/favicon/site.webmanifest' }
         ]
     },
 
     // Global CSS (https://go.nuxtjs.dev/config-css)
-    css: ['element-ui/lib/theme-chalk/index.css', '~/assets/common.scss'],
+    css: ['~/static/css/element-theme.css', '~/assets/common.scss'],
 
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
     plugins: [
