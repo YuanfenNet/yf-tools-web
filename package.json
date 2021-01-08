@@ -18,10 +18,10 @@
     },
     "dependencies": {
         "@nuxt/typescript-runtime": "^2.0.0",
-        "@nuxtjs/axios": "^5.12.2",
+        "@nuxtjs/axios": "^5.12.5",
         "@nuxtjs/google-gtag": "^1.0.4",
         "@nuxtjs/sitemap": "^2.4.0",
-        "core-js": "^3.6.5",
+        "core-js": "^3.8.2",
         "element-ui": "^2.13.2",
         "jsonlint-mod": "^1.7.6",
         "nuxt": "^2.14.6",
@@ -34,16 +34,16 @@
     "devDependencies": {
         "@nuxt/types": "^2.14.6",
         "@nuxt/typescript-build": "^2.0.3",
-        "@nuxtjs/eslint-config": "^3.1.0",
-        "@nuxtjs/eslint-config-typescript": "^3.0.0",
-        "@nuxtjs/eslint-module": "^2.0.0",
+        "@nuxtjs/eslint-config": "^5.0.0",
+        "@nuxtjs/eslint-config-typescript": "^5.0.0",
+        "@nuxtjs/eslint-module": "^3.0.2",
         "babel-eslint": "^10.1.0",
-        "eslint": "^7.10.0",
-        "eslint-config-prettier": "^6.12.0",
-        "eslint-plugin-nuxt": "^1.0.0",
-        "eslint-plugin-prettier": "^3.1.4",
+        "eslint": "^7.17.0",
+        "eslint-config-prettier": "^7.1.0",
+        "eslint-plugin-nuxt": "^2.0.0",
+        "eslint-plugin-prettier": "^3.3.1",
         "prettier": "^2.1.2",
-        "sass": "^1.30.0",
+        "sass": "^1.32.2",
         "sass-loader": "^10.1.0"
     }
 }
