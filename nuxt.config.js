@@ -37,11 +37,19 @@ export default {
     modules: [
         // https://go.nuxtjs.dev/axios
         '@nuxtjs/axios',
+        '@nuxtjs/sitemap',
         '@nuxtjs/google-gtag'
     ],
 
     // Axios module configuration (https://go.nuxtjs.dev/config-axios)
     axios: {},
+
+    sitemap: {
+        hostname: 'https://tools.yuanfen.net',
+        cacheTime: 1000 * 60 * 15,
+        gzip: true,
+        generate: false // Enable me when using nuxt generate
+    },
 
     'google-gtag': {
         id: 'G-2NCGY88M1Y'
