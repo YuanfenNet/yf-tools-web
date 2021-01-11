@@ -8989,18 +8989,18 @@ vue-eslint-parser@^7.1.1, vue-eslint-parser@^7.3.0:
     esquery "^1.0.1"
     lodash "^4.17.15"
 
-"vue-footer@https://nexus.monkey.run:5443/repository/npm-hosted/vue-footer/-/vue-footer-0.7.0.tgz":
+"vue-footer@https://nexus.yuanfen.net:5443/repository/npm-hosted/vue-footer/-/vue-footer-0.7.0.tgz":
   version "0.7.0"
-  resolved "https://nexus.monkey.run:5443/repository/npm-hosted/vue-footer/-/vue-footer-0.7.0.tgz#e792c980a7298847d3921d0b130b22a09b9724d8"
+  resolved "https://nexus.yuanfen.net:5443/repository/npm-hosted/vue-footer/-/vue-footer-0.7.0.tgz#e792c980a7298847d3921d0b130b22a09b9724d8"
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
   resolved "https://registry.npm.taobao.org/vue-hot-reload-api/download/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
   integrity sha1-UylVzB6yCKPZkLOp+acFdGV+CPI=
 
-"vue-json-viewer@https://nexus.monkey.run:5443/repository/npm-hosted/vue-json-viewer/-/vue-json-viewer-2.2.17.tgz":
+"vue-json-viewer@https://nexus.yuanfen.net:5443/repository/npm-hosted/vue-json-viewer/-/vue-json-viewer-2.2.17.tgz":
   version "2.2.17"
-  resolved "https://nexus.monkey.run:5443/repository/npm-hosted/vue-json-viewer/-/vue-json-viewer-2.2.17.tgz#2a09a651a0366dab275b2156b929c48ebc0094db"
+  resolved "https://nexus.yuanfen.net:5443/repository/npm-hosted/vue-json-viewer/-/vue-json-viewer-2.2.17.tgz#2a09a651a0366dab275b2156b929c48ebc0094db"
   dependencies:
     clipboard "^2.0.4"
     vue "^2.6.9"
