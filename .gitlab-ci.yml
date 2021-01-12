@@ -19,6 +19,5 @@ docker-build:
         - docker push $REGISTRY/$NAMESPACE/$PROJECT_NAME:$CI_COMMIT_REF_NAME
         - docker push $REGISTRY/$NAMESPACE/$PROJECT_NAME:latest
         - docker rmi $REGISTRY/$NAMESPACE/$PROJECT_NAME:$CI_COMMIT_REF_NAME
-        - docker rmi $REGISTRY/$NAMESPACE/$PROJECT_NAME:latest
     only:
         - tags
