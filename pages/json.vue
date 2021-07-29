@@ -1,39 +1,38 @@
 <template>
     <div class="body-content page-json">
         <el-card>
-            <div slot="header"
-                 class="card-header">
-                <el-page-header title="返回"
-                                content="JSON 解析&格式化"
-                                @back="goBack">
-                </el-page-header>
+            <div slot="header" class="card-header">
+                <el-page-header title="返回" content="JSON 解析&格式化" @back="goBack" />
             </div>
             <client-only>
                 <drag-zone class="zone">
                     <drag-content class="content">
-                        <code-mirror v-model="jsonString"
-                                     :options="codeMirrorOptions" />
+                        <code-mirror v-model="jsonString" :options="codeMirrorOptions" />
                     </drag-content>
                     <drag-handle class="handle" />
                     <drag-content class="content right">
                         <div class="toolbox">
                             <div class="slider">
                                 <span class="text">展开层级</span>
-                                <el-slider v-model="expandDepth"
-                                           :min="1"
-                                           :max="10"
-                                           @change="handleExpandeDepthChange">
-                                </el-slider>
+                                <el-slider
+                                    v-model="expandDepth"
+                                    :min="1"
+                                    :max="10"
+                                    @change="handleExpandeDepthChange"
+                                />
+
                                 <span class="text">{{ expandDepth }}级</span>
                             </div>
                             <el-checkbox v-model="sort">排序</el-checkbox>
                             <el-checkbox v-model="previewMode">预览</el-checkbox>
                         </div>
-                        <json-viewer v-if="visible"
-                                     :json-string="jsonString"
-                                     :sort="sort"
-                                     :preview-mode="previewMode"
-                                     :expand-depth="expandDepth" />
+                        <json-viewer
+                            v-if="visible"
+                            :json-string="jsonString"
+                            :sort="sort"
+                            :preview-mode="previewMode"
+                            :expand-depth="expandDepth"
+                        />
                     </drag-content>
                 </drag-zone>
             </client-only>
@@ -42,13 +41,13 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { Vue, Component } from 'nuxt-property-decorator'
 import JsonViewer from '@/components/json-viewer.vue'
 import CodeMirror from '@/components/code-mirror.vue'
 
 @Component({
     layout: 'full-width',
-    components: { JsonViewer, CodeMirror }
+    components: { JsonViewer, CodeMirror },
 })
 export default class Json extends Vue {
     jsonString: any = ''
@@ -64,9 +63,10 @@ export default class Json extends Vue {
                 {
                     hid: 'description',
                     name: 'description',
-                    content: '在线 JSON 解析&格式化 小工具，支持解析和校验 JSON 数据、树形结构格式化、调整默认展开层级、字段排序等功能。'
-                }
-            ]
+                    content:
+                        '在线 JSON 解析&格式化 小工具，支持解析和校验 JSON 数据、树形结构格式化、调整默认展开层级、字段排序等功能。',
+                },
+            ],
         }
     }
 
@@ -75,7 +75,7 @@ export default class Json extends Vue {
         mode: { name: 'javascript', json: true },
         lineNumbers: true,
         line: true,
-        theme: 'material-palenight'
+        theme: 'material-palenight',
     }
 
     goBack() {

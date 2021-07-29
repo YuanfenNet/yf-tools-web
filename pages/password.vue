@@ -1,58 +1,47 @@
 <template>
     <div class="body-content page-password">
         <el-card>
-            <div slot="header"
-                 class="card-header">
-                <el-page-header title="返回"
-                                content="随机密码生成"
-                                @back="goBack">
-                </el-page-header>
+            <div slot="header" class="card-header">
+                <el-page-header title="返回" content="随机密码生成" @back="goBack" />
             </div>
-            <el-input v-model="password"
-                      @focus="passwordFocus($event)"
-                      class="password"></el-input>
+            <el-input v-model="password" class="password" @focus="passwordFocus($event)" />
             <el-row>
-                <el-col :xs="{ span:24 }"
-                        :sm="{ span:8 }">
+                <el-col :xs="{ span: 24 }" :sm="{ span: 8 }">
                     <div class="flex-wrapper slider">
                         <span class="text">长度</span>
-                        <el-slider v-model="length"
-                                   :min="4">
-                        </el-slider>
+                        <el-slider v-model="length" :min="4" />
                         <span class="text">{{ length }}位</span>
                     </div>
                 </el-col>
-                <el-col :xs="{ span:24 }"
-                        :sm="{ span:9, offset:1 }">
+                <el-col :xs="{ span: 24 }" :sm="{ span: 9, offset: 1 }">
                     <div class="flex-wrapper checkbox">
                         <el-checkbox v-model="upperLetterChecked">大写字母</el-checkbox>
                         <el-checkbox v-model="lowerLetterChecked">小写字母</el-checkbox>
                         <el-checkbox v-model="numberChecked">数字</el-checkbox>
                     </div>
                 </el-col>
-                <el-col :xs="{ span:24 }"
-                        :sm="{ span:6}">
+                <el-col :xs="{ span: 24 }" :sm="{ span: 6 }">
                     <div class="flex-wrapper">
                         <el-checkbox v-model="symbolChecked">符号</el-checkbox>
-                        <el-input v-model="symbols"
-                                  size="mini"
-                                  class="symbols-input"
-                                  placeholder="请输入特殊符号"
-                                  @change="handleSymbolsInputChange" />
+                        <el-input
+                            v-model="symbols"
+                            size="mini"
+                            class="symbols-input"
+                            placeholder="请输入特殊符号"
+                            @change="handleSymbolsInputChange"
+                        />
                     </div>
                 </el-col>
             </el-row>
             <div class="btn-wrapper">
-                <el-button type="primary"
-                           round
-                           @click="generate">生成密码</el-button>
+                <el-button type="primary" round @click="generate">生成密码</el-button>
             </div>
         </el-card>
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { Vue, Component } from 'nuxt-property-decorator'
 
 @Component({})
 export default class Password extends Vue {
@@ -74,9 +63,10 @@ export default class Password extends Vue {
                 {
                     hid: 'description',
                     name: 'description',
-                    content: '在线随机密码生成器，可配置长度、大小写字母、数字、自定义特殊字符等，生成高强度密码，增加破解难度，提供安全保障。'
-                }
-            ]
+                    content:
+                        '在线随机密码生成器，可配置长度、大小写字母、数字、自定义特殊字符等，生成高强度密码，增加破解难度，提供安全保障。',
+                },
+            ],
         }
     }
 
@@ -103,7 +93,7 @@ export default class Password extends Vue {
             this.symbolChecked = false
         }
 
-        var charset = ''
+        let charset = ''
         if (this.upperLetterChecked) charset += this.upperLetters
         if (this.lowerLetterChecked) charset += this.lowerLetters
         if (this.numberChecked) charset += this.numbers
@@ -111,12 +101,15 @@ export default class Password extends Vue {
 
         if (charset.length > 0) {
             this.password = ''
-            for (var i = 0, n = charset.length; i < this.length; i++) {
+            for (let i = 0, n = charset.length; i < this.length; i++) {
                 this.password += charset.charAt(Math.floor(Math.random() * n))
             }
             if (this.upperLetterChecked && !this.containsChar(this.password, this.upperLetters)) {
                 this.generate()
-            } else if (this.lowerLetterChecked && !this.containsChar(this.password, this.lowerLetters)) {
+            } else if (
+                this.lowerLetterChecked &&
+                !this.containsChar(this.password, this.lowerLetters)
+            ) {
                 this.generate()
             } else if (this.numberChecked && !this.containsChar(this.password, this.numbers)) {
                 this.generate()
@@ -129,8 +122,8 @@ export default class Password extends Vue {
     }
 
     containsChar(a: string, b: string) {
-        for (let char of b) {
-            if (a.indexOf(char) > -1) {
+        for (const char of b) {
+            if (a.includes(char)) {
                 return true
             }
         }

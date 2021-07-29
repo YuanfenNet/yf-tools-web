@@ -1,8 +1,7 @@
 <template>
     <div class="header-content">
         <div class="left">
-            <img src="~/static/img/logo.svg"
-                 class="icon" />
+            <img src="~/static/img/logo.svg" class="icon" />
             <div class="title">猿奋工具箱</div>
         </div>
         <div class="description">做最好用的小工具</div>
@@ -10,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { Vue, Component } from 'nuxt-property-decorator'
 
 @Component({})
 export default class HeaderContent extends Vue {}

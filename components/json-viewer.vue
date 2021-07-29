@@ -1,14 +1,17 @@
 <template>
     <div class="json-viewer-wrapper">
-        <vue-json-viewer v-show="jsonString.length > 0 && !errorMessage"
-                         :value="jsonData"
-                         :expand-depth="expandDepth"
-                         :sort="sort"
-                         :preview-mode="previewMode"
-                         :copyable="{ copyText:'复制', copiedText:'已复制', timeout:2000 }"
-                         theme="json-theme" />
-        <div v-if="jsonString.length > 0 && errorMessage"
-             class="error-message">{{ errorMessage }}</div>
+        <vue-json-viewer
+            v-show="jsonString.length > 0 && !errorMessage"
+            :value="jsonData"
+            :expand-depth="expandDepth"
+            :sort="sort"
+            :preview-mode="previewMode"
+            :copyable="{ copyText: '复制', copiedText: '已复制', timeout: 2000 }"
+            theme="json-theme"
+        />
+        <div v-if="jsonString.length > 0 && errorMessage" class="error-message">
+            {{ errorMessage }}
+        </div>
     </div>
 </template>
 

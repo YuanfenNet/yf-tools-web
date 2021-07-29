@@ -1,8 +1,10 @@
 <template>
-    <codemirror :value="value"
-                :options="options"
-                placeholder="请在此输入 JSON 字符串"
-                @input="handleCodeChange" />
+    <codemirror
+        :value="value"
+        :options="options"
+        placeholder="请在此输入 JSON 字符串"
+        @input="handleCodeChange"
+    />
 </template>
 
 <script lang="ts">
