@@ -7,6 +7,7 @@
             <el-row>
                 <a class="btn-primary" href="/json">JSON 解析&格式化</a>
                 <a class="btn-primary" href="/password">随机密码生成</a>
+                <a class="btn-primary" href="/base64">Base64 编码&解码</a>
             </el-row>
         </el-card>
         <el-card>
@@ -25,7 +26,6 @@
                 <li>时间戳转换</li>
                 <li>字体格式在线转换</li>
                 <li>Crontab</li>
-                <li>时间戳转换</li>
             </ul>
         </el-card>
     </div>
