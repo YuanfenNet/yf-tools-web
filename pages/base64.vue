@@ -17,7 +17,33 @@
                             />
                         </el-select>
                     </div>
-                    <el-input v-model="text" type="textarea" placeholder="" />
+                    <el-input
+                        v-if="type === 'text'"
+                        v-model="text"
+                        type="textarea"
+                        placeholder=""
+                    />
+                    <el-upload
+                        v-if="type === 'image' && !currentImage"
+                        :auto-upload="false"
+                        :show-file-list="false"
+                        :on-change="imageUpload"
+                        action=""
+                        accept="image/*"
+                        class="image-upload-wrapper"
+                        drag
+                    >
+                        <i class="el-icon-upload" />
+                        <div class="el-upload__text">
+                            <div>将文件拖到此处，或<em>点击上传</em></div>
+                            <div class="el-upload__tip">图片不会上传至服务器，请放心使用</div>
+                        </div>
+                    </el-upload>
+                    <div
+                        v-if="type === 'image' && currentImage"
+                        class="image-preview"
+                        :style="{ backgroundImage: `url(${currentImage})` }"
+                    />
                 </div>
                 <div class="center-area">
                     <el-button type="primary" round @click="encode">
@@ -29,6 +55,9 @@
                         <i class="el-icon-arrow-left el-icon--left" />
                         <span>解码</span>
                         <i class="el-icon-arrow-left el-icon--right" />
+                    </el-button>
+                    <el-button type="primary" round @click="clear">
+                        <span>清空</span>
                     </el-button>
                 </div>
                 <div class="right-area">
@@ -46,7 +75,7 @@
 import { Vue, Component } from 'nuxt-property-decorator'
 import { Base64 } from 'js-base64'
 
-interface InputType {
+interface DataType {
     value: string
     label: string
 }
@@ -55,7 +84,7 @@ interface InputType {
     layout: 'full-width',
 })
 export default class Password extends Vue {
-    types: Array<InputType> = [
+    types: Array<DataType> = [
         { value: 'text', label: '文本' },
         { value: 'image', label: '图片' },
     ]
@@ -63,6 +92,7 @@ export default class Password extends Vue {
     type: string = 'text'
     text: string = ''
     base64: string = ''
+    currentImage: string = ''
 
     head() {
         return {
@@ -80,15 +110,54 @@ export default class Password extends Vue {
     mounted() {}
 
     encode() {
-        this.base64 = Base64.encode(this.text)
+        if (this.type === 'text') {
+            this.base64 = Base64.encode(this.text)
+        } else if (this.type === 'image') {
+            this.base64 = this.currentImage
+        }
     }
 
     decode() {
         try {
-            this.text = Base64.decode(this.base64)
+            if (this.type === 'text') {
+                this.text = Base64.decode(this.base64)
+            } else if (this.type === 'image') {
+                this.currentImage = this.base64
+            }
         } catch (ex) {
             this.$message.error('Base64 解码失败')
         }
+    }
+
+    imageUpload(file: any) {
+        this.getFileBase64(file.raw).then((res) => {
+            this.currentImage = res
+        })
+    }
+
+    getFileBase64(file: any) {
+        return new Promise<string>((resolve, reject) => {
+            const reader = new FileReader()
+            let imgResult: string = ''
+            reader.readAsDataURL(file)
+            reader.onload = function () {
+                if (reader.result) {
+                    imgResult = reader.result.toString()
+                }
+            }
+            reader.onerror = function (error) {
+                reject(error)
+            }
+            reader.onloadend = function () {
+                resolve(imgResult)
+            }
+        })
+    }
+
+    clear() {
+        this.text = ''
+        this.base64 = ''
+        this.currentImage = ''
     }
 
     goBack() {
@@ -123,11 +192,39 @@ export default class Password extends Vue {
                 display: flex;
                 align-items: center;
                 margin-bottom: 10px;
+                height: 30px;
                 .label {
                     font-size: 14px;
                     margin-right: 10px;
                     font-weight: bold;
                 }
+            }
+
+            .image-upload-wrapper {
+                flex: 1;
+                .el-upload {
+                    width: 100%;
+                    height: 100%;
+                    .el-upload-dragger {
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        .el-icon-upload {
+                            margin-top: 0;
+                        }
+                    }
+                }
+            }
+            .image-preview {
+                flex: 1;
+                border: 1px solid #dcdfe6;
+                border-radius: 4px;
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
             }
         }
         .center-area {
