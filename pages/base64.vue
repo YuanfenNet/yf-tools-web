@@ -74,6 +74,7 @@
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
 import { Base64 } from 'js-base64'
+import Utils from '@/plugins/utils'
 
 interface DataType {
     value: string
@@ -130,27 +131,8 @@ export default class Password extends Vue {
     }
 
     imageUpload(file: any) {
-        this.getFileBase64(file.raw).then((res) => {
+        Utils.getDataURL(file.raw).then((res) => {
             this.currentImage = res
-        })
-    }
-
-    getFileBase64(file: any) {
-        return new Promise<string>((resolve, reject) => {
-            const reader = new FileReader()
-            let imgResult: string = ''
-            reader.readAsDataURL(file)
-            reader.onload = function () {
-                if (reader.result) {
-                    imgResult = reader.result.toString()
-                }
-            }
-            reader.onerror = function (error) {
-                reject(error)
-            }
-            reader.onloadend = function () {
-                resolve(imgResult)
-            }
         })
     }
 

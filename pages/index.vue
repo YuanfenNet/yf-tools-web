@@ -8,6 +8,7 @@
                 <a class="btn-primary" href="/json">JSON 解析&格式化</a>
                 <a class="btn-primary" href="/password">随机密码生成</a>
                 <a class="btn-primary" href="/base64">Base64 编码&解码</a>
+                <a class="btn-primary" href="/hash">哈希值计算</a>
             </el-row>
         </el-card>
         <el-card>
@@ -20,6 +21,7 @@
                 <li><del>随机密码生成</del>(2020.12.20)</li>
                 <li><del>JSON 解析&格式化</del>(2020.12.27)</li>
                 <li><del>Base64 编码&解码</del>(2021.07.30)</li>
+                <li><del>哈希值计算</del>(2021.08.19)</li>
                 <li>二维码编码、解码、美化</li>
                 <li>图片压缩</li>
                 <li>天数计算器</li>
