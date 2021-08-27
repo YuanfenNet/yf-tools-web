@@ -1,6 +1,6 @@
 {
     "name": "yf-tools-web",
-    "version": "1.0.0",
+    "version": "1.3.0",
     "private": true,
     "config": {
         "nuxt": {
@@ -14,7 +14,10 @@
         "start": "nuxt start",
         "generate": "nuxt generate",
         "lint:js": "eslint --ext .ts,.js,.vue --ignore-path .gitignore .",
-        "lint": "yarn lint:js"
+        "lint": "yarn lint:js",
+        "version": "git add . && git commit -m \"v$npm_package_version\"",
+        "postversion": "git tag $npm_package_version && git push && git push --tags",
+        "deploy": "yarn version --no-git-tag-version"
     },
     "dependencies": {
         "@nuxtjs/axios": "^5.12.5",
