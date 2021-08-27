@@ -1,3 +1,4 @@
+declare module '*.md'
 declare module 'jsonlint-mod'
 declare module 'vue-json-viewer/ssr'
 declare module 'vue-codemirror'

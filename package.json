@@ -19,6 +19,7 @@
     "dependencies": {
         "@nuxtjs/axios": "^5.12.5",
         "@nuxtjs/google-gtag": "^1.0.4",
+        "@nuxtjs/markdownit": "^2.0.0",
         "@nuxtjs/sitemap": "^2.4.0",
         "core-js": "^3.8.2",
         "crypto-js": "^4.1.1",

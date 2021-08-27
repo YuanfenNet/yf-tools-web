@@ -56,6 +56,7 @@ export default {
         '@nuxtjs/axios',
         '@nuxtjs/sitemap',
         '@nuxtjs/google-gtag',
+        '@nuxtjs/markdownit',
     ],
 
     // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -70,6 +71,12 @@ export default {
 
     'google-gtag': {
         id: 'G-2NCGY88M1Y',
+    },
+
+    markdownit: {
+        preset: 'default',
+        linkify: true,
+        breaks: true,
     },
 
     // Build Configuration (https://go.nuxtjs.dev/config-build)

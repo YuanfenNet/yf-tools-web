@@ -23,21 +23,30 @@
                 <li><del>JSON 解析&格式化</del>(2020.12.27)</li>
                 <li><del>Base64 编码&解码</del>(2021.07.30)</li>
                 <li><del>哈希值计算</del>(2021.08.19)</li>
-                <li><del>时间戳转换(2021.08.27)</del></li>
+                <li><del>时间戳转换</del>(2021.08.27)</li>
                 <li>二维码编码、解码、美化</li>
                 <li>图片压缩</li>
                 <li>天数计算器</li>
                 <li>字体格式在线转换</li>
                 <li>Crontab</li>
             </ul>
+            <a class="btn-primary" href="https://www.v2ex.com/t/792646">交流讨论</a>
+            <a class="btn-primary" href="mailto:bean@yuanfen.net">提交建议 & Bug反馈</a>
+        </el-card>
+        <el-card>
+            <div slot="header" class="card-header">
+                <h4>更新记录</h4>
+            </div>
+            <div class="changelog" v-html="changelog" />
         </el-card>
     </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
+import changelog from '../CHANGELOG.md'
 
-@Component
+@Component({})
 export default class PageIndex extends Vue {
     head() {
         return {
@@ -52,6 +61,10 @@ export default class PageIndex extends Vue {
                 },
             ],
         }
+    }
+
+    get changelog() {
+        return changelog
     }
 
     navigateTo(path: string) {
@@ -72,12 +85,27 @@ export default class PageIndex extends Vue {
             }
         }
         .el-card__body {
-            padding: 15px;
+            padding: 20px;
+            .changelog {
+                section > :first-child {
+                    margin-top: 0 !important;
+                }
+
+                h4 {
+                    margin-top: 14px;
+                    margin-bottom: 6px;
+                    color: #606266;
+                    font-weight: bold;
+                }
+                li {
+                    font-size: 14px;
+                }
+            }
         }
     }
     .btn-primary {
         border: 1px solid $color-main-p40;
-        padding: 10px 20px;
+        padding: 10px 18px;
         border-radius: 20px;
         background-color: $color-main-p10;
         font-size: 14px;

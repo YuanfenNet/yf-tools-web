@@ -64,7 +64,7 @@ export default class PageTimestamp extends Vue {
                 {
                     hid: 'description',
                     name: 'description',
-                    content: '在线时间戳转换小工具，支持时间戳与时间之间相互转换',
+                    content: '在线时间戳转换小工具，支持时间戳与 ISO 8601 时间格式之间相互转换',
                 },
             ],
         }
