@@ -1,55 +1,51 @@
 <template>
-    <div class="body-content page-json">
-        <el-card>
-            <div slot="header" class="card-header">
-                <el-page-header title="返回" content="JSON 解析&格式化" @back="goBack" />
-            </div>
-            <client-only>
-                <drag-zone class="zone">
-                    <drag-content class="content">
-                        <code-mirror v-model="jsonString" :options="codeMirrorOptions" />
-                    </drag-content>
-                    <drag-handle class="handle" />
-                    <drag-content class="content right">
-                        <div class="toolbox">
-                            <div class="slider">
-                                <span class="text">展开层级</span>
-                                <el-slider
-                                    v-model="expandDepth"
-                                    :min="1"
-                                    :max="10"
-                                    @change="handleExpandeDepthChange"
-                                />
+    <page header="JSON 解析&格式化" class="page-json">
+        <client-only>
+            <drag-zone class="zone">
+                <drag-content class="content">
+                    <code-mirror v-model="jsonString" :options="codeMirrorOptions" />
+                </drag-content>
+                <drag-handle class="handle" />
+                <drag-content class="content right">
+                    <div class="toolbox">
+                        <div class="slider">
+                            <span class="text">展开层级</span>
+                            <el-slider
+                                v-model="expandDepth"
+                                :min="1"
+                                :max="10"
+                                @change="handleExpandeDepthChange"
+                            />
 
-                                <span class="text">{{ expandDepth }}级</span>
-                            </div>
-                            <el-checkbox v-model="sort">排序</el-checkbox>
-                            <el-checkbox v-model="previewMode">预览</el-checkbox>
+                            <span class="text">{{ expandDepth }}级</span>
                         </div>
-                        <json-viewer
-                            v-if="visible"
-                            :json-string="jsonString"
-                            :sort="sort"
-                            :preview-mode="previewMode"
-                            :expand-depth="expandDepth"
-                        />
-                    </drag-content>
-                </drag-zone>
-            </client-only>
-        </el-card>
-    </div>
+                        <el-checkbox v-model="sort">排序</el-checkbox>
+                        <el-checkbox v-model="previewMode">预览</el-checkbox>
+                    </div>
+                    <json-viewer
+                        v-if="visible"
+                        :json-string="jsonString"
+                        :sort="sort"
+                        :preview-mode="previewMode"
+                        :expand-depth="expandDepth"
+                    />
+                </drag-content>
+            </drag-zone>
+        </client-only>
+    </page>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
 import JsonViewer from '@/components/json-viewer.vue'
 import CodeMirror from '@/components/code-mirror.vue'
+import Page from '@/components/page.vue'
 
 @Component({
     layout: 'full-width',
-    components: { JsonViewer, CodeMirror },
+    components: { JsonViewer, CodeMirror, Page },
 })
-export default class Json extends Vue {
+export default class PageJson extends Vue {
     jsonString: any = ''
     sort: boolean = false
     previewMode: boolean = false

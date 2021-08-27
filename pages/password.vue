@@ -1,50 +1,48 @@
 <template>
-    <div class="body-content page-password">
-        <el-card>
-            <div slot="header" class="card-header">
-                <el-page-header title="返回" content="随机密码生成" @back="goBack" />
-            </div>
-            <el-input v-model="password" class="password" @focus="passwordFocus($event)" />
-            <el-row>
-                <el-col :xs="{ span: 24 }" :sm="{ span: 8 }">
-                    <div class="flex-wrapper slider">
-                        <span class="text">长度</span>
-                        <el-slider v-model="length" :min="4" />
-                        <span class="text">{{ length }}位</span>
-                    </div>
-                </el-col>
-                <el-col :xs="{ span: 24 }" :sm="{ span: 9, offset: 1 }">
-                    <div class="flex-wrapper checkbox">
-                        <el-checkbox v-model="upperLetterChecked">大写字母</el-checkbox>
-                        <el-checkbox v-model="lowerLetterChecked">小写字母</el-checkbox>
-                        <el-checkbox v-model="numberChecked">数字</el-checkbox>
-                    </div>
-                </el-col>
-                <el-col :xs="{ span: 24 }" :sm="{ span: 6 }">
-                    <div class="flex-wrapper">
-                        <el-checkbox v-model="symbolChecked">符号</el-checkbox>
-                        <el-input
-                            v-model="symbols"
-                            size="mini"
-                            class="symbols-input"
-                            placeholder="请输入特殊符号"
-                            @change="handleSymbolsInputChange"
-                        />
-                    </div>
-                </el-col>
-            </el-row>
-            <div class="btn-wrapper">
-                <el-button type="primary" round @click="generate">生成密码</el-button>
-            </div>
-        </el-card>
-    </div>
+    <page header="随机密码生成" class="page-password">
+        <el-input v-model="password" class="password" @focus="passwordFocus($event)" />
+        <el-row>
+            <el-col :xs="{ span: 24 }" :sm="{ span: 8 }">
+                <div class="flex-wrapper slider">
+                    <span class="text">长度</span>
+                    <el-slider v-model="length" :min="4" />
+                    <span class="text">{{ length }}位</span>
+                </div>
+            </el-col>
+            <el-col :xs="{ span: 24 }" :sm="{ span: 9, offset: 1 }">
+                <div class="flex-wrapper checkbox">
+                    <el-checkbox v-model="upperLetterChecked">大写字母</el-checkbox>
+                    <el-checkbox v-model="lowerLetterChecked">小写字母</el-checkbox>
+                    <el-checkbox v-model="numberChecked">数字</el-checkbox>
+                </div>
+            </el-col>
+            <el-col :xs="{ span: 24 }" :sm="{ span: 6 }">
+                <div class="flex-wrapper">
+                    <el-checkbox v-model="symbolChecked">符号</el-checkbox>
+                    <el-input
+                        v-model="symbols"
+                        size="mini"
+                        class="symbols-input"
+                        placeholder="请输入特殊符号"
+                        @change="handleSymbolsInputChange"
+                    />
+                </div>
+            </el-col>
+        </el-row>
+        <div class="btn-wrapper">
+            <el-button type="primary" round @click="generate">生成密码</el-button>
+        </div>
+    </page>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
+import Page from '@/components/page.vue'
 
-@Component({})
-export default class Password extends Vue {
+@Component({
+    components: { Page },
+})
+export default class PagePassword extends Vue {
     password: string = ''
     length: number = 16
     upperLetterChecked: boolean = true
@@ -138,7 +136,7 @@ export default class Password extends Vue {
         input {
             font-size: 24px;
             text-align: center;
-            font-family: Courier Prime, monospace !important;
+            font-family: monospace !important;
             letter-spacing: 2.5px;
         }
     }
@@ -154,7 +152,7 @@ export default class Password extends Vue {
         .symbols-input {
             flex: 1;
             input {
-                font-family: Courier Prime, monospace !important;
+                font-family: monospace !important;
                 padding: 0 5px;
                 font-size: 14px;
             }

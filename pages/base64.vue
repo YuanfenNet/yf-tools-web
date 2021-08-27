@@ -1,80 +1,69 @@
 <template>
-    <div class="body-content page-base64">
-        <el-card>
-            <div slot="header" class="card-header">
-                <el-page-header title="返回" content="Base64 编码&解码" @back="goBack" />
-            </div>
-            <div class="content-wrapper">
-                <div class="left-area">
-                    <div class="top-line">
-                        <div class="label">数据类型</div>
-                        <el-select v-model="type" placeholder="请选择" size="mini">
-                            <el-option
-                                v-for="item in types"
-                                :key="item.value"
-                                :value="item.value"
-                                :label="item.label"
-                            />
-                        </el-select>
-                    </div>
-                    <el-input
-                        v-if="type === 'text'"
-                        v-model="text"
-                        type="textarea"
-                        placeholder=""
+    <page header="Base64 编码&解码" class="page-base64">
+        <div class="left-area">
+            <div class="top-line">
+                <div class="label">数据类型</div>
+                <el-select v-model="type" placeholder="请选择" size="mini">
+                    <el-option
+                        v-for="item in types"
+                        :key="item.value"
+                        :value="item.value"
+                        :label="item.label"
                     />
-                    <el-upload
-                        v-if="type === 'image' && !currentImage"
-                        :auto-upload="false"
-                        :show-file-list="false"
-                        :on-change="imageUpload"
-                        action=""
-                        accept="image/*"
-                        class="image-upload-wrapper"
-                        drag
-                    >
-                        <i class="el-icon-upload" />
-                        <div class="el-upload__text">
-                            <div>将文件拖到此处，或<em>点击上传</em></div>
-                            <div class="el-upload__tip">图片不会上传至服务器，请放心使用</div>
-                        </div>
-                    </el-upload>
-                    <div
-                        v-if="type === 'image' && currentImage"
-                        class="image-preview"
-                        :style="{ backgroundImage: `url(${currentImage})` }"
-                    />
-                </div>
-                <div class="center-area">
-                    <el-button type="primary" round @click="encode">
-                        <i class="el-icon-arrow-right el-icon--left" />
-                        <span>编码</span>
-                        <i class="el-icon-arrow-right el-icon--right" />
-                    </el-button>
-                    <el-button type="primary" round @click="decode">
-                        <i class="el-icon-arrow-left el-icon--left" />
-                        <span>解码</span>
-                        <i class="el-icon-arrow-left el-icon--right" />
-                    </el-button>
-                    <el-button type="primary" round @click="clear">
-                        <span>清空</span>
-                    </el-button>
-                </div>
-                <div class="right-area">
-                    <div class="top-line">
-                        <div class="label">Base64</div>
-                    </div>
-                    <el-input v-model="base64" type="textarea" placeholder="" />
-                </div>
+                </el-select>
             </div>
-        </el-card>
-    </div>
+            <el-input v-if="type === 'text'" v-model="text" type="textarea" placeholder="" />
+            <el-upload
+                v-if="type === 'image' && !currentImage"
+                :auto-upload="false"
+                :show-file-list="false"
+                :on-change="imageUpload"
+                action=""
+                accept="image/*"
+                class="image-upload-wrapper"
+                drag
+            >
+                <i class="el-icon-upload" />
+                <div class="el-upload__text">
+                    <div>将文件拖到此处，或<em>点击上传</em></div>
+                    <div class="el-upload__tip">图片不会上传至服务器，请放心使用</div>
+                </div>
+            </el-upload>
+            <div
+                v-if="type === 'image' && currentImage"
+                class="image-preview"
+                :style="{ backgroundImage: `url(${currentImage})` }"
+            />
+        </div>
+        <div class="center-area">
+            <el-button type="primary" round @click="encode">
+                <i class="el-icon-arrow-right el-icon--left" />
+                <span>编码</span>
+                <i class="el-icon-arrow-right el-icon--right" />
+            </el-button>
+            <el-button type="primary" round @click="decode">
+                <i class="el-icon-arrow-left el-icon--left" />
+                <span>解码</span>
+                <i class="el-icon-arrow-left el-icon--right" />
+            </el-button>
+            <el-button type="primary" round @click="clear">
+                <span>清空</span>
+            </el-button>
+        </div>
+        <div class="right-area">
+            <div class="top-line">
+                <div class="label">Base64</div>
+            </div>
+            <el-input v-model="base64" type="textarea" placeholder="" />
+        </div>
+    </page>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
 import { Base64 } from 'js-base64'
 import Utils from '@/plugins/utils'
+import Page from '@/components/page.vue'
 
 interface DataType {
     value: string
@@ -83,8 +72,9 @@ interface DataType {
 
 @Component({
     layout: 'full-width',
+    components: { Page },
 })
-export default class Password extends Vue {
+export default class PageBase64 extends Vue {
     types: Array<DataType> = [
         { value: 'text', label: '文本' },
         { value: 'image', label: '图片' },

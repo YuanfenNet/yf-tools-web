@@ -1,96 +1,82 @@
 <template>
-    <div class="body-content page-hash">
-        <el-card>
-            <div slot="header" class="card-header">
-                <el-page-header title="返回" content="哈希值计算" @back="goBack" />
-            </div>
-            <div class="content-wrapper">
-                <div class="left-area">
-                    <div class="top-line">
-                        <div class="label">数据类型</div>
-                        <el-select
-                            v-model="dataType"
-                            placeholder="请选择"
-                            size="mini"
-                            @change="onDataTypeChange"
-                        >
-                            <el-option
-                                v-for="item in dataTypes"
-                                :key="item.value"
-                                :value="item.value"
-                                :label="item.label"
-                            />
-                        </el-select>
-                        <div class="label">哈希算法</div>
-                        <el-select
-                            v-model="hashType"
-                            placeholder="请选择"
-                            size="mini"
-                            @change="calculate"
-                        >
-                            <el-option
-                                v-for="item in hashTypes"
-                                :key="item.value"
-                                :value="item.value"
-                                :label="item.label"
-                            />
-                        </el-select>
-                    </div>
-                    <div v-if="hashType.startsWith('hmac')" class="top-line">
-                        <div class="label">秘钥</div>
-                        <el-input v-model="key" placeholder="" size="mini" @input="calculate" />
-                    </div>
-                    <el-input
-                        v-if="dataType === DataType.text"
-                        v-model="text"
-                        type="textarea"
-                        placeholder=""
-                        @input="calculate"
+    <page header="哈希值计算" class="page-hash">
+        <div class="left-area">
+            <div class="top-line">
+                <div class="label">数据类型</div>
+                <el-select
+                    v-model="dataType"
+                    placeholder="请选择"
+                    size="mini"
+                    @change="onDataTypeChange"
+                >
+                    <el-option
+                        v-for="item in dataTypes"
+                        :key="item.value"
+                        :value="item.value"
+                        :label="item.label"
                     />
-                    <el-upload
-                        v-if="dataType === DataType.file && !currentFile"
-                        :auto-upload="false"
-                        :show-file-list="false"
-                        :on-change="fileUpload"
-                        action=""
-                        class="file-upload-wrapper"
-                        drag
-                    >
-                        <i class="el-icon-upload" />
-                        <div class="el-upload__text">
-                            <div>将文件拖到此处，或<em>点击上传</em></div>
-                            <div class="el-upload__tip">文件不会上传至服务器，请放心使用</div>
-                        </div>
-                    </el-upload>
-                    <div v-if="dataType === DataType.file && currentFile" class="file-preview">
-                        <div class="file-status">
-                            <i class="el-icon-document" />
-                            <div class="file-name-row">
-                                <span class="file-name">{{ currentFile.name }}</span>
-                                <i class="el-icon-upload-success el-icon-circle-check" />
-                            </div>
-                        </div>
-                    </div>
+                </el-select>
+                <div class="label">哈希算法</div>
+                <el-select v-model="hashType" placeholder="请选择" size="mini" @change="calculate">
+                    <el-option
+                        v-for="item in hashTypes"
+                        :key="item.value"
+                        :value="item.value"
+                        :label="item.label"
+                    />
+                </el-select>
+            </div>
+            <div v-if="hashType.startsWith('hmac')" class="top-line">
+                <div class="label">秘钥</div>
+                <el-input v-model="key" placeholder="" size="mini" @input="calculate" />
+            </div>
+            <el-input
+                v-if="dataType === DataType.text"
+                v-model="text"
+                type="textarea"
+                placeholder=""
+                @input="calculate"
+            />
+            <el-upload
+                v-if="dataType === DataType.file && !currentFile"
+                :auto-upload="false"
+                :show-file-list="false"
+                :on-change="fileUpload"
+                action=""
+                class="file-upload-wrapper"
+                drag
+            >
+                <i class="el-icon-upload" />
+                <div class="el-upload__text">
+                    <div>将文件拖到此处，或<em>点击上传</em></div>
+                    <div class="el-upload__tip">文件不会上传至服务器，请放心使用</div>
                 </div>
-                <div class="center-area">
-                    <el-button type="primary" round @click="clear">
-                        <span>清空</span>
-                    </el-button>
-                </div>
-                <div class="right-area">
-                    <div class="top-line">
-                        <div class="label">
-                            <div>哈希值</div>
-                            <div v-if="calculateTime !== -1">
-                                (计算耗时: {{ calculateTime }} 毫秒)
-                            </div>
-                        </div>
+            </el-upload>
+            <div v-if="dataType === DataType.file && currentFile" class="file-preview">
+                <div class="file-status">
+                    <i class="el-icon-document" />
+                    <div class="file-name-row">
+                        <span class="file-name">{{ currentFile.name }}</span>
+                        <i class="el-icon-upload-success el-icon-circle-check" />
                     </div>
-                    <el-input v-model="hash" type="textarea" placeholder="" />
                 </div>
             </div>
-        </el-card>
-    </div>
+        </div>
+        <div class="center-area">
+            <el-button type="primary" round @click="clear">
+                <span>清空</span>
+            </el-button>
+        </div>
+        <div class="right-area">
+            <div class="top-line">
+                <div class="label">
+                    <div>哈希值</div>
+                    <div v-if="calculateTime !== -1">(计算耗时: {{ calculateTime }} 毫秒)</div>
+                </div>
+            </div>
+            <el-input v-model="hash" type="textarea" placeholder="" />
+        </div>
+    </page>
 </template>
 
 <script lang="ts">
@@ -98,6 +84,7 @@ import { Vue, Component } from 'nuxt-property-decorator'
 import CryptoJS from 'crypto-js'
 import Utils from '@/plugins/utils'
 import { DataType, HashType } from '@/plugins/constants'
+import Page from '@/components/page.vue'
 
 interface OptionType {
     value: string
@@ -106,8 +93,9 @@ interface OptionType {
 
 @Component({
     layout: 'full-width',
+    components: { Page },
 })
-export default class Password extends Vue {
+export default class PageHash extends Vue {
     DataType = DataType
     HashType = HashType
 
