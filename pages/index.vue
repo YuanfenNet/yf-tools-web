@@ -9,7 +9,7 @@
                 <a class="btn-primary" href="/password">随机密码生成</a>
                 <a class="btn-primary" href="/base64">Base64 编码&解码</a>
                 <a class="btn-primary" href="/hash">哈希值计算</a>
-                <a class="btn-primary" href="/timestamp">时间戳转换</a>
+                <a class="btn-primary" href="/time">时间格式转换</a>
             </el-row>
         </el-card>
         <el-card>
@@ -23,7 +23,7 @@
                 <li><del>JSON 解析&格式化</del>(2020.12.27)</li>
                 <li><del>Base64 编码&解码</del>(2021.07.30)</li>
                 <li><del>哈希值计算</del>(2021.08.19)</li>
-                <li><del>时间戳转换</del>(2021.08.27)</li>
+                <li><del>时间格式转换</del>(2021.08.27)</li>
                 <li>二维码编码、解码、美化</li>
                 <li>图片压缩</li>
                 <li>天数计算器</li>
@@ -105,7 +105,7 @@ export default class PageIndex extends Vue {
     }
     .btn-primary {
         border: 1px solid $color-main-p40;
-        padding: 10px 18px;
+        padding: 10px 20px;
         border-radius: 20px;
         background-color: $color-main-p10;
         font-size: 14px;

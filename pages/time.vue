@@ -1,5 +1,5 @@
 <template>
-    <page header="时间戳转换" class="page-timestamp">
+    <page header="时间格式转换" class="page-timestamp">
         <el-row type="flex" align="middle">
             <el-col :span="4"><span class="line-title">选项：</span></el-col>
             <el-col :span="20">
@@ -59,12 +59,12 @@ export default class PageTimestamp extends Vue {
 
     head() {
         return {
-            title: '时间戳转换',
+            title: '时间格式转换',
             meta: [
                 {
                     hid: 'description',
                     name: 'description',
-                    content: '在线时间戳转换小工具，支持时间戳与 ISO 8601 时间格式之间相互转换',
+                    content: '在线时间格式转换小工具，支持时间戳与 ISO 8601 时间格式之间相互转换',
                 },
             ],
         }
