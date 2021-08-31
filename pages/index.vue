@@ -10,6 +10,7 @@
                 <a class="btn-primary" href="/base64">Base64 编码&解码</a>
                 <a class="btn-primary" href="/hash">哈希值计算</a>
                 <a class="btn-primary" href="/time">时间格式转换</a>
+                <a class="btn-primary" href="/entity">HTML 实体转换</a>
             </el-row>
         </el-card>
         <el-card>
@@ -57,7 +58,7 @@ export default class PageIndex extends Vue {
                     hid: 'description',
                     name: 'description',
                     content:
-                        '致力于做最好用的小工具，免费为广大开发者提供 JSON 解析&格式化、随机密码生成、图片 Base64 编码&解码等小工具。',
+                        '致力于做最好用的小工具，免费为广大开发者提供 JSON 解析&格式化、随机密码生成、图片 Base64 编码&解码、哈希值计算、时间格式转换、HTML 实体转换等小工具。',
                 },
             ],
         }

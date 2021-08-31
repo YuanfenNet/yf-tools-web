@@ -1,8 +1,8 @@
 @import '~/assets/variables.scss';
 
 html {
-    font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-        sans-serif;
+    font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        'Helvetica Neue', Arial, sans-serif;
     font-size: 16px;
     word-spacing: 1px;
     -ms-text-size-adjust: 100%;
@@ -76,6 +76,10 @@ p {
     color: $color-regular-text-black;
     font-size: 16px;
     line-height: 1.8em;
+    &:last-child {
+        margin-bottom: 0;
+    }
+    margin-bottom: 1em;
 }
 
 li {
@@ -140,9 +144,20 @@ hr {
     background-color: rgba(0, 0, 0, 0.3);
 }
 
+.notecard {
+    border-left: 6px solid #008080;
+    background-color: rgb(0, 128, 128, 0.1);
+    margin: 0 0 24px;
+    padding: 12px;
+    p {
+        font-size: 14px;
+    }
+}
+
 @font-face {
     font-family: Courier Prime;
-    src: url(~static/fonts/courier-prime.woff2) format('woff2'), url(~static/fonts/courier-prime.woff) format('woff'),
+    src: url(~static/fonts/courier-prime.woff2) format('woff2'),
+        url(~static/fonts/courier-prime.woff) format('woff'),
         url(~static/fonts/courier-prime.eot) format('eot');
     font-display: swap;
 }
