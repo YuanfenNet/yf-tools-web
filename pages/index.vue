@@ -31,7 +31,7 @@
                 <li>字体格式在线转换</li>
                 <li>Crontab</li>
             </ul>
-            <a class="btn-primary" href="https://www.v2ex.com/t/792646">交流讨论</a>
+            <a class="btn-primary" href="https://www.v2ex.com/t/792646" target="_blank">交流讨论</a>
             <a class="btn-primary" href="mailto:bean@yuanfen.net">提交建议 & Bug反馈</a>
         </el-card>
         <el-card>

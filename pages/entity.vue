@@ -3,8 +3,9 @@
         <h4>简介</h4>
         <div class="notecard">
             <p>
-                HTML
-                实体是一段以连字号（<code>&</code>）开头、以分号（<code>;</code>）结尾的文本（字符串）。实体常常用于显示保留字符（这些字符会被解析为
+                <a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Entity" target="_blank">
+                    HTML 实体</a
+                >是一段以连字号（<code>&</code>）开头、以分号（<code>;</code>）结尾的文本（字符串）。实体常常用于显示保留字符（这些字符会被解析为
                 HTML
                 代码）和不可见的字符（如“不换行空格”）。你也可以用实体来代替其他难以用标准键盘键入的字符。
             </p>
