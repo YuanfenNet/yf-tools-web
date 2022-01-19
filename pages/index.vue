@@ -11,6 +11,7 @@
                 <a class="btn-primary" href="/hash">哈希值计算</a>
                 <a class="btn-primary" href="/time">时间格式转换</a>
                 <a class="btn-primary" href="/entity">HTML 实体转换</a>
+                <a class="btn-primary" href="/financial-freedom">财富自由计算器</a>
             </el-row>
         </el-card>
         <el-card>
