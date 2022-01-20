@@ -4,27 +4,33 @@
             <el-col :xs="12" :sm="6">
                 <div class="input-item">
                     <span class="input-item-title">初始资金</span>
-                    <el-input v-model.number="init" />
+                    <el-input v-model.number="init" maxlength="14" />
                 </div>
             </el-col>
             <el-col :xs="12" :sm="6">
                 <div class="input-item">
                     <span class="input-item-title">新增投入</span>
                     <div class="row-line">
-                        <el-input v-model.number="addition" /><span>/年</span>
+                        <el-input v-model.number="addition" maxlength="14" /><span>/年</span>
                     </div>
                 </div>
             </el-col>
             <el-col :xs="12" :sm="6">
                 <div class="input-item">
                     <span class="input-item-title">年化收益</span>
-                    <div class="row-line"><el-input v-model.number="rate" /><span>%</span></div>
+                    <div class="row-line">
+                        <el-input
+                            v-model.number="rate"
+                            maxlength="14"
+                            @input="handleRateInput"
+                        /><span>%</span>
+                    </div>
                 </div>
             </el-col>
             <el-col :xs="12" :sm="6">
                 <div class="input-item">
                     <span class="input-item-title">目标金额</span>
-                    <el-input v-model.number="goal" />
+                    <el-input v-model.number="goal" maxlength="14" @input="handleGoalInput" />
                 </div>
             </el-col>
         </el-row>
@@ -71,6 +77,22 @@ export default class PageTimestamp extends Vue {
     }
 
     mounted() {}
+
+    handleRateInput(e: any) {
+        if (e > 100) {
+            this.$alert('预计年化收益太高啦！', '提示', {
+                confirmButtonText: '确定',
+            })
+        }
+    }
+
+    handleGoalInput(e: any) {
+        if (e.length >= 14) {
+            this.$alert('别做梦了，该醒醒啦！', '目标金额太大', {
+                confirmButtonText: '确定',
+            })
+        }
+    }
 
     calc1(a: number, m: number, r: number, n: number) {
         return (a + ((1 + r) / r) * m) * Math.pow(1 + r, n) - ((1 + r) / r) * m
