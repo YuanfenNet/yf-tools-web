@@ -42,96 +42,82 @@
     </page>
 </template>
 
-<script lang="ts">
-import Page from '@/components/page.vue'
+<script setup lang="ts">
 import { DateTime } from 'luxon'
 
-@Component({
-    components: { Page },
+const dateTime = ref(DateTime.now().toJSDate())
+const timestamp = ref('')
+const isoString = ref('')
+const realTime = ref(true)
+const millisecond = ref(false)
+
+useHead({
+    title: '时间格式转换',
+    meta: [
+        {
+            hid: 'description',
+            name: 'description',
+            content: '在线时间格式转换小工具，支持时间戳与 ISO 8601 时间格式之间相互转换',
+        },
+    ],
 })
-export default class PageTimestamp extends Vue {
-    dateTime: Date = DateTime.now().toJSDate()
-    timestamp: string = ''
-    isoString: string = ''
-    realTime: boolean = true
-    millisecond: boolean = false
 
-    head() {
-        return {
-            title: '时间格式转换',
-            meta: [
-                {
-                    hid: 'description',
-                    name: 'description',
-                    content: '在线时间格式转换小工具，支持时间戳与 ISO 8601 时间格式之间相互转换',
-                },
-            ],
+onMounted(() => {
+    updateTime()
+})
+
+function onInputFocus() {
+    realTime.value = false
+}
+
+function updateTime() {
+    if (realTime.value) {
+        dateTime.value = DateTime.now().toJSDate()
+        convertFromDateTime()
+    }
+    const timeInverval = millisecond.value ? 1 : 100
+    setTimeout(() => {
+        updateTime()
+    }, timeInverval)
+}
+
+function convertFromDateTime() {
+    if (dateTime.value) {
+        if (millisecond.value) {
+            timestamp.value = DateTime.fromJSDate(dateTime.value).toMillis().toString()
+            isoString.value = DateTime.fromJSDate(dateTime.value).toISO()
+        } else {
+            timestamp.value = Math.floor(DateTime.fromJSDate(dateTime.value).toSeconds()).toString()
+            isoString.value = DateTime.fromJSDate(dateTime.value).toFormat(
+                "yyyy-MM-dd'T'HH:mm:ssZZ"
+            )
         }
     }
+}
 
-    mounted() {
-        this.updateTime()
-    }
+function convertDateTime() {
+    realTime.value = false
+    convertFromDateTime()
+}
 
-    onInputFocus() {
-        this.realTime = false
-    }
-
-    updateTime() {
-        if (this.realTime) {
-            this.dateTime = DateTime.now().toJSDate()
-            this.convertFromDateTime()
+function convertTimestamp() {
+    if (timestamp.value) {
+        if (timestamp.value.toString().length === 13) {
+            dateTime.value = DateTime.fromMillis(parseInt(timestamp.value)).toJSDate()
+        } else if (timestamp.value.toString().length === 10) {
+            dateTime.value = DateTime.fromSeconds(parseInt(timestamp.value)).toJSDate()
+        } else {
+            ElMessage.error('时间戳位数应为 10 位或 13位')
+            return
         }
-        const timeInverval = this.millisecond ? 1 : 100
-        setTimeout(() => {
-            this.updateTime()
-        }, timeInverval)
+        convertFromDateTime()
     }
+}
 
-    convertFromDateTime() {
-        if (this.dateTime) {
-            if (this.millisecond) {
-                this.timestamp = DateTime.fromJSDate(this.dateTime).toMillis().toString()
-                this.isoString = DateTime.fromJSDate(this.dateTime).toISO()
-            } else {
-                this.timestamp = Math.floor(
-                    DateTime.fromJSDate(this.dateTime).toSeconds()
-                ).toString()
-                this.isoString = DateTime.fromJSDate(this.dateTime).toFormat(
-                    "yyyy-MM-dd'T'HH:mm:ssZZ"
-                )
-            }
-        }
-    }
-
-    convertDateTime() {
-        this.realTime = false
-        this.convertFromDateTime()
-    }
-
-    convertTimestamp() {
-        if (this.timestamp) {
-            if (this.timestamp.toString().length === 13) {
-                this.dateTime = DateTime.fromMillis(parseInt(this.timestamp)).toJSDate()
-            } else if (this.timestamp.toString().length === 10) {
-                this.dateTime = DateTime.fromSeconds(parseInt(this.timestamp)).toJSDate()
-            } else {
-                ElMessage.error('时间戳位数应为 10 位或 13位')
-                return
-            }
-            this.convertFromDateTime()
-        }
-    }
-
-    convertIsoString() {
-        if (this.isoString) {
-            this.dateTime = DateTime.fromISO(this.isoString).toJSDate()
-            this.convertFromDateTime()
-        }
-    }
-
-    playOrPause() {
-        this.realTime = !this.realTime
+function convertIsoString() {
+    if (isoString.value) {
+        dateTime.value = DateTime.fromISO(isoString.value).toJSDate()
+        convertFromDateTime()
     }
 }
 </script>
