@@ -15,38 +15,36 @@
     </div>
 </template>
 
-<script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+<script setup lang="ts">
 import jsonlint from 'jsonlint-mod'
 import VueJsonViewer from 'vue-json-viewer/ssr'
 import 'vue-json-viewer/style.css'
 
-@Component({ components: { VueJsonViewer } })
-export default class JsonViewer extends Vue {
-    @Prop({ default: '' })
-    jsonString!: string
-
-    @Prop({ default: 5 })
-    expandDepth!: number
-
-    @Prop({ default: false })
-    sort!: boolean
-
-    @Prop({ default: false })
-    previewMode!: boolean
-
-    errorMessage: string = ''
-
-    get jsonData() {
-        try {
-            this.errorMessage = ''
-            return jsonlint.parse(this.jsonString)
-        } catch (e) {
-            this.errorMessage = e.message
-            return e.message
-        }
-    }
+type Props = {
+    jsonString?: string
+    expandDepth?: number
+    sort?: boolean
+    previewMode?: boolean
 }
+
+const props = withDefaults(defineProps<Props>(), {
+    jsonString: '',
+    expandDepth: 5,
+    sort: false,
+    previewMode: false,
+})
+
+const errorMessage = ref('')
+
+const jsonData = computed(() => {
+    try {
+        errorMessage.value = ''
+        return jsonlint.parse(props.jsonString)
+    } catch (e: any) {
+        errorMessage.value = e.message
+        return e.message
+    }
+})
 </script>
 
 <style lang="scss">

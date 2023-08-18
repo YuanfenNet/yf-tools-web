@@ -1,19 +1,12 @@
 <template>
     <div class="header-content">
         <NuxtLink to="/" class="left">
-            <img src="~/static/img/logo.svg" class="icon" />
+            <img src="~/public/img/logo.svg" class="icon" />
             <div class="title">猿奋工具箱</div>
         </NuxtLink>
         <div class="description">做最好用的小工具</div>
     </div>
 </template>
-
-<script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
-
-@Component({})
-export default class HeaderContent extends Vue {}
-</script>
 
 <style lang="scss">
 @import '~/assets/variables.scss';

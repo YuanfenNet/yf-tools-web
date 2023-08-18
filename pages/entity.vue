@@ -54,10 +54,9 @@
     </page>
 </template>
 
-<script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
+<script setup lang="ts">
 import Page from '@/components/page.vue'
-import entities from '@/assets/html-entities.json'
+import HtmlEntities from '@/html-entities'
 
 interface Symbol {
     codepoint: number
@@ -67,93 +66,86 @@ interface Symbol {
     unicode: string
 }
 
-@Component({
-    components: { Page },
+useHead({
+    title: 'HTML 实体转换',
+    meta: [
+        {
+            hid: 'description',
+            name: 'description',
+            content:
+                '在线 HTML 实体转换小工具，支持各种字符与 HTML 实体之间的相互转换；HTML 特殊字符转义',
+        },
+    ],
 })
-export default class PageEntity extends Vue {
-    head() {
-        return {
-            title: 'HTML 实体转换',
-            meta: [
-                {
-                    hid: 'description',
-                    name: 'description',
-                    content:
-                        '在线 HTML 实体转换小工具，支持各种字符与 HTML 实体之间的相互转换；HTML 特殊字符转义',
-                },
-            ],
+
+const character = ref<string>('')
+const entity = ref<string>('')
+const tableData = ref<Array<any>>([])
+
+const entities = computed<Array<Symbol>>(() => {
+    const results: Array<Symbol> = []
+    Object.keys(HtmlEntities).forEach((key) => {
+        if (key.indexOf(';') > 0 && HtmlEntities[key].codepoints.length === 1) {
+            results.push({
+                codepoint: HtmlEntities[key].codepoints[0],
+                entity: key,
+                characters: HtmlEntities[key].characters,
+                htmlCode: `&#${HtmlEntities[key].codepoints[0]};`,
+                unicode: `U+${HtmlEntities[key].codepoints[0]
+                    .toString(16)
+                    .toUpperCase()
+                    .padStart(4, '0')}`,
+            })
         }
-    }
-
-    character: string = ''
-    entity: string = ''
-    tableData: Array<any> = []
-
-    get entities(): Array<Symbol> {
-        const results: Array<Symbol> = []
-        Object.keys(entities).forEach((key) => {
-            if (key.indexOf(';') > 0 && entities[key].codepoints.length === 1) {
-                results.push({
-                    codepoint: entities[key].codepoints[0],
-                    entity: key,
-                    characters: entities[key].characters,
-                    htmlCode: `&#${entities[key].codepoints[0]};`,
-                    unicode: `U+${entities[key].codepoints[0]
-                        .toString(16)
-                        .toUpperCase()
-                        .padStart(4, '0')}`,
-                })
-            }
-        })
-        results.sort((a, b) => {
-            if (a.codepoint !== b.codepoint) {
-                return a.codepoint - b.codepoint
-            } else if (a.entity !== b.entity) {
-                return a.entity < b.entity ? 1 : -1
-            }
-            return 0
-        })
-        return results
-    }
-
-    mounted() {
-        this.entities.forEach((entity) => {
-            this.tableData.push(entity)
-        })
-    }
-
-    onCharacterInput() {
-        this.entity = ''
-        if (this.character.length === 1) {
-            this.onButtonClick()
+    })
+    results.sort((a, b) => {
+        if (a.codepoint !== b.codepoint) {
+            return a.codepoint - b.codepoint
+        } else if (a.entity !== b.entity) {
+            return a.entity < b.entity ? 1 : -1
         }
-    }
+        return 0
+    })
+    return results
+})
 
-    onEntityInput() {
-        this.character = ''
-        if (this.entity.endsWith(';')) {
-            this.onButtonClick()
-        }
-    }
+onMounted(() => {
+    entities.value.forEach((entity) => {
+        tableData.value.push(entity)
+    })
+})
 
-    onButtonClick() {
-        if (this.entity !== '') {
-            const result = this.entities.find((e) => e.entity === this.entity)
-            if (result) {
-                this.character = result.characters
-            } else {
-                this.$message.warning('未找到结果！')
-            }
-        } else if (this.character !== '') {
-            const result = this.entities.find((e) => e.characters === this.character)
-            if (result) {
-                this.entity = result.entity
-            } else {
-                this.$message.warning('未找到结果！')
-            }
+function onCharacterInput() {
+    entity.value = ''
+    if (character.value.length === 1) {
+        onButtonClick()
+    }
+}
+
+function onEntityInput() {
+    character.value = ''
+    if (entity.value.endsWith(';')) {
+        onButtonClick()
+    }
+}
+
+function onButtonClick() {
+    if (entity.value !== '') {
+        const result = entities.value.find((e) => e.entity === entity.value)
+        if (result) {
+            character.value = result.characters
         } else {
-            this.$message.error('字符和 HTML 实体均为空！')
+            ElMessage.warning('未找到结果！')
         }
+    } else if (character.value !== '') {
+        const result = entities.value.find((e) => e.characters === character.value)
+        if (result) {
+            entity.value = result.entity
+        } else {
+            ElMessage.warning('未找到结果！')
+        }
+    } else {
+        ElMessage.error('字符和 HTML 实体均为空！')
     }
 }
 </script>

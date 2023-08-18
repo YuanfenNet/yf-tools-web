@@ -15,7 +15,7 @@
 
             <div class="title">{{ message }}</div>
             <p v-if="statusCode === 404" class="description">
-                <a v-if="typeof $route === 'undefined'" class="error-link" href="/">返回首页</a>
+                <a v-if="typeof route === 'undefined'" class="error-link" href="/">返回首页</a>
                 <NuxtLink v-else class="error-link" to="/">返回首页</NuxtLink>
             </p>
             <p v-else class="description">错误详情</p>
@@ -23,29 +23,17 @@
     </div>
 </template>
 
-<script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
-import HeaderContent from '@/components/header-content.vue'
+<script setup lang="ts">
+const props = defineProps({
+    error: Object,
+})
+const route = useRoute()
+const message = computed(() => (props.error && props.error.message) || '错误')
+const statusCode = computed(() => (props.error && props.error.statusCode) || 500)
 
-@Component({ components: { HeaderContent } })
-export default class Error extends Vue {
-    @Prop({ default: {} })
-    readonly error!: any
-
-    head() {
-        return {
-            title: this.message,
-        }
-    }
-
-    get statusCode() {
-        return (this.error && this.error.statusCode) || 500
-    }
-
-    get message() {
-        return (this.error && this.error.message) || '错误'
-    }
-}
+useHead({
+    title: message,
+})
 </script>
 
 <style lang="scss">

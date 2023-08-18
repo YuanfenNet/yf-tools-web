@@ -48,65 +48,54 @@
     </page>
 </template>
 
-<script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
-import Page from '@/components/page.vue'
+<script setup lang="ts">
+const init = ref(0)
+const addition = ref(0)
+const rate = ref(7)
+const goal = ref(10000000)
+const years = ref(0)
 
-@Component({
-    components: { Page },
+useHead({
+    title: '财富自由计算器',
+    meta: [
+        {
+            hid: 'description',
+            name: 'description',
+            content:
+                '财富自由计算器小工具，输入初始资金、每年新增投入、预计年转化、目标金额，计算出所需年数',
+        },
+    ],
 })
-export default class PageTimestamp extends Vue {
-    init: number = 0
-    addition: number = 0
-    rate: number = 7
-    goal: number = 10000000
-    years: number = 0
 
-    head() {
-        return {
-            title: '财富自由计算器',
-            meta: [
-                {
-                    hid: 'description',
-                    name: 'description',
-                    content:
-                        '财富自由计算器小工具，输入初始资金、每年新增投入、预计年转化、目标金额，计算出所需年数',
-                },
-            ],
-        }
+function handleRateInput(e: any) {
+    if (e > 100) {
+        ElNotification.warning({
+            title: '年化收益太高',
+            message: '调整合理一些的年化收益，收益越高风险越高！',
+        })
     }
+}
 
-    mounted() {}
-
-    handleRateInput(e: any) {
-        if (e > 100) {
-            this.$alert('预计年化收益太高啦！', '提示', {
-                confirmButtonText: '确定',
-            })
-        }
+function handleGoalInput(e: any) {
+    if (e.length >= 14) {
+        ElNotification.warning({
+            title: '目标金额太大',
+            message: '别做梦了，该醒醒啦！',
+        })
     }
+}
 
-    handleGoalInput(e: any) {
-        if (e.length >= 14) {
-            this.$alert('别做梦了，该醒醒啦！', '目标金额太大', {
-                confirmButtonText: '确定',
-            })
-        }
-    }
+function calc1(a: number, m: number, r: number, n: number) {
+    return (a + ((1 + r) / r) * m) * Math.pow(1 + r, n) - ((1 + r) / r) * m
+}
 
-    calc1(a: number, m: number, r: number, n: number) {
-        return (a + ((1 + r) / r) * m) * Math.pow(1 + r, n) - ((1 + r) / r) * m
-    }
+function calc2(a: number, m: number, r: number, g: number) {
+    return Math.log((g + (m * (1 + r)) / r) / (m / r + a + m)) / Math.log(1 + r)
+}
 
-    calc2(a: number, m: number, r: number, g: number) {
-        // 66000,83600,102960,124256,147681.6
-        return Math.log((g + (m * (1 + r)) / r) / (m / r + a + m)) / Math.log(1 + r)
-    }
-
-    handleButtonClick() {
-        this.years =
-            Math.round(this.calc2(this.init, this.addition, this.rate / 100, this.goal) * 100) / 100
-    }
+function handleButtonClick() {
+    years.value =
+        Math.round(calc2(init.value, addition.value, rate.value / 100, goal.value) * 100) / 100
 }
 </script>
 

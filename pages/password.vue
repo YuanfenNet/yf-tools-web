@@ -35,13 +35,7 @@
     </page>
 </template>
 
-<script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
-import Page from '@/components/page.vue'
-
-@Component({
-    components: { Page },
-})
+<script setup lang="ts">
 export default class PagePassword extends Vue {
     password: string = ''
     length: number = 16
@@ -72,9 +66,6 @@ export default class PagePassword extends Vue {
         this.generate()
     }
 
-    goBack() {
-        this.$router.push('/')
-    }
 
     passwordFocus(event: any) {
         event.currentTarget.select()

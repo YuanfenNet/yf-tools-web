@@ -79,103 +79,86 @@
     </page>
 </template>
 
-<script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
+<script setup lang="ts">
 import CryptoJS from 'crypto-js'
 import Utils from '@/plugins/utils'
 import { DataType, HashType } from '@/plugins/constants'
-import Page from '@/components/page.vue'
 
 interface OptionType {
     value: string
     label: string
 }
 
-@Component({
-    layout: 'full-width',
-    components: { Page },
+definePageMeta({ layout: 'full-width' })
+
+useHead({
+    title: '哈希值计算',
+    meta: [
+        {
+            hid: 'description',
+            name: 'description',
+            content: '在线哈希值计算小工具，支持 MD5、SHA1 等常见哈希/散列算法',
+        },
+    ],
 })
-export default class PageHash extends Vue {
-    DataType = DataType
-    HashType = HashType
 
-    dataTypes: Array<OptionType> = [
-        { value: DataType.text, label: '文本' },
-        { value: DataType.file, label: '文件' },
-    ]
+const dataTypes: Array<OptionType> = [
+    { value: DataType.text, label: '文本' },
+    { value: DataType.file, label: '文件' },
+]
 
-    hashTypes: Array<OptionType> = Object.keys(HashType).map((key) => {
-        return { value: key, label: key.toUpperCase() }
-    })
+const hashTypes: Array<OptionType> = Object.keys(HashType).map((key) => {
+    return { value: key, label: key.toUpperCase() }
+})
 
-    dataType: string = DataType.text
-    hashType: string = HashType.md5
-    text: string = ''
-    hash: string = ''
-    key: string = ''
-    currentFile: any = null
-    calculateTime?: number = -1
+const dataType = ref(DataType.text)
+const hashType = ref(HashType.md5)
+const text = ref('')
+const hash = ref('')
+const key = ref('')
+const currentFile = ref<any>(null)
+const calculateTime = ref(-1)
 
-    head() {
-        return {
-            title: '哈希值计算',
-            meta: [
-                {
-                    hid: 'description',
-                    name: 'description',
-                    content: '在线哈希值计算小工具，支持 MD5、SHA1 等常见哈希/散列算法',
-                },
-            ],
+async function calculate() {
+    const startTime = Date.now()
+    let _text: CryptoJS.lib.WordArray | string = ''
+    if (dataType.value === DataType.text) {
+        _text = CryptoJS.enc.Utf8.parse(text.value)
+    } else if (dataType.value === DataType.file) {
+        hash.value = '计算中...'
+        const base64 = await Utils.getBase64FromFile(currentFile.value)
+        _text = CryptoJS.enc.Base64.parse(base64)
+    }
+
+    if (hashType.value) {
+        const func = require(`crypto-js/${hashType.value}.js`)
+        if (hashType.value.startsWith('hmac')) {
+            hash.value = func(_text, key.value).toString()
+        } else {
+            hash.value = func(_text).toString()
         }
     }
+    calculateTime.value = Date.now() - startTime
+}
 
-    mounted() {}
+function fileUpload(file: any) {
+    currentFile.value = file.raw
+    calculate()
+}
 
-    async calculate() {
-        const startTime = Date.now()
-        let text: CryptoJS.lib.WordArray | string = ''
-        if (this.dataType === DataType.text) {
-            text = CryptoJS.enc.Utf8.parse(this.text)
-        } else if (this.dataType === DataType.file) {
-            this.hash = '计算中...'
-            const base64 = await Utils.getBase64FromFile(this.currentFile)
-            text = CryptoJS.enc.Base64.parse(base64)
-        }
+function onDataTypeChange() {
+    text.value = ''
+    hash.value = ''
+    currentFile.value = ''
+    calculateTime.value = -1
+}
 
-        if (this.hashType) {
-            const func = require(`crypto-js/${this.hashType}.js`)
-            if (this.hashType.startsWith('hmac')) {
-                this.hash = func(text, this.key).toString()
-            } else {
-                this.hash = func(text).toString()
-            }
-        }
-        this.calculateTime = Date.now() - startTime
-    }
-
-    fileUpload(file: any) {
-        this.currentFile = file.raw
-        this.calculate()
-    }
-
-    onDataTypeChange() {
-        this.text = ''
-        this.hash = ''
-        this.currentFile = ''
-        this.calculateTime = -1
-    }
-
-    clear() {
-        this.text = ''
-        this.hash = ''
-        this.key = ''
-        this.currentFile = ''
-        this.calculateTime = -1
-    }
-
-    goBack() {
-        this.$router.push('/')
-    }
+function clear() {
+    text.value = ''
+    hash.value = ''
+    key.value = ''
+    currentFile.value = ''
+    calculateTime.value = -1
 }
 </script>
 

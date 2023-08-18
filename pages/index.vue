@@ -44,35 +44,21 @@
     </div>
 </template>
 
-<script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
+<script setup lang="ts">
 import changelog from '../CHANGELOG.md'
 
-@Component({})
-export default class PageIndex extends Vue {
-    head() {
-        return {
-            title: '猿奋工具箱',
-            titleTemplate: '',
-            meta: [
-                {
-                    hid: 'description',
-                    name: 'description',
-                    content:
-                        '致力于做最好用的小工具，免费为广大开发者提供 JSON 解析&格式化、随机密码生成、图片 Base64 编码&解码、哈希值计算、时间格式转换、HTML 实体转换等小工具。',
-                },
-            ],
-        }
-    }
-
-    get changelog() {
-        return changelog
-    }
-
-    navigateTo(path: string) {
-        this.$router.push(path)
-    }
-}
+useHead({
+    title: '猿奋工具箱',
+    titleTemplate: '',
+    meta: [
+        {
+            hid: 'description',
+            name: 'description',
+            content:
+                '致力于做最好用的小工具，免费为广大开发者提供 JSON 解析&格式化、随机密码生成、图片 Base64 编码&解码、哈希值计算、时间格式转换、HTML 实体转换等小工具。',
+        },
+    ],
+})
 </script>
 
 <style lang="scss">

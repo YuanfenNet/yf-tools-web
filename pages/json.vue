@@ -35,55 +35,39 @@
     </page>
 </template>
 
-<script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
-import JsonViewer from '@/components/json-viewer.vue'
-import CodeMirror from '@/components/code-mirror.vue'
-import Page from '@/components/page.vue'
+<script setup lang="ts">
+definePageMeta({ layout: 'full-width' })
 
-@Component({
-    layout: 'full-width',
-    components: { JsonViewer, CodeMirror, Page },
+useHead({
+    title: 'JSON 解析&格式化',
+    meta: [
+        {
+            hid: 'description',
+            name: 'description',
+            content:
+                '在线 JSON 解析&格式化小工具，支持解析和校验 JSON 数据、树形结构格式化、调整默认展开层级、字段排序等功能。',
+        },
+    ],
 })
-export default class PageJson extends Vue {
-    jsonString: any = ''
-    sort: boolean = false
-    previewMode: boolean = false
-    expandDepth: number = 5
-    visible: boolean = true
 
-    head() {
-        return {
-            title: 'JSON 解析&格式化',
-            meta: [
-                {
-                    hid: 'description',
-                    name: 'description',
-                    content:
-                        '在线 JSON 解析&格式化小工具，支持解析和校验 JSON 数据、树形结构格式化、调整默认展开层级、字段排序等功能。',
-                },
-            ],
-        }
-    }
+const codeMirrorOptions = {
+    tabSize: 2,
+    mode: { name: 'javascript', json: true },
+    lineNumbers: true,
+    line: true,
+    theme: 'material-palenight',
+}
 
-    codeMirrorOptions: any = {
-        tabSize: 2,
-        mode: { name: 'javascript', json: true },
-        lineNumbers: true,
-        line: true,
-        theme: 'material-palenight',
-    }
+const jsonString = ref('')
+const sort = ref(false)
+const previewMode = ref(false)
+const expandDepth = ref(5)
+const visible = ref(true)
 
-    goBack() {
-        this.$router.push('/')
-    }
-
-    handleExpandeDepthChange() {
-        this.visible = false
-        this.$nextTick(() => {
-            this.visible = true
-        })
-    }
+async function handleExpandeDepthChange() {
+    visible.value = false
+    await nextTick()
+    visible.value = true
 }
 </script>
 

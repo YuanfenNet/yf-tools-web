@@ -11,16 +11,14 @@
     </div>
 </template>
 
-<script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+<script setup lang="ts">
+const props = defineProps<{
+    header: string
+}>()
 
-@Component({})
-export default class Page extends Vue {
-    @Prop({ required: true })
-    header!: string
+const router = useRouter()
 
-    goBack() {
-        this.$router.push('/')
-    }
+function goBack() {
+    router.push('/')
 }
 </script>

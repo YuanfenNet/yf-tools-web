@@ -7,26 +7,26 @@
     />
 </template>
 
-<script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+<script setup lang="ts">
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/material-palenight.css'
-if (process.client) {
-    require('codemirror/mode/javascript/javascript.js')
-    require('codemirror/addon/display/placeholder.js')
+import 'codemirror/mode/javascript/javascript.js'
+import 'codemirror/addon/display/placeholder.js'
+
+type Props = {
+    value?: string
+    options?: object
 }
 
-@Component({})
-export default class CodeMirror extends Vue {
-    @Prop({ default: '' })
-    value!: string
+const props = withDefaults(defineProps<Props>(), {
+    value: '',
+    options: () => ({}),
+})
 
-    @Prop({})
-    options!: object
+const emit = defineEmits(['input'])
 
-    handleCodeChange(value: string) {
-        this.$emit('input', value)
-    }
+function handleCodeChange(value: string) {
+    emit('input', value)
 }
 </script>
 

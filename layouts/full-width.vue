@@ -4,7 +4,7 @@
             <header-content />
         </div>
         <div class="body-container">
-            <Nuxt />
+            <slot />
         </div>
         <vue-footer>
             <h6>
@@ -24,11 +24,3 @@
         </vue-footer>
     </div>
 </template>
-
-<script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
-import HeaderContent from '@/components/header-content.vue'
-
-@Component({ components: { HeaderContent } })
-export default class FullWidth extends Vue {}
-</script>

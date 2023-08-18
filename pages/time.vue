@@ -43,7 +43,6 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
 import Page from '@/components/page.vue'
 import { DateTime } from 'luxon'
 
@@ -117,7 +116,7 @@ export default class PageTimestamp extends Vue {
             } else if (this.timestamp.toString().length === 10) {
                 this.dateTime = DateTime.fromSeconds(parseInt(this.timestamp)).toJSDate()
             } else {
-                this.$message.error('时间戳位数应为 10 位或 13位')
+                ElMessage.error('时间戳位数应为 10 位或 13位')
                 return
             }
             this.convertFromDateTime()

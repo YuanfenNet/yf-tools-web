@@ -59,8 +59,7 @@
     </page>
 </template>
 
-<script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
+<script setup lang="ts">
 import { Base64 } from 'js-base64'
 import Utils from '@/plugins/utils'
 import Page from '@/components/page.vue'
@@ -70,71 +69,59 @@ interface DataType {
     label: string
 }
 
-@Component({
-    layout: 'full-width',
-    components: { Page },
+definePageMeta({ layout: 'full-width' })
+
+useHead({
+    title: 'Base64 编码&解码',
+    meta: [
+        {
+            hid: 'description',
+            name: 'description',
+            content: '在线 Base64 编码&解码小工具，支持文本和图片的 Base64 编码和解码',
+        },
+    ],
 })
-export default class PageBase64 extends Vue {
-    types: Array<DataType> = [
-        { value: 'text', label: '文本' },
-        { value: 'image', label: '图片' },
-    ]
 
-    type: string = 'text'
-    text: string = ''
-    base64: string = ''
-    currentImage: string = ''
+const types: Array<DataType> = [
+    { value: 'text', label: '文本' },
+    { value: 'image', label: '图片' },
+]
 
-    head() {
-        return {
-            title: 'Base64 编码&解码',
-            meta: [
-                {
-                    hid: 'description',
-                    name: 'description',
-                    content: '在线 Base64 编码&解码小工具，支持文本和图片的 Base64 编码和解码',
-                },
-            ],
+const type = ref<string>('text')
+const text = ref<string>('')
+const base64 = ref<string>('')
+const currentImage = ref<string>('')
+
+function encode() {
+    if (type.value === 'text') {
+        base64.value = Base64.encode(text.value)
+    } else if (type.value === 'image') {
+        base64.value = currentImage.value
+    }
+}
+
+function decode() {
+    try {
+        if (type.value === 'text') {
+            text.value = Base64.decode(base64.value)
+        } else if (type.value === 'image') {
+            currentImage.value = base64.value
         }
+    } catch (ex) {
+        ElMessage.error('Base64 解码失败')
     }
+}
 
-    mounted() {}
+function imageUpload(file: any) {
+    Utils.getDataURL(file.raw).then((res) => {
+        currentImage.value = res
+    })
+}
 
-    encode() {
-        if (this.type === 'text') {
-            this.base64 = Base64.encode(this.text)
-        } else if (this.type === 'image') {
-            this.base64 = this.currentImage
-        }
-    }
-
-    decode() {
-        try {
-            if (this.type === 'text') {
-                this.text = Base64.decode(this.base64)
-            } else if (this.type === 'image') {
-                this.currentImage = this.base64
-            }
-        } catch (ex) {
-            this.$message.error('Base64 解码失败')
-        }
-    }
-
-    imageUpload(file: any) {
-        Utils.getDataURL(file.raw).then((res) => {
-            this.currentImage = res
-        })
-    }
-
-    clear() {
-        this.text = ''
-        this.base64 = ''
-        this.currentImage = ''
-    }
-
-    goBack() {
-        this.$router.push('/')
-    }
+function clear() {
+    text.value = ''
+    base64.value = ''
+    currentImage.value = ''
 }
 </script>
 

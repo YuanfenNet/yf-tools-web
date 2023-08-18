@@ -1,6 +1,6 @@
-export default {
-    // Global page headers (https://go.nuxtjs.dev/config-head)
-    head: {
+export default defineNuxtConfig({
+    devtools: { enabled: true },
+    meta: {
         title: '猿奋工具箱',
         titleTemplate: '%s - 猿奋工具箱',
         meta: [
@@ -29,58 +29,13 @@ export default {
         ],
     },
 
-    // Global CSS (https://go.nuxtjs.dev/config-css)
-    css: ['~/static/css/element-theme.css', '~/assets/common.scss'],
+    css: ['~/assets/common.scss'],
 
-    // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-    plugins: [
-        '@/plugins/element-ui',
-        '@/plugins/global-components.js',
-        { src: '@/plugins/code-mirror.js', ssr: false },
-        { src: '@/plugins/drag-zone.js', ssr: false },
-        { src: '@/plugins/baidu.js', ssr: false },
-    ],
+    modules: ['nuxt-simple-sitemap', 'nuxt-gtag', '@element-plus/nuxt'],
 
-    // Auto import components (https://go.nuxtjs.dev/config-components)
-    components: true,
-
-    // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-    buildModules: [
-        // https://go.nuxtjs.dev/typescript
-        '@nuxt/typescript-build',
-    ],
-
-    // Modules (https://go.nuxtjs.dev/config-modules)
-    modules: [
-        // https://go.nuxtjs.dev/axios
-        '@nuxtjs/axios',
-        '@nuxtjs/sitemap',
-        '@nuxtjs/google-gtag',
-        '@nuxtjs/markdownit',
-    ],
-
-    // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-    axios: {},
-
-    sitemap: {
-        hostname: 'https://tools.yuanfen.net',
-        cacheTime: 1000 * 60 * 15,
-        gzip: true,
-        generate: false, // Enable me when using nuxt generate
-    },
-
-    'google-gtag': {
+    gtag: {
         id: 'G-2NCGY88M1Y',
     },
 
-    markdownit: {
-        preset: 'default',
-        linkify: true,
-        breaks: true,
-    },
-
-    // Build Configuration (https://go.nuxtjs.dev/config-build)
-    build: {
-        transpile: [/^element-ui/],
-    },
-}
+    elementPlus: {},
+})

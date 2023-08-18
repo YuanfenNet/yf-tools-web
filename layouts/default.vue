@@ -22,7 +22,7 @@
                     :lg="{ span: 14, offset: 5 }"
                     :xl="{ span: 12, offset: 6 }"
                 >
-                    <Nuxt />
+                    <slot />
                 </el-col>
             </el-row>
         </div>
@@ -44,11 +44,3 @@
         </vue-footer>
     </div>
 </template>
-
-<script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
-import HeaderContent from '@/components/header-content.vue'
-
-@Component({ components: { HeaderContent } })
-export default class Default extends Vue {}
-</script>
