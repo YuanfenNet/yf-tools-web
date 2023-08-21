@@ -22,4 +22,4 @@ async function getBase64FromFile(file: any): Promise<string> {
     return dataUrl.substring(dataUrl.indexOf(',') + 1)
 }
 
-export default { getDataURL, getBase64FromFile }
+export { getDataURL, getBase64FromFile }

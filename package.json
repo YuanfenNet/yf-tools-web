@@ -2,12 +2,6 @@
     "name": "yf-tools-web",
     "version": "1.4.4",
     "private": true,
-    "config": {
-        "nuxt": {
-            "host": "0.0.0.0",
-            "port": "8888"
-        }
-    },
     "scripts": {
         "dev": "nuxt dev",
         "build": "nuxt build",

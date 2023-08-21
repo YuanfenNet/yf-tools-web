@@ -36,88 +36,66 @@
 </template>
 
 <script setup lang="ts">
-export default class PagePassword extends Vue {
-    password: string = ''
-    length: number = 16
-    upperLetterChecked: boolean = true
-    lowerLetterChecked: boolean = true
-    numberChecked: boolean = true
-    symbolChecked: boolean = false
-    upperLetters: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    lowerLetters: string = 'abcdefghijklmnopqrstuvwxyz'
-    numbers: string = '0123456789'
-    symbols: string = ',.!@?#$%^&*()-+=[]{}:;_~<>'
+const password = ref('')
+const length = ref(16)
+const upperLetterChecked = ref(true)
+const lowerLetterChecked = ref(true)
+const numberChecked = ref(true)
+const symbolChecked = ref(false)
+const upperLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+const lowerLetters = 'abcdefghijklmnopqrstuvwxyz'
+const numbers = '0123456789'
+const symbols = ',.!@?#$%^&*()-+=[]{}:;_~<>'
 
-    head() {
-        return {
-            title: '随机密码生成',
-            meta: [
-                {
-                    hid: 'description',
-                    name: 'description',
-                    content:
-                        '在线随机密码生成器，可配置长度、大小写字母、数字、自定义特殊字符等，生成高强度密码，增加破解难度，提供安全保障。',
-                },
-            ],
+onMounted(generate)
+
+const passwordFocus = (event: any) => {
+    event.currentTarget.select()
+}
+
+const handleSymbolsInputChange = (e: string) => {
+    if (e.length === 0) {
+        symbolChecked.value = false
+    }
+}
+
+function generate() {
+    if (symbolChecked.value && symbols.length === 0) {
+        symbolChecked.value = false
+    }
+
+    let charset = ''
+    if (upperLetterChecked.value) charset += upperLetters
+    if (lowerLetterChecked.value) charset += lowerLetters
+    if (numberChecked.value) charset += numbers
+    if (symbolChecked.value) charset += symbols
+
+    if (charset.length > 0) {
+        password.value = ''
+        for (let i = 0, n = charset.length; i < length.value; i++) {
+            password.value += charset.charAt(Math.floor(Math.random() * n))
+        }
+        if (upperLetterChecked.value && !containsChar(password.value, upperLetters)) {
+            generate()
+        } else if (lowerLetterChecked.value && !containsChar(password.value, lowerLetters)) {
+            generate()
+        } else if (numberChecked.value && !containsChar(password.value, numbers)) {
+            generate()
+        } else if (symbolChecked.value && !containsChar(password.value, symbols)) {
+            generate()
+        }
+    } else {
+        alert('至少选择一项')
+    }
+}
+
+function containsChar(a: string, b: string) {
+    for (const char of b) {
+        if (a.includes(char)) {
+            return true
         }
     }
-
-    mounted() {
-        this.generate()
-    }
-
-
-    passwordFocus(event: any) {
-        event.currentTarget.select()
-    }
-
-    handleSymbolsInputChange(e: string) {
-        if (e.length === 0) {
-            this.symbolChecked = false
-        }
-    }
-
-    generate() {
-        if (this.symbolChecked && this.symbols.length === 0) {
-            this.symbolChecked = false
-        }
-
-        let charset = ''
-        if (this.upperLetterChecked) charset += this.upperLetters
-        if (this.lowerLetterChecked) charset += this.lowerLetters
-        if (this.numberChecked) charset += this.numbers
-        if (this.symbolChecked) charset += this.symbols
-
-        if (charset.length > 0) {
-            this.password = ''
-            for (let i = 0, n = charset.length; i < this.length; i++) {
-                this.password += charset.charAt(Math.floor(Math.random() * n))
-            }
-            if (this.upperLetterChecked && !this.containsChar(this.password, this.upperLetters)) {
-                this.generate()
-            } else if (
-                this.lowerLetterChecked &&
-                !this.containsChar(this.password, this.lowerLetters)
-            ) {
-                this.generate()
-            } else if (this.numberChecked && !this.containsChar(this.password, this.numbers)) {
-                this.generate()
-            } else if (this.symbolChecked && !this.containsChar(this.password, this.symbols)) {
-                this.generate()
-            }
-        } else {
-            alert('至少选择一项')
-        }
-    }
-
-    containsChar(a: string, b: string) {
-        for (const char of b) {
-            if (a.includes(char)) {
-                return true
-            }
-        }
-        return false
-    }
+    return false
 }
 </script>
 

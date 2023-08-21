@@ -45,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-import changelog from '../CHANGELOG.md'
+import changelog from '@/CHANGELOG.md'
 
 useHead({
     title: '猿奋工具箱',

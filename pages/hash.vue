@@ -10,7 +10,7 @@
                     @change="onDataTypeChange"
                 >
                     <el-option
-                        v-for="item in dataTypes"
+                        v-for="item in dataTypeOptions"
                         :key="item.value"
                         :value="item.value"
                         :label="item.label"
@@ -81,8 +81,8 @@
 
 <script setup lang="ts">
 import CryptoJS from 'crypto-js'
-import Utils from '@/plugins/utils'
-import { DataType, HashType } from '@/plugins/constants'
+import HashType from 'constants/hash-type'
+import { getBase64FromFile } from '@/utils/utils'
 
 interface OptionType {
     value: string
@@ -102,7 +102,12 @@ useHead({
     ],
 })
 
-const dataTypes: Array<OptionType> = [
+const DataType = {
+    text: 'text',
+    file: 'file',
+}
+
+const dataTypeOptions: Array<OptionType> = [
     { value: DataType.text, label: '文本' },
     { value: DataType.file, label: '文件' },
 ]
@@ -126,7 +131,7 @@ async function calculate() {
         _text = CryptoJS.enc.Utf8.parse(text.value)
     } else if (dataType.value === DataType.file) {
         hash.value = '计算中...'
-        const base64 = await Utils.getBase64FromFile(currentFile.value)
+        const base64 = await getBase64FromFile(currentFile.value)
         _text = CryptoJS.enc.Base64.parse(base64)
     }
 

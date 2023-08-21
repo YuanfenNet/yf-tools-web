@@ -55,8 +55,7 @@
 </template>
 
 <script setup lang="ts">
-import Page from '@/components/page.vue'
-import HtmlEntities from '@/html-entities'
+import HtmlEntities from '@/constants/html-entities'
 
 interface Symbol {
     codepoint: number

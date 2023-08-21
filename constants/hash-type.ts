@@ -1,8 +1,3 @@
-const DataType = {
-    text: 'text',
-    file: 'file',
-}
-
 const HashType = {
     md5: 'md5',
     sha1: 'sha1',
@@ -21,4 +16,4 @@ const HashType = {
     'hmac-ripemd160': 'hmac-ripemd160',
 }
 
-export { DataType, HashType }
+export default HashType

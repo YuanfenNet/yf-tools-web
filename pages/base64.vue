@@ -61,8 +61,7 @@
 
 <script setup lang="ts">
 import { Base64 } from 'js-base64'
-import Utils from '@/plugins/utils'
-import Page from '@/components/page.vue'
+import { getDataURL } from '@/utils/utils'
 
 interface DataType {
     value: string
@@ -87,10 +86,10 @@ const types: Array<DataType> = [
     { value: 'image', label: '图片' },
 ]
 
-const type = ref<string>('text')
-const text = ref<string>('')
-const base64 = ref<string>('')
-const currentImage = ref<string>('')
+const type = ref('text')
+const text = ref('')
+const base64 = ref('')
+const currentImage = ref('')
 
 function encode() {
     if (type.value === 'text') {
@@ -113,7 +112,7 @@ function decode() {
 }
 
 function imageUpload(file: any) {
-    Utils.getDataURL(file.raw).then((res) => {
+    getDataURL(file.raw).then((res) => {
         currentImage.value = res
     })
 }
