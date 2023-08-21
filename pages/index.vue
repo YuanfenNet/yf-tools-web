@@ -7,13 +7,27 @@
                 </div>
             </template>
             <el-row>
-                <a class="btn-primary" href="/json">JSON 解析&格式化</a>
-                <a class="btn-primary" href="/password">随机密码生成</a>
-                <a class="btn-primary" href="/base64">Base64 编码&解码</a>
-                <a class="btn-primary" href="/hash">哈希值计算</a>
-                <a class="btn-primary" href="/time">时间格式转换</a>
-                <a class="btn-primary" href="/entity">HTML 实体转换</a>
-                <a class="btn-primary" href="/financial-freedom">财富自由计算器</a>
+                <NuxtLink class="tool-link" to="/json">
+                    <ElButton type="primary" size="large" plain round>JSON 解析&格式化</ElButton>
+                </NuxtLink>
+                <NuxtLink class="tool-link" to="/password">
+                    <ElButton type="primary" size="large" plain round>随机密码生成</ElButton>
+                </NuxtLink>
+                <NuxtLink class="tool-link" to="/base64">
+                    <ElButton type="primary" size="large" plain round>Base64 编码&解码</ElButton>
+                </NuxtLink>
+                <NuxtLink class="tool-link" to="/hash">
+                    <ElButton type="primary" size="large" plain round>哈希值计算</ElButton>
+                </NuxtLink>
+                <NuxtLink class="tool-link" to="/time">
+                    <ElButton type="primary" size="large" plain round>时间格式转换</ElButton>
+                </NuxtLink>
+                <NuxtLink class="tool-link" to="/entity">
+                    <ElButton type="primary" size="large" plain round>HTML 实体转换</ElButton>
+                </NuxtLink>
+                <NuxtLink class="tool-link" to="/financial-freedom">
+                    <ElButton type="primary" size="large" plain round>财富自由计算器</ElButton>
+                </NuxtLink>
             </el-row>
         </el-card>
         <el-card>
@@ -36,8 +50,12 @@
                 <li>字体格式在线转换</li>
                 <li>Crontab</li>
             </ul>
-            <a class="btn-primary" href="https://www.v2ex.com/t/792646" target="_blank">交流讨论</a>
-            <a class="btn-primary" href="mailto:bean@yuanfen.net">提交建议 & Bug反馈</a>
+            <a class="tool-link" href="https://www.v2ex.com/t/792646" target="_blank">
+                <ElButton type="primary" size="large" plain round>交流讨论</ElButton>
+            </a>
+            <a class="tool-link" href="mailto:bean@yuanfen.net" target="_blank">
+                <ElButton type="primary" size="large" plain round>提交建议 & Bug反馈</ElButton>
+            </a>
         </el-card>
         <el-card>
             <template #header>
@@ -68,7 +86,7 @@ useHead({
 </script>
 
 <style lang="scss">
-@import '~/assets/variables.scss';
+@use '~/assets/scss/variables.scss' as *;
 
 .page-home {
     .el-card {
@@ -81,14 +99,13 @@ useHead({
         .el-card__body {
             padding: 20px;
             .changelog {
-                section > :first-child {
+                & > :first-child {
                     margin-top: 0 !important;
                 }
 
                 h4 {
                     margin-top: 14px;
                     margin-bottom: 6px;
-                    color: #606266;
                     font-weight: bold;
                 }
                 li {
@@ -97,30 +114,8 @@ useHead({
             }
         }
     }
-    .btn-primary {
-        border: 1px solid $color-main-p40;
-        padding: 10px 20px;
-        border-radius: 20px;
-        background-color: $color-main-p10;
-        font-size: 14px;
-        line-height: 18px;
-        display: inline-block;
-        font-weight: 500;
+    .tool-link {
         margin: 5px;
-        user-select: none;
-        &:hover {
-            background: $color-main;
-            border-color: $color-main;
-            color: #fff;
-            opacity: 1;
-            transition: none;
-        }
-        &:active {
-            background: #007373;
-            border-color: #007373;
-            color: #fff;
-            outline: 0;
-        }
     }
 }
 </style>

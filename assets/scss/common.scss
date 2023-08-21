@@ -1,4 +1,4 @@
-@import '~/assets/variables.scss';
+@use '~/assets/scss/variables.scss' as *;
 
 html {
     font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -73,7 +73,6 @@ a {
 }
 
 p {
-    color: $color-regular-text-black;
     font-size: 16px;
     line-height: 1.8em;
     &:last-child {
@@ -83,7 +82,6 @@ p {
 }
 
 li {
-    color: $color-regular-text-black;
     font-size: 16px;
     line-height: 1.8em;
 }
@@ -95,7 +93,6 @@ h4,
 h5,
 h6 {
     font-weight: normal;
-    color: $color-primary-text-black;
 }
 
 h1 {

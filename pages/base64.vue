@@ -3,7 +3,7 @@
         <div class="left-area">
             <div class="top-line">
                 <div class="label">数据类型</div>
-                <el-select v-model="type" placeholder="请选择" size="mini">
+                <el-select v-model="type" placeholder="请选择">
                     <el-option
                         v-for="item in types"
                         :key="item.value"

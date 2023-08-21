@@ -3,12 +3,7 @@
         <div class="left-area">
             <div class="top-line">
                 <div class="label">数据类型</div>
-                <el-select
-                    v-model="dataType"
-                    placeholder="请选择"
-                    size="mini"
-                    @change="onDataTypeChange"
-                >
+                <el-select v-model="dataType" placeholder="请选择" @change="onDataTypeChange">
                     <el-option
                         v-for="item in dataTypeOptions"
                         :key="item.value"
@@ -17,7 +12,7 @@
                     />
                 </el-select>
                 <div class="label">哈希算法</div>
-                <el-select v-model="hashType" placeholder="请选择" size="mini" @change="calculate">
+                <el-select v-model="hashType" placeholder="请选择" @change="calculate">
                     <el-option
                         v-for="item in hashTypes"
                         :key="item.value"
@@ -27,8 +22,8 @@
                 </el-select>
             </div>
             <div v-if="hashType.startsWith('hmac')" class="top-line">
-                <div class="label">秘钥</div>
-                <el-input v-model="key" placeholder="" size="mini" @input="calculate" />
+                <div class="label">密钥</div>
+                <el-input v-model="key" placeholder="请输入密钥" @input="calculate" />
             </div>
             <el-input
                 v-if="dataType === DataType.text"
@@ -81,7 +76,7 @@
 
 <script setup lang="ts">
 import CryptoJS from 'crypto-js'
-import HashType from 'constants/hash-type'
+import HashType from '@/constants/hash-type'
 import { getBase64FromFile } from '@/utils/utils'
 
 interface OptionType {

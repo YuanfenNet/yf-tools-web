@@ -1,8 +1,6 @@
 $color-main: #008080;
 $color-main-p40: #9cc9cc;
 $color-main-p10: #e6f2f2;
-$color-primary-text-black: #303133;
-$color-regular-text-black: #606266;
 $color-secondary-text-black: #909399;
 $color-disable-black: rgba(10, 30, 60, 0.25);
 $color-border-black: rgba(10, 30, 60, 0.15);
@@ -19,3 +17,24 @@ $max-width-xs: 575.98px;
 $max-width-sm: 767.98px;
 $max-width-md: 991.98px;
 $max-width-lg: 1199.98px;
+
+:root {
+    --bg-color-mute: #f2f2f2;
+    --bg-color: var(--el-bg-color);
+    --border-color-light: var(--el-border-color-lighter);
+    --border-color: var(--el-border-color);
+    --border-color: var(--el-border-color);
+    --text-color-light: var(--el-text-color-regular);
+    --text-color-lighter: var(--el-text-color-secondary);
+    --text-color: var(--el-text-color-primary);
+}
+
+.dark {
+    --bg-color-rgb: 0, 0, 0;
+    --bg-color-soft: #242424;
+    --bg-color-mute: #2c2c2c;
+    --code-tooltip-bg-color: rgba(var(--el-color-primary-rgb), 0.1);
+    --code-tooltip-color: var(--brand-color);
+    --purple-color: #9065db;
+    --purple-color-light: #6222c2;
+}

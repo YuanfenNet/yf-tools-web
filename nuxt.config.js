@@ -29,9 +29,15 @@ export default defineNuxtConfig({
         ],
     },
 
-    css: ['~/assets/common.scss'],
+    css: ['~/assets/scss/common.scss'],
 
-    modules: ['@nuxt/content', 'nuxt-simple-sitemap', 'nuxt-gtag', '@element-plus/nuxt'],
+    modules: [
+        '@nuxt/content',
+        '@nuxtjs/color-mode',
+        'nuxt-simple-sitemap',
+        'nuxt-gtag',
+        '@element-plus/nuxt',
+    ],
 
     content: {
         markdown: {
@@ -39,9 +45,24 @@ export default defineNuxtConfig({
         },
     },
 
+    colorMode: {
+        classSuffix: '',
+    },
+
     gtag: {
         id: 'G-2NCGY88M1Y',
     },
-
-    elementPlus: {},
+    vite: {
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    additionalData: `@use "@/assets/scss/element-plus/index.scss" as element;`,
+                },
+            },
+        },
+    },
+    elementPlus: {
+        importStyle: 'scss',
+        themes: ['dark'],
+    },
 })

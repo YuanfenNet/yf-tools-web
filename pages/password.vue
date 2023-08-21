@@ -21,7 +21,6 @@
                     <el-checkbox v-model="symbolChecked">符号</el-checkbox>
                     <el-input
                         v-model="symbols"
-                        size="mini"
                         class="symbols-input"
                         placeholder="请输入特殊符号"
                         @change="handleSymbolsInputChange"
