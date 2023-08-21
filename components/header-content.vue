@@ -1,7 +1,7 @@
 <template>
     <div class="header-content">
         <NuxtLink to="/" class="left">
-            <img src="~/public/img/logo.svg" class="icon" />
+            <img src="/img/logo.svg" class="icon" />
             <div class="title">猿奋工具箱</div>
         </NuxtLink>
         <div class="description">做最好用的小工具</div>

@@ -31,7 +31,13 @@ export default defineNuxtConfig({
 
     css: ['~/assets/common.scss'],
 
-    modules: ['nuxt-simple-sitemap', 'nuxt-gtag', '@element-plus/nuxt'],
+    modules: ['@nuxt/content', 'nuxt-simple-sitemap', 'nuxt-gtag', '@element-plus/nuxt'],
+
+    content: {
+        markdown: {
+            anchorLinks: false,
+        },
+    },
 
     gtag: {
         id: 'G-2NCGY88M1Y',

@@ -1,6 +1,6 @@
 {
     "name": "yf-tools-web",
-    "version": "1.4.4",
+    "version": "2.0.0",
     "private": true,
     "scripts": {
         "dev": "nuxt dev",
@@ -19,14 +19,13 @@
         "js-base64": "^3.6.1",
         "jsonlint-mod": "^1.7.6",
         "luxon": "^2.0.2",
-        "markdown-it": "^13.0.1",
         "vue-codemirror": "^4.0.6",
         "vue-drag-zone": "^2.0.0-rc1",
-        "vue-footer": "https://nexus.yuanfen.net:5443/repository/npm-hosted/vue-footer/-/vue-footer-0.7.0.tgz",
         "vue-json-viewer": "^2.2.19"
     },
     "devDependencies": {
         "@element-plus/nuxt": "^1.0.5",
+        "@nuxt/content": "^2.7.2",
         "@nuxt/devtools": "latest",
         "@types/crypto-js": "^4.0.2",
         "@types/luxon": "^2.0.0",

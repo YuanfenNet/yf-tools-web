@@ -26,7 +26,7 @@
                 </el-col>
             </el-row>
         </div>
-        <vue-footer>
+        <site-footer>
             <h6>
                 Copyright ©
                 <a href="https://www.yuanfen.net">猿奋网络</a>
@@ -41,6 +41,6 @@
                     沪公网安备31010602003297号
                 </a>
             </h6>
-        </vue-footer>
+        </site-footer>
     </div>
 </template>

@@ -1,9 +1,11 @@
 <template>
     <div class="body-content page-home">
         <el-card>
-            <div slot="header" class="card-header">
-                <h4>工具列表</h4>
-            </div>
+            <template #header>
+                <div class="card-header">
+                    <h4>工具列表</h4>
+                </div>
+            </template>
             <el-row>
                 <a class="btn-primary" href="/json">JSON 解析&格式化</a>
                 <a class="btn-primary" href="/password">随机密码生成</a>
@@ -15,9 +17,11 @@
             </el-row>
         </el-card>
         <el-card>
-            <div slot="header" class="card-header">
-                <h4>欢迎使用猿奋工具箱</h4>
-            </div>
+            <template #header>
+                <div class="card-header">
+                    <h4>欢迎使用猿奋工具箱</h4>
+                </div>
+            </template>
             <p>目前正在扩充小工具，致力于为开发者提供最好用的小工具。</p>
             <p>TODO：</p>
             <ul>
@@ -36,16 +40,18 @@
             <a class="btn-primary" href="mailto:bean@yuanfen.net">提交建议 & Bug反馈</a>
         </el-card>
         <el-card>
-            <div slot="header" class="card-header">
-                <h4>更新记录</h4>
-            </div>
-            <div class="changelog" v-html="changelog" />
+            <template #header>
+                <div class="card-header">
+                    <h4>更新记录</h4>
+                </div>
+            </template>
+            <content-renderer class="changelog" :value="changelog" />
         </el-card>
     </div>
 </template>
 
 <script setup lang="ts">
-import changelog from '@/CHANGELOG.md'
+const changelog = await queryContent('/changelog').findOne()
 
 useHead({
     title: '猿奋工具箱',
