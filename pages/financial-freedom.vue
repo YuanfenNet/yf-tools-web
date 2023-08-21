@@ -59,7 +59,6 @@ useHead({
     title: '财富自由计算器',
     meta: [
         {
-            hid: 'description',
             name: 'description',
             content:
                 '财富自由计算器小工具，输入初始资金、每年新增投入、预计年转化、目标金额，计算出所需年数',

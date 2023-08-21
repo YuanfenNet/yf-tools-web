@@ -55,7 +55,6 @@ useHead({
     title: '时间格式转换',
     meta: [
         {
-            hid: 'description',
             name: 'description',
             content: '在线时间格式转换小工具，支持时间戳与 ISO 8601 时间格式之间相互转换',
         },

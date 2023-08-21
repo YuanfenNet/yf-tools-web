@@ -90,7 +90,6 @@ useHead({
     title: '哈希值计算',
     meta: [
         {
-            hid: 'description',
             name: 'description',
             content: '在线哈希值计算小工具，支持 MD5、SHA1 等常见哈希/散列算法',
         },

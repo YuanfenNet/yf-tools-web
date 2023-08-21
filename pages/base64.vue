@@ -74,7 +74,6 @@ useHead({
     title: 'Base64 编码&解码',
     meta: [
         {
-            hid: 'description',
             name: 'description',
             content: '在线 Base64 编码&解码小工具，支持文本和图片的 Base64 编码和解码',
         },

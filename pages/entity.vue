@@ -69,7 +69,6 @@ useHead({
     title: 'HTML 实体转换',
     meta: [
         {
-            hid: 'description',
             name: 'description',
             content:
                 '在线 HTML 实体转换小工具，支持各种字符与 HTML 实体之间的相互转换；HTML 特殊字符转义',
