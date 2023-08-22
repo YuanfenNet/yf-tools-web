@@ -59,7 +59,7 @@ const handleSymbolsInputChange = (e: string) => {
 }
 
 function generate() {
-    if (symbolChecked.value && symbols.length === 0) {
+    if (symbolChecked.value && symbols.value.length === 0) {
         symbolChecked.value = false
     }
 
@@ -67,7 +67,7 @@ function generate() {
     if (upperLetterChecked.value) charset += upperLetters
     if (lowerLetterChecked.value) charset += lowerLetters
     if (numberChecked.value) charset += numbers
-    if (symbolChecked.value) charset += symbols
+    if (symbolChecked.value) charset += symbols.value
 
     if (charset.length > 0) {
         password.value = ''
@@ -80,7 +80,7 @@ function generate() {
             generate()
         } else if (numberChecked.value && !containsChar(password.value, numbers)) {
             generate()
-        } else if (symbolChecked.value && !containsChar(password.value, symbols)) {
+        } else if (symbolChecked.value && !containsChar(password.value, symbols.value)) {
             generate()
         }
     } else {
