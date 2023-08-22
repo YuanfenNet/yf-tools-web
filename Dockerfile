@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:18-alpine
 
 WORKDIR /app
 
@@ -10,4 +10,4 @@ RUN yarn build
 
 EXPOSE 8888
 ENV APP_ENV $APP_ENV
-CMD ["yarn", "start"]
+ENTRYPOINT ["node", ".output/server/index.mjs"]
