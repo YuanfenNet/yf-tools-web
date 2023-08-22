@@ -1,6 +1,6 @@
 {
     "name": "yf-tools-web",
-    "version": "1.4.4",
+    "version": "2.0.0",
     "private": true,
     "scripts": {
         "dev": "nuxt dev",
