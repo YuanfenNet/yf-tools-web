@@ -41,10 +41,10 @@ const upperLetterChecked = ref(true)
 const lowerLetterChecked = ref(true)
 const numberChecked = ref(true)
 const symbolChecked = ref(false)
+const symbols = ref(',.!@?#$%^&*()-+=[]{}:;_~<>')
 const upperLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const lowerLetters = 'abcdefghijklmnopqrstuvwxyz'
 const numbers = '0123456789'
-const symbols = ',.!@?#$%^&*()-+=[]{}:;_~<>'
 
 onMounted(generate)
 
