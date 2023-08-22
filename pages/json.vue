@@ -149,7 +149,7 @@ async function handleExpandeDepthChange() {
 
         .v-codemirror {
             .cm-scroller {
-                font-family: Menlo, Consolas, Courier Prime, monospace;
+                font-family: var(--code-font-family);
                 font-size: 14px;
             }
         }

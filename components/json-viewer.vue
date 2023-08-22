@@ -116,7 +116,7 @@ const jsonData = computed(() => {
         color: #f1592a;
         font-weight: bold;
         padding: 20px;
-        font-family: Menlo, Consolas, Courier Prime, monospace;
+        font-family: var(--code-font-family);
         line-height: 1.5em;
         font-size: 14px;
         white-space: pre-line;

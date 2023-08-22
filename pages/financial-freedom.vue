@@ -141,7 +141,7 @@ function handleButtonClick() {
             font-weight: bold;
         }
         .result-item-text {
-            font-family: monospace !important;
+            font-family: var(--code-font-family);
         }
     }
 
@@ -153,7 +153,7 @@ function handleButtonClick() {
     }
     input {
         font-size: 16px;
-        font-family: monospace !important;
+        font-family: var(--code-font-family);
     }
 }
 </style>

@@ -45,7 +45,7 @@ useHead({
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-family: sans-serif;
+    font-family: var(--code-font-family);
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;

@@ -155,7 +155,7 @@ function onButtonClick() {
     }
     .el-table,
     input {
-        font-family: monospace;
+        font-family: var(--code-font-family);
     }
     h4 {
         font-weight: bold;

@@ -76,7 +76,7 @@
 
 <script setup lang="ts">
 import CryptoJS from 'crypto-js'
-import HashType from '@/constants/hash-type'
+import HashType, { getHashFunction } from '@/utils/hash-type'
 import { getBase64FromFile } from '@/utils/utils'
 
 interface OptionType {
@@ -130,11 +130,11 @@ async function calculate() {
     }
 
     if (hashType.value) {
-        const func = require(`crypto-js/${hashType.value}.js`)
+        const hashFunc = await getHashFunction(hashType.value)
         if (hashType.value.startsWith('hmac')) {
-            hash.value = func(_text, key.value).toString()
+            hash.value = hashFunc(_text, key.value).toString()
         } else {
-            hash.value = func(_text).toString()
+            hash.value = hashFunc(_text).toString()
         }
     }
     calculateTime.value = Date.now() - startTime
@@ -276,3 +276,4 @@ function clear() {
     }
 }
 </style>
+utils/hash-type

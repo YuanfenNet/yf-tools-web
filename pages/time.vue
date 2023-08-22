@@ -149,7 +149,7 @@ function convertIsoString() {
     }
     input {
         font-size: 16px;
-        font-family: monospace !important;
+        font-family: var(--code-font-family);
     }
 }
 </style>
