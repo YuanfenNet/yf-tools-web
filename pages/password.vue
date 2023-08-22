@@ -129,7 +129,7 @@ function containsChar(a: string, b: string) {
         &.slider {
             .text {
                 font-size: 14px;
-                color: #606266;
+                color: var(--el-text-color-regular);
                 font-weight: 500;
             }
             .el-slider {
