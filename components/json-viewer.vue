@@ -52,17 +52,17 @@ const jsonData = computed(() => {
     flex: 1;
     overflow-y: auto;
     .json-theme {
-        background: #fff;
+        background: var(--el-card-bg-color);
         white-space: nowrap;
-        color: #525252;
+        color: var(--el-text-color-primary);
         font-size: 14px;
         font-weight: bold;
         line-height: 1.5em;
         font-family: Menlo, Consolas, Courier Prime, monospace;
 
         .jv-ellipsis {
-            color: #999;
-            background-color: #eee;
+            color: var(--el-color-info);
+            background-color: var(--el-fill-color);
             display: inline-block;
             line-height: 0.9;
             font-size: 0.9em;
@@ -73,7 +73,7 @@ const jsonData = computed(() => {
             user-select: none;
         }
         .jv-button {
-            color: #49b3ff;
+            color: var(--el-color-primary);
         }
         .jv-key {
             color: #92278f;
@@ -107,19 +107,6 @@ const jsonData = computed(() => {
                 color: #3ab54a;
                 word-break: break-word;
                 white-space: normal;
-            }
-        }
-        .jv-code {
-            .jv-toggle {
-                &:before {
-                    padding: 0px 2px;
-                    border-radius: 2px;
-                }
-                &:hover {
-                    &:before {
-                        background: #eee;
-                    }
-                }
             }
         }
     }

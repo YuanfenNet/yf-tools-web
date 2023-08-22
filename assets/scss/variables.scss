@@ -20,21 +20,8 @@ $max-width-lg: 1199.98px;
 
 :root {
     --bg-color-mute: #f2f2f2;
-    --bg-color: var(--el-bg-color);
-    --border-color-light: var(--el-border-color-lighter);
-    --border-color: var(--el-border-color);
-    --border-color: var(--el-border-color);
-    --text-color-light: var(--el-text-color-regular);
-    --text-color-lighter: var(--el-text-color-secondary);
-    --text-color: var(--el-text-color-primary);
 }
 
 .dark {
-    --bg-color-rgb: 0, 0, 0;
-    --bg-color-soft: #242424;
     --bg-color-mute: #2c2c2c;
-    --code-tooltip-bg-color: rgba(var(--el-color-primary-rgb), 0.1);
-    --code-tooltip-color: var(--brand-color);
-    --purple-color: #9065db;
-    --purple-color-light: #6222c2;
 }

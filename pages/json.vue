@@ -1,42 +1,81 @@
 <template>
     <page header="JSON 解析&格式化" class="page-json">
-        <client-only>
-            <drag-zone class="zone">
-                <drag-content class="content">
-                    <code-mirror v-model="jsonString" :options="codeMirrorOptions" />
-                </drag-content>
-                <drag-handle class="handle" />
-                <drag-content class="content right">
-                    <div class="toolbox">
-                        <div class="slider">
-                            <span class="text">展开层级</span>
-                            <el-slider
-                                v-model="expandDepth"
-                                :min="1"
-                                :max="10"
-                                @change="handleExpandeDepthChange"
-                            />
+        <div class="zone">
+            <div class="content">
+                <Codemirror
+                    v-model="jsonString"
+                    :style="{ height: '100%' }"
+                    :autofocus="true"
+                    :extensions="codemirrorExtensions"
+                />
+            </div>
+            <div class="handle" />
+            <div class="content right">
+                <div class="toolbox">
+                    <div class="slider">
+                        <span class="text">展开层级</span>
+                        <el-slider
+                            v-model="expandDepth"
+                            :min="1"
+                            :max="10"
+                            @change="handleExpandeDepthChange"
+                        />
 
-                            <span class="text">{{ expandDepth }}级</span>
-                        </div>
-                        <el-checkbox v-model="sort">排序</el-checkbox>
-                        <el-checkbox v-model="previewMode">预览</el-checkbox>
+                        <span class="text">{{ expandDepth }}级</span>
                     </div>
-                    <json-viewer
-                        v-if="visible"
-                        :json-string="jsonString"
-                        :sort="sort"
-                        :preview-mode="previewMode"
-                        :expand-depth="expandDepth"
-                    />
-                </drag-content>
-            </drag-zone>
-        </client-only>
+                    <el-checkbox v-model="sort">排序</el-checkbox>
+                    <el-checkbox v-model="previewMode">预览</el-checkbox>
+                </div>
+                <json-viewer
+                    v-if="visible"
+                    :json-string="jsonString"
+                    :sort="sort"
+                    :preview-mode="previewMode"
+                    :expand-depth="expandDepth"
+                />
+            </div>
+        </div>
     </page>
 </template>
 
 <script setup lang="ts">
+import { Codemirror } from 'vue-codemirror'
+import { basicSetup, EditorView } from 'codemirror'
+import { syntaxHighlighting, HighlightStyle } from '@codemirror/language'
+import { tags } from '@lezer/highlight'
+import { json } from '@codemirror/lang-json'
+
 definePageMeta({ layout: 'full-width' })
+
+const customTheme = EditorView.theme({
+    '&': {
+        color: 'var(--el-text-color-primary)',
+        backgroundColor: 'var(--el-bg-color-overlay)',
+    },
+    '.cm-gutters': {
+        color: 'var(--el-text-color-regular)',
+        backgroundColor: 'var(--el-fill-color)',
+        borderColor: 'var(--el-border-color-light)',
+    },
+    '.cm-activeLineGutter': {
+        color: 'var(--el-color-white)',
+        backgroundColor: 'var(--el-color-primary)',
+    },
+    '.cm-activeLine': {
+        backgroundColor: 'var(--el-color-primary-light-8)',
+    },
+})
+
+const myHighlightStyle = HighlightStyle.define([
+    { tag: tags.keyword, color: '#fc6' },
+    { tag: tags.number, color: '#25aae2' },
+    { tag: tags.bool, color: '#f98280' },
+    { tag: tags.list, color: '#525252' },
+    { tag: tags.string, color: '#3ab54a' },
+    { tag: tags.null, color: '#f1592a' },
+    { tag: tags.propertyName, color: '#92278f' },
+    { tag: tags.comment, color: '#f5d', fontStyle: 'italic' },
+])
 
 useHead({
     title: 'JSON 解析&格式化',
@@ -49,13 +88,7 @@ useHead({
     ],
 })
 
-const codeMirrorOptions = {
-    tabSize: 2,
-    mode: { name: 'javascript', json: true },
-    lineNumbers: true,
-    line: true,
-    theme: 'material-palenight',
-}
+const codemirrorExtensions = [json(), syntaxHighlighting(myHighlightStyle), customTheme, basicSetup]
 
 const jsonString = ref('')
 const sort = ref(false)
@@ -75,18 +108,25 @@ async function handleExpandeDepthChange() {
     .el-card__body {
         padding: 0;
     }
+
     .zone {
         width: 100%;
         height: calc(100vh - 200px);
         display: flex;
         justify-content: space-between;
 
+        .v-codemirror {
+            .cm-scroller {
+                font-family: Menlo, Consolas, Courier Prime, monospace;
+                font-size: 14px;
+            }
+        }
         .handle {
-            width: 5px;
-            background: #eee;
+            width: 1px;
+            background-color: var(--el-border-color-light);
         }
         .content {
-            width: calc((100% - 5px) / 2);
+            width: calc((100% - 1px) / 2);
             overflow-y: auto;
             display: flex;
             flex-direction: column;
@@ -94,7 +134,7 @@ async function handleExpandeDepthChange() {
 
             .toolbox {
                 padding: 5px 15px;
-                border-bottom: 1px solid #eee;
+                border-bottom: 1px solid var(--el-border-color-light);
                 display: flex;
                 align-items: center;
                 .el-checkbox {
@@ -108,7 +148,7 @@ async function handleExpandeDepthChange() {
                     margin-right: 10px;
                     .text {
                         font-size: 14px;
-                        color: #606266;
+                        color: var(--el-text-color-regular);
                         font-weight: 500;
                     }
                     .el-slider {

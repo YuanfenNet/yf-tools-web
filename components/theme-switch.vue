@@ -21,7 +21,7 @@
     position: relative;
     width: 40px;
     height: 20px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--el-border-color);
     outline: none;
     border-radius: 10px;
     box-sizing: border-box;
@@ -31,7 +31,7 @@
         background-color var(--el-transition-duration);
 
     &:hover {
-        border-color: var(--border-color-light);
+        border-color: var(--el-border-color-lighter);
     }
 
     &__action {
@@ -39,9 +39,9 @@
         top: 1px;
         left: 1px;
         border-radius: 50%;
-        background-color: var(--bg-color);
+        background-color: var(--el-bg-color);
         transform: translateX(0);
-        color: var(--text-color-light);
+        color: var(--el-text-color-regular);
         transition: border-color var(--el-transition-duration),
             background-color var(--el-transition-duration), transform var(--el-transition-duration);
 
