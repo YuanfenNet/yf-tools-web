@@ -53,13 +53,6 @@ const jsonData = computed(() => {
     overflow-y: auto;
     .json-theme {
         background: var(--el-card-bg-color);
-        white-space: nowrap;
-        color: var(--el-text-color-primary);
-        font-size: 14px;
-        font-weight: bold;
-        line-height: 1.5em;
-        font-family: Menlo, Consolas, Courier Prime, monospace;
-
         .jv-ellipsis {
             color: var(--el-color-info);
             background-color: var(--el-fill-color);
@@ -74,6 +67,15 @@ const jsonData = computed(() => {
         }
         .jv-button {
             color: var(--el-color-primary);
+            font-size: 14px;
+        }
+        .jv-code {
+            white-space: nowrap;
+            color: var(--el-text-color-primary);
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.5em;
+            font-family: var(--code-font-family);
         }
         .jv-key {
             color: #92278f;

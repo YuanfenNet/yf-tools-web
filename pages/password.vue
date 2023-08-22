@@ -104,7 +104,7 @@ function containsChar(a: string, b: string) {
         input {
             font-size: 24px;
             text-align: center;
-            font-family: monospace !important;
+            font-family: var(--code-font-family);
             letter-spacing: 2.5px;
         }
     }
@@ -120,7 +120,7 @@ function containsChar(a: string, b: string) {
         .symbols-input {
             flex: 1;
             input {
-                font-family: monospace !important;
+                font-family: var(--code-font-family);
                 padding: 0 5px;
                 font-size: 14px;
             }

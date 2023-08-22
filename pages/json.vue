@@ -40,8 +40,8 @@
 
 <script setup lang="ts">
 import { Codemirror } from 'vue-codemirror'
-import { basicSetup, EditorView } from 'codemirror'
-import { syntaxHighlighting, HighlightStyle } from '@codemirror/language'
+import { EditorView } from 'codemirror'
+import { syntaxHighlighting, HighlightStyle, codeFolding } from '@codemirror/language'
 import { tags } from '@lezer/highlight'
 import { json } from '@codemirror/lang-json'
 
@@ -52,6 +52,31 @@ const customTheme = EditorView.theme({
         color: 'var(--el-text-color-primary)',
         backgroundColor: 'var(--el-bg-color-overlay)',
     },
+    '.cm-content': {
+        caretColor: 'var(--el-text-color-primary)',
+    },
+    '.cm-cursor, .cm-dropCursor': {
+        borderLeftColor: 'var(--el-text-color-primary)',
+    },
+    '&.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground, .cm-selectionBackground, .cm-content ::selection':
+        {
+            backgroundColor: '#f8e3c5',
+        },
+
+    '.cm-searchMatch': {
+        backgroundColor: '#f3d19e',
+        outline: '1px solid var(--el-color-warning)',
+    },
+    '.cm-searchMatch.cm-searchMatch-selected': {
+        backgroundColor: '#f3d19e',
+    },
+    '.cm-activeLine': {
+        backgroundColor: '#00808020',
+    },
+    '.cm-selectionMatch': { backgroundColor: '#f3d19e' },
+    '&.cm-focused .cm-matchingBracket, &.cm-focused .cm-nonmatchingBracket': {
+        backgroundColor: 'var(--el-color-primary-light-5)',
+    },
     '.cm-gutters': {
         color: 'var(--el-text-color-regular)',
         backgroundColor: 'var(--el-fill-color)',
@@ -61,12 +86,14 @@ const customTheme = EditorView.theme({
         color: 'var(--el-color-white)',
         backgroundColor: 'var(--el-color-primary)',
     },
-    '.cm-activeLine': {
-        backgroundColor: 'var(--el-color-primary-light-8)',
+    '.cm-foldPlaceholder': {
+        backgroundColor: 'var(--el-fill-color)',
+        border: 'none',
+        color: 'var(--el-color-info)',
     },
 })
 
-const myHighlightStyle = HighlightStyle.define([
+const customHighlightStyle = HighlightStyle.define([
     { tag: tags.keyword, color: '#fc6' },
     { tag: tags.number, color: '#25aae2' },
     { tag: tags.bool, color: '#f98280' },
@@ -88,7 +115,12 @@ useHead({
     ],
 })
 
-const codemirrorExtensions = [json(), syntaxHighlighting(myHighlightStyle), customTheme, basicSetup]
+const codemirrorExtensions = [
+    json(),
+    syntaxHighlighting(customHighlightStyle),
+    codeFolding({ placeholderText: '...' }),
+    customTheme,
+]
 
 const jsonString = ref('')
 const sort = ref(false)
