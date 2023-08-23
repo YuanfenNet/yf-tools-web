@@ -49,6 +49,16 @@ const lowerLetters = 'abcdefghijklmnopqrstuvwxyz'
 const numbers = '0123456789'
 const { copy, copied, isSupported } = useClipboard({ legacy: true })
 
+useHead({
+    title: '随机密码生成',
+    meta: [
+        {
+            name: 'description',
+            content: '在线随机密码生成器，可配置长度、大小写字母、数字、自定义特殊字符等，生成高强度密码，增加破解难度，提供安全保障。',
+        },
+    ],
+})
+
 onMounted(generate)
 
 watch(copied, (value) => {

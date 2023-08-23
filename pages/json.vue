@@ -2,25 +2,14 @@
     <page header="JSON 解析&格式化" class="page-json">
         <div class="zone">
             <div class="content">
-                <Codemirror
-                    v-model="jsonString"
-                    :style="{ height: '100%' }"
-                    :autofocus="true"
-                    :extensions="codemirrorExtensions"
-                />
+                <Codemirror v-model="jsonString" :style="{ height: '100%' }" :autofocus="true" :extensions="codemirrorExtensions" />
             </div>
             <div class="handle" />
             <div class="content right">
                 <div class="toolbox">
                     <div class="slider">
                         <span class="text">展开层级</span>
-                        <el-slider
-                            v-model="expandDepth"
-                            :min="1"
-                            :max="10"
-                            @change="handleExpandeDepthChange"
-                        />
-
+                        <el-slider v-model="expandDepth" :min="1" :max="10" @change="handleExpandeDepthChange" />
                         <span class="text">{{ expandDepth }}级</span>
                     </div>
                     <el-checkbox v-model="sort">排序</el-checkbox>
@@ -58,10 +47,9 @@ const customTheme = EditorView.theme({
     '.cm-cursor, .cm-dropCursor': {
         borderLeftColor: 'var(--el-text-color-primary)',
     },
-    '&.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground, .cm-selectionBackground, .cm-content ::selection':
-        {
-            backgroundColor: '#f8e3c5',
-        },
+    '&.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground, .cm-selectionBackground, .cm-content ::selection': {
+        backgroundColor: '#f8e3c5',
+    },
 
     '.cm-searchMatch': {
         backgroundColor: '#f3d19e',
@@ -109,18 +97,12 @@ useHead({
     meta: [
         {
             name: 'description',
-            content:
-                '在线 JSON 解析&格式化小工具，支持解析和校验 JSON 数据、树形结构格式化、调整默认展开层级、字段排序等功能。',
+            content: '在线 JSON 解析&格式化小工具，支持解析和校验 JSON 数据、树形结构格式化、调整默认展开层级、字段排序等功能。',
         },
     ],
 })
 
-const codemirrorExtensions = [
-    json(),
-    syntaxHighlighting(customHighlightStyle),
-    codeFolding({ placeholderText: '...' }),
-    customTheme,
-]
+const codemirrorExtensions = [json(), syntaxHighlighting(customHighlightStyle), codeFolding({ placeholderText: '...' }), customTheme]
 
 const jsonString = ref('')
 const sort = ref(false)

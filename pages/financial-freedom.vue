@@ -11,7 +11,8 @@
                 <div class="input-item">
                     <span class="input-item-title">新增投入</span>
                     <div class="row-line">
-                        <el-input v-model.number="addition" maxlength="14" /><span>/年</span>
+                        <el-input v-model.number="addition" maxlength="14" />
+                        <span>/年</span>
                     </div>
                 </div>
             </el-col>
@@ -19,11 +20,8 @@
                 <div class="input-item">
                     <span class="input-item-title">年化收益</span>
                     <div class="row-line">
-                        <el-input
-                            v-model.number="rate"
-                            maxlength="14"
-                            @input="handleRateInput"
-                        /><span>%</span>
+                        <el-input v-model.number="rate" maxlength="14" @input="handleRateInput" />
+                        <span>%</span>
                     </div>
                 </div>
             </el-col>
@@ -49,9 +47,9 @@
 </template>
 
 <script setup lang="ts">
-const init = ref(0)
-const addition = ref(0)
-const rate = ref(7)
+const init = ref(100000)
+const addition = ref(100000)
+const rate = ref(4)
 const goal = ref(10000000)
 const years = ref(0)
 
@@ -60,8 +58,7 @@ useHead({
     meta: [
         {
             name: 'description',
-            content:
-                '财富自由计算器小工具，输入初始资金、每年新增投入、预计年转化、目标金额，计算出所需年数',
+            content: '财富自由计算器小工具，输入初始资金、每年新增投入、预计年转化、目标金额，计算出所需年数',
         },
     ],
 })
@@ -84,17 +81,12 @@ function handleGoalInput(e: any) {
     }
 }
 
-function calc1(a: number, m: number, r: number, n: number) {
-    return (a + ((1 + r) / r) * m) * Math.pow(1 + r, n) - ((1 + r) / r) * m
-}
-
-function calc2(a: number, m: number, r: number, g: number) {
+function calc(a: number, m: number, r: number, g: number) {
     return Math.log((g + (m * (1 + r)) / r) / (m / r + a + m)) / Math.log(1 + r)
 }
 
 function handleButtonClick() {
-    years.value =
-        Math.round(calc2(init.value, addition.value, rate.value / 100, goal.value) * 100) / 100
+    years.value = Math.round(calc(init.value, addition.value, rate.value / 100, goal.value) * 100) / 100
 }
 </script>
 

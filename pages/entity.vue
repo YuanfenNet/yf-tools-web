@@ -3,11 +3,9 @@
         <h4>简介</h4>
         <div class="notecard">
             <p>
-                <a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Entity" target="_blank">
-                    HTML 实体</a
+                <a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Entity" target="_blank"> HTML 实体</a
                 >是一段以连字号（<code>&</code>）开头、以分号（<code>;</code>）结尾的文本（字符串）。实体常常用于显示保留字符（这些字符会被解析为
-                HTML
-                代码）和不可见的字符（如“不换行空格”）。你也可以用实体来代替其他难以用标准键盘键入的字符。
+                HTML 代码）和不可见的字符（如“不换行空格”）。你也可以用实体来代替其他难以用标准键盘键入的字符。
             </p>
             <p>
                 很多字符都有易于记忆的实体，例如版权符号 (©) 的实体是
@@ -15,27 +13,16 @@
             </p>
             <p>
                 注：实体字符串区分大小写；空格键对应的 Unicode 编码是
-                <code>U+0020</code>，因此无法搜索出 <code>&amp;nbsp;</code> 对应的
-                <code>U+00A0</code>。
+                <code>U+0020</code>，因此无法搜索出 <code>&amp;nbsp;</code> 对应的 <code>U+00A0</code>。
             </p>
         </div>
         <h4>自动转换</h4>
         <el-row :gutter="20">
             <el-col :span="10">
-                <el-input
-                    v-model="character"
-                    :maxlength="1"
-                    placeholder="请输入符号"
-                    @input="onCharacterInput"
-                />
+                <el-input v-model="character" :maxlength="1" placeholder="请输入符号" @input="onCharacterInput" />
             </el-col>
             <el-col :span="4">
-                <el-button
-                    :style="{ width: '100%' }"
-                    :disabled="entity === '' && character === ''"
-                    type="primary"
-                    @click="onButtonClick"
-                >
+                <el-button :style="{ width: '100%' }" :disabled="entity === '' && character === ''" type="primary" @click="onButtonClick">
                     转换
                 </el-button>
             </el-col>
@@ -70,8 +57,7 @@ useHead({
     meta: [
         {
             name: 'description',
-            content:
-                '在线 HTML 实体转换小工具，支持各种字符与 HTML 实体之间的相互转换；HTML 特殊字符转义',
+            content: '在线 HTML 实体转换小工具，支持各种字符与 HTML 实体之间的相互转换；HTML 特殊字符转义',
         },
     ],
 })
@@ -89,10 +75,7 @@ const entities = computed<Array<Symbol>>(() => {
                 entity: key,
                 characters: HtmlEntities[key].characters,
                 htmlCode: `&#${HtmlEntities[key].codepoints[0]};`,
-                unicode: `U+${HtmlEntities[key].codepoints[0]
-                    .toString(16)
-                    .toUpperCase()
-                    .padStart(4, '0')}`,
+                unicode: `U+${HtmlEntities[key].codepoints[0].toString(16).toUpperCase().padStart(4, '0')}`,
             })
         }
     })

@@ -10,12 +10,7 @@
         <el-row type="flex" align="middle">
             <el-col :span="4"><span class="line-title">时间选择器：</span></el-col>
             <el-col :span="14">
-                <el-date-picker
-                    v-model="dateTime"
-                    type="datetime"
-                    placeholder="选择日期时间"
-                    @focus="onInputFocus"
-                />
+                <el-date-picker v-model="dateTime" type="datetime" placeholder="选择日期时间" @focus="onInputFocus" />
             </el-col>
             <el-col :span="5" :offset="1">
                 <el-button type="primary" @click="convertDateTime">转换</el-button>
@@ -87,9 +82,7 @@ function convertFromDateTime() {
             isoString.value = DateTime.fromJSDate(dateTime.value).toISO()
         } else {
             timestamp.value = Math.floor(DateTime.fromJSDate(dateTime.value).toSeconds()).toString()
-            isoString.value = DateTime.fromJSDate(dateTime.value).toFormat(
-                "yyyy-MM-dd'T'HH:mm:ssZZ"
-            )
+            isoString.value = DateTime.fromJSDate(dateTime.value).toFormat("yyyy-MM-dd'T'HH:mm:ssZZ")
         }
     }
 }
