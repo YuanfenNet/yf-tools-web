@@ -4,12 +4,7 @@
             <div class="top-line">
                 <div class="label">数据类型</div>
                 <el-select v-model="type" placeholder="请选择">
-                    <el-option
-                        v-for="item in types"
-                        :key="item.value"
-                        :value="item.value"
-                        :label="item.label"
-                    />
+                    <el-option v-for="item in types" :key="item.value" :value="item.value" :label="item.label" />
                 </el-select>
             </div>
             <el-input v-if="type === 'text'" v-model="text" type="textarea" placeholder="" />
@@ -29,11 +24,7 @@
                     <div class="el-upload__tip">图片不会上传至服务器，请放心使用</div>
                 </div>
             </el-upload>
-            <div
-                v-if="type === 'image' && currentImage"
-                class="image-preview"
-                :style="{ backgroundImage: `url(${currentImage})` }"
-            />
+            <div v-if="type === 'image' && currentImage" class="image-preview" :style="{ backgroundImage: `url(${currentImage})` }" />
         </div>
         <div class="center-area">
             <el-button type="primary" round @click="encode">
@@ -61,7 +52,6 @@
 
 <script setup lang="ts">
 import { Base64 } from 'js-base64'
-import { getDataURL } from '@/utils/utils'
 
 interface DataType {
     value: string

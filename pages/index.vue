@@ -41,36 +41,6 @@
             <ul class="todo-list">
                 <li>
                     <div class="todo-item">
-                        <del>随机密码生成</del>
-                        <el-tag size="small" type="success" effect="plain" round>2020.12.20</el-tag>
-                    </div>
-                </li>
-                <li>
-                    <div class="todo-item">
-                        <del>JSON 解析&格式化</del>
-                        <el-tag size="small" type="success" effect="plain" round>2020.12.27</el-tag>
-                    </div>
-                </li>
-                <li>
-                    <div class="todo-item">
-                        <del>Base64 编码&解码</del>
-                        <el-tag size="small" type="success" effect="plain" round>2021.07.30</el-tag>
-                    </div>
-                </li>
-                <li>
-                    <div class="todo-item">
-                        <del>哈希值计算</del>
-                        <el-tag size="small" type="success" effect="plain" round>2021.08.19</el-tag>
-                    </div>
-                </li>
-                <li>
-                    <div class="todo-item">
-                        <del>时间格式转换</del>
-                        <el-tag size="small" type="success" effect="plain" round>2021.08.27</el-tag>
-                    </div>
-                </li>
-                <li>
-                    <div class="todo-item">
                         图片转 PDF
                         <el-tag size="small" type="" effect="plain" round>计划 2023Q3 完成</el-tag>
                     </div>
@@ -92,18 +62,6 @@
                 </li>
                 <li>
                     <div class="todo-item">天数计算器</div>
-                </li>
-                <li>
-                    <div class="todo-item">
-                        <del>二维码编码、解码、美化</del>
-                        <el-tag size="small" type="info" effect="plain" round>放弃，草料做得很好了</el-tag>
-                    </div>
-                </li>
-                <li>
-                    <div class="todo-item">
-                        <del>Crontab</del>
-                        <el-tag size="small" type="info" effect="plain" round>放弃，收益不大</el-tag>
-                    </div>
                 </li>
             </ul>
             <a class="tool-link" href="https://www.v2ex.com/t/792646" target="_blank">

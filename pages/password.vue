@@ -2,18 +2,21 @@
     <page header="随机密码生成" class="page-password">
         <el-input v-model="password" class="password" size="large" @focus="passwordFocus($event)" />
         <el-row class="controls-row">
-            <el-col :xs="{ span: 24 }" :sm="{ span: 8 }">
+            <el-col :xs="{ span: 24 }" :sm="{ span: 5 }">
                 <div class="flex-wrapper slider">
                     <span class="text">长度</span>
                     <el-slider v-model="length" :min="4" />
                     <span class="text">{{ length }}位</span>
                 </div>
             </el-col>
-            <el-col :xs="{ span: 24 }" :sm="{ span: 9, offset: 1 }">
+            <el-col :xs="{ span: 24 }" :sm="{ span: 13 }">
                 <div class="flex-wrapper checkbox">
                     <el-checkbox v-model="upperLetterChecked">大写字母</el-checkbox>
                     <el-checkbox v-model="lowerLetterChecked">小写字母</el-checkbox>
                     <el-checkbox v-model="numberChecked">数字</el-checkbox>
+                    <el-tooltip content="0oO1l|" placement="top">
+                        <el-checkbox v-model="ignoreConfusableCharacters">忽略易混淆字符</el-checkbox>
+                    </el-tooltip>
                 </div>
             </el-col>
             <el-col :xs="{ span: 24 }" :sm="{ span: 6 }">
@@ -36,6 +39,7 @@ const length = ref(16)
 const upperLetterChecked = ref(true)
 const lowerLetterChecked = ref(true)
 const numberChecked = ref(true)
+const ignoreConfusableCharacters = ref(false)
 const symbolChecked = ref(false)
 const symbols = ref(',.!@?#$%^&*()-+=[]{}:;_~<>')
 const upperLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -64,7 +68,7 @@ watch([length, upperLetterChecked, lowerLetterChecked, numberChecked, symbolChec
 
     if (!upperLetterChecked.value && !lowerLetterChecked.value && !numberChecked.value && !symbolChecked.value) {
         ElMessage({
-            message: '至少选择一项',
+            message: '至少选择一项字符类型',
             type: 'warning',
         })
         password.value = ''
@@ -93,6 +97,10 @@ function generate() {
     if (numberChecked.value) charset += numbers
     if (symbolChecked.value) charset += symbols.value
 
+    if (ignoreConfusableCharacters.value) {
+        charset = filterString(charset, '0oO1l|')
+    }
+
     if (charset.length > 0) {
         password.value = ''
         for (let i = 0, n = charset.length; i < length.value; i++) {
@@ -109,7 +117,7 @@ function generate() {
         }
     } else {
         ElMessage({
-            message: '至少选择一项',
+            message: '无可用字符',
             type: 'warning',
         })
     }

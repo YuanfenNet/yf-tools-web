@@ -4,9 +4,9 @@
             <el-row>
                 <el-col
                     :xs="{ span: 24 }"
-                    :sm="{ span: 22, offset: 1 }"
-                    :md="{ span: 16, offset: 4 }"
-                    :lg="{ span: 14, offset: 5 }"
+                    :sm="{ span: 24 }"
+                    :md="{ span: 20, offset: 2 }"
+                    :lg="{ span: 18, offset: 3 }"
                     :xl="{ span: 12, offset: 6 }"
                 >
                     <header-content />
@@ -17,9 +17,9 @@
             <el-row>
                 <el-col
                     :xs="{ span: 24 }"
-                    :sm="{ span: 22, offset: 1 }"
-                    :md="{ span: 16, offset: 4 }"
-                    :lg="{ span: 14, offset: 5 }"
+                    :sm="{ span: 24 }"
+                    :md="{ span: 20, offset: 2 }"
+                    :lg="{ span: 18, offset: 3 }"
                     :xl="{ span: 12, offset: 6 }"
                 >
                     <slot />
@@ -34,10 +34,7 @@
             </h6>
             <h6>
                 <a target="_blank" href="https://beian.miit.gov.cn">沪ICP备13002299号</a>
-                <a
-                    target="_blank"
-                    href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010602003297"
-                >
+                <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010602003297">
                     沪公网安备31010602003297号
                 </a>
             </h6>

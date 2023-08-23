@@ -1,4 +1,4 @@
-function getDataURL(file: any) {
+export function getDataURL(file: any) {
     return new Promise<string>((resolve, reject) => {
         const reader = new FileReader()
         let result: string = ''
@@ -17,9 +17,12 @@ function getDataURL(file: any) {
     })
 }
 
-async function getBase64FromFile(file: any): Promise<string> {
+export async function getBase64FromFile(file: any): Promise<string> {
     const dataUrl = await getDataURL(file)
     return dataUrl.substring(dataUrl.indexOf(',') + 1)
 }
 
-export { getDataURL, getBase64FromFile }
+export function filterString(inputString: string, charactersToExclude: string): string {
+    const regexPattern = new RegExp(`[${charactersToExclude}]`, 'g')
+    return inputString.replace(regexPattern, '')
+}
