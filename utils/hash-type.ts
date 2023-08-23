@@ -16,7 +16,7 @@ enum HashType {
     'hmac-ripemd160' = 'hmac-ripemd160',
 }
 
-export async function getHashFunction(hashType: HashType) {
+export async function getHashFunction(hashType: HashType): Promise<any> {
     switch (hashType) {
         case HashType.md5:
             return (await import('crypto-js/md5.js')).default
