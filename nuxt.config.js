@@ -2,13 +2,7 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
     css: ['~/assets/scss/common.scss'],
 
-    modules: [
-        '@nuxt/content',
-        '@nuxtjs/color-mode',
-        'nuxt-simple-sitemap',
-        'nuxt-gtag',
-        '@element-plus/nuxt',
-    ],
+    modules: ['@element-plus/nuxt', '@nuxt/content', '@nuxtjs/color-mode', '@vueuse/nuxt', 'nuxt-gtag', 'nuxt-simple-sitemap'],
 
     content: {
         markdown: {

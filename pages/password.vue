@@ -1,6 +1,6 @@
 <template>
     <page header="随机密码生成" class="page-password">
-        <el-input v-model="password" class="password" @focus="passwordFocus($event)" />
+        <el-input v-model="password" class="password" size="large" @focus="passwordFocus($event)" />
         <el-row>
             <el-col :xs="{ span: 24 }" :sm="{ span: 8 }">
                 <div class="flex-wrapper slider">
@@ -19,17 +19,13 @@
             <el-col :xs="{ span: 24 }" :sm="{ span: 6 }">
                 <div class="flex-wrapper">
                     <el-checkbox v-model="symbolChecked">符号</el-checkbox>
-                    <el-input
-                        v-model="symbols"
-                        class="symbols-input"
-                        placeholder="请输入特殊符号"
-                        @change="handleSymbolsInputChange"
-                    />
+                    <el-input v-model="symbols" class="symbols-input" placeholder="请输入特殊符号" @change="handleSymbolsInputChange" />
                 </div>
             </el-col>
         </el-row>
         <div class="btn-wrapper">
-            <el-button type="primary" round @click="generate">生成密码</el-button>
+            <el-button type="primary" size="large" round @click="generate">重新生成</el-button>
+            <el-button v-if="isSupported" type="primary" size="large" round @click="copy(password)">复制密码</el-button>
         </div>
     </page>
 </template>
@@ -45,14 +41,43 @@ const symbols = ref(',.!@?#$%^&*()-+=[]{}:;_~<>')
 const upperLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const lowerLetters = 'abcdefghijklmnopqrstuvwxyz'
 const numbers = '0123456789'
+const { copy, copied, isSupported } = useClipboard({ legacy: true })
 
 onMounted(generate)
 
-const passwordFocus = (event: any) => {
+watch(copied, (value) => {
+    if (value) {
+        ElMessage({
+            message: '复制成功！',
+            type: 'success',
+        })
+    }
+})
+
+watch([length, upperLetterChecked, lowerLetterChecked, numberChecked, symbolChecked, symbols], (newValues, oldValues) => {
+    console.log(newValues, oldValues)
+    if (newValues[4] && oldValues[5].length > 0 && newValues[5].length === 0) {
+        symbolChecked.value = false
+    } else if (!newValues[4] && oldValues[5].length === 0 && newValues[5].length > 0) {
+        symbolChecked.value = true
+    }
+
+    if (!upperLetterChecked.value && !lowerLetterChecked.value && !numberChecked.value && !symbolChecked.value) {
+        ElMessage({
+            message: '至少选择一项',
+            type: 'warning',
+        })
+        password.value = ''
+    } else if (!(symbolChecked.value && symbols.value.length === 0)) {
+        generate()
+    }
+})
+
+function passwordFocus(event: any) {
     event.currentTarget.select()
 }
 
-const handleSymbolsInputChange = (e: string) => {
+function handleSymbolsInputChange(e: string) {
     if (e.length === 0) {
         symbolChecked.value = false
     }
@@ -62,7 +87,6 @@ function generate() {
     if (symbolChecked.value && symbols.value.length === 0) {
         symbolChecked.value = false
     }
-
     let charset = ''
     if (upperLetterChecked.value) charset += upperLetters
     if (lowerLetterChecked.value) charset += lowerLetters
@@ -84,7 +108,10 @@ function generate() {
             generate()
         }
     } else {
-        alert('至少选择一项')
+        ElMessage({
+            message: '至少选择一项',
+            type: 'warning',
+        })
     }
 }
 
@@ -101,11 +128,14 @@ function containsChar(a: string, b: string) {
 <style lang="scss">
 .page-password {
     .password {
+        .el-input__wrapper {
+            padding: 5px 15px;
+        }
         input {
             font-size: 24px;
             text-align: center;
-            font-family: var(--code-font-family);
-            letter-spacing: 2.5px;
+            font-family: 'Courier Prime Bits', 'Courier New', monospace;
+            letter-spacing: 3px;
         }
     }
     .flex-wrapper {

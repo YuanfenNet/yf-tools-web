@@ -38,17 +38,73 @@
             </template>
             <p>目前正在扩充小工具，致力于为开发者提供最好用的小工具。</p>
             <p>TODO：</p>
-            <ul>
-                <li><del>随机密码生成</del>(2020.12.20)</li>
-                <li><del>JSON 解析&格式化</del>(2020.12.27)</li>
-                <li><del>Base64 编码&解码</del>(2021.07.30)</li>
-                <li><del>哈希值计算</del>(2021.08.19)</li>
-                <li><del>时间格式转换</del>(2021.08.27)</li>
-                <li>二维码编码、解码、美化</li>
-                <li>图片压缩</li>
-                <li>天数计算器</li>
-                <li>字体格式在线转换</li>
-                <li>Crontab</li>
+            <ul class="todo-list">
+                <li>
+                    <div class="todo-item">
+                        <del>随机密码生成</del>
+                        <el-tag size="small" type="success" effect="plain" round>2020.12.20</el-tag>
+                    </div>
+                </li>
+                <li>
+                    <div class="todo-item">
+                        <del>JSON 解析&格式化</del>
+                        <el-tag size="small" type="success" effect="plain" round>2020.12.27</el-tag>
+                    </div>
+                </li>
+                <li>
+                    <div class="todo-item">
+                        <del>Base64 编码&解码</del>
+                        <el-tag size="small" type="success" effect="plain" round>2021.07.30</el-tag>
+                    </div>
+                </li>
+                <li>
+                    <div class="todo-item">
+                        <del>哈希值计算</del>
+                        <el-tag size="small" type="success" effect="plain" round>2021.08.19</el-tag>
+                    </div>
+                </li>
+                <li>
+                    <div class="todo-item">
+                        <del>时间格式转换</del>
+                        <el-tag size="small" type="success" effect="plain" round>2021.08.27</el-tag>
+                    </div>
+                </li>
+                <li>
+                    <div class="todo-item">
+                        图片转 PDF
+                        <el-tag size="small" type="" effect="plain" round>计划 2023Q3 完成</el-tag>
+                    </div>
+                </li>
+                <li>
+                    <div class="todo-item">
+                        视频和 GIF 格式转换
+                        <el-tag size="small" type="" effect="plain" round>计划 2023Q3 完成</el-tag>
+                    </div>
+                </li>
+                <li>
+                    <div class="todo-item">
+                        Font2svg
+                        <el-tag size="small" type="" effect="plain" round>计划 2023Q4 完成</el-tag>
+                    </div>
+                </li>
+                <li>
+                    <div class="todo-item">图片压缩</div>
+                </li>
+                <li>
+                    <div class="todo-item">天数计算器</div>
+                </li>
+                <li>
+                    <div class="todo-item">
+                        <del>二维码编码、解码、美化</del>
+                        <el-tag size="small" type="info" effect="plain" round>放弃，草料做得很好了</el-tag>
+                    </div>
+                </li>
+                <li>
+                    <div class="todo-item">
+                        <del>Crontab</del>
+                        <el-tag size="small" type="info" effect="plain" round>放弃，收益不大</el-tag>
+                    </div>
+                </li>
             </ul>
             <a class="tool-link" href="https://www.v2ex.com/t/792646" target="_blank">
                 <ElButton type="primary" size="large" plain round>交流讨论</ElButton>
@@ -97,6 +153,17 @@ useHead({
         }
         .el-card__body {
             padding: 20px;
+            .todo-list {
+                li {
+                    .todo-item {
+                        display: flex;
+                        align-items: center;
+                        .el-tag {
+                            margin-left: 6px;
+                        }
+                    }
+                }
+            }
             .changelog {
                 & > :first-child {
                     margin-top: 0 !important;
