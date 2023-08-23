@@ -33,11 +33,9 @@
         <el-card>
             <template #header>
                 <div class="card-header">
-                    <h4>欢迎使用猿奋工具箱</h4>
+                    <h4>任务计划</h4>
                 </div>
             </template>
-            <p>目前正在扩充小工具，致力于为开发者提供最好用的小工具。</p>
-            <p>TODO：</p>
             <ul class="todo-list">
                 <li>
                     <div class="todo-item">
@@ -64,12 +62,6 @@
                     <div class="todo-item">天数计算器</div>
                 </li>
             </ul>
-            <a class="tool-link" href="https://www.v2ex.com/t/792646" target="_blank">
-                <ElButton type="primary" size="large" plain round>交流讨论</ElButton>
-            </a>
-            <a class="tool-link" href="mailto:bean@yuanfen.net" target="_blank">
-                <ElButton type="primary" size="large" plain round>提交建议 & Bug反馈</ElButton>
-            </a>
         </el-card>
         <el-card>
             <template #header>
