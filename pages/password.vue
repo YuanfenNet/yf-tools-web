@@ -1,11 +1,13 @@
 <template>
     <page header="随机密码生成" class="page-password">
-        <el-input v-model="password" class="password" size="large" @focus="passwordFocus($event)" />
+        <div class="result">
+            <span v-for="char in password" class="char" :class="getCharClass(char)">{{ char }}</span>
+        </div>
         <el-row class="controls-row">
             <el-col :xs="{ span: 24 }" :sm="{ span: 5 }">
                 <div class="flex-wrapper slider">
                     <span class="text">长度</span>
-                    <el-slider v-model="length" :min="8" :max="64" />
+                    <el-slider v-model="length" :min="8" :max="128" />
                     <span class="text">{{ length }}位</span>
                 </div>
             </el-col>
@@ -76,13 +78,21 @@ watch([length, upperLetterChecked, lowerLetterChecked, numberChecked, symbolChec
     }
 })
 
-function passwordFocus(event: any) {
-    event.currentTarget.select()
-}
-
 function handleSymbolsInputChange(e: string) {
     if (e.length === 0) {
         symbolChecked.value = false
+    }
+}
+
+function getCharClass(char: string) {
+    if (/[0-9]/.test(char)) {
+        return 'char-digits'
+    } else if (/[a-z]/.test(char)) {
+        return 'char-lowercase'
+    } else if (/[A-Z]/.test(char)) {
+        return 'char-uppercase'
+    } else {
+        return 'char-symbols'
     }
 }
 
@@ -134,6 +144,37 @@ function containsChar(a: string, b: string) {
 
 <style lang="scss">
 .page-password {
+    .result {
+        border: 1px solid var(--el-border-color);
+        padding: 15px;
+        border-radius: var(--el-input-border-radius, var(--el-border-radius-base));
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        word-break: break-all;
+        user-select: text;
+        letter-spacing: 3px;
+        text-align: center;
+        font-size: 24px;
+        font-family: 'Courier Prime Bits', 'Courier New', monospace;
+        min-height: 56px;
+        .char {
+            line-height: 32px;
+            &.char-digits {
+                color: var(--el-color-primary);
+            }
+            &.char-symbols {
+                color: var(--el-color-danger);
+            }
+            &.char-uppercase {
+                color: var(--el-color-warning);
+            }
+            &.char-lowercase {
+                color: var(--el-text-color-regular);
+            }
+        }
+    }
     .password {
         .el-input__wrapper {
             padding: 5px 15px;
