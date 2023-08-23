@@ -1,7 +1,7 @@
 <template>
     <page header="随机密码生成" class="page-password">
         <el-input v-model="password" class="password" size="large" @focus="passwordFocus($event)" />
-        <el-row>
+        <el-row class="controls-row">
             <el-col :xs="{ span: 24 }" :sm="{ span: 8 }">
                 <div class="flex-wrapper slider">
                     <span class="text">长度</span>
@@ -138,6 +138,9 @@ function containsChar(a: string, b: string) {
             letter-spacing: 3px;
         }
     }
+    .controls-row {
+        margin-top: 10px;
+    }
     .flex-wrapper {
         display: flex;
         height: 60px;
@@ -178,6 +181,7 @@ function containsChar(a: string, b: string) {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-top: 10px;
         .el-button {
             width: 200px;
         }
