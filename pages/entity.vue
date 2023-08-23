@@ -22,7 +22,13 @@
                 <el-input v-model="character" :maxlength="1" placeholder="请输入符号" @input="onCharacterInput" />
             </el-col>
             <el-col :span="4">
-                <el-button :style="{ width: '100%' }" :disabled="entity === '' && character === ''" type="primary" @click="onButtonClick">
+                <el-button
+                    :style="{ width: '100%' }"
+                    :disabled="entity === '' && character === ''"
+                    type="primary"
+                    round
+                    @click="onButtonClick"
+                >
                     转换
                 </el-button>
             </el-col>
@@ -136,7 +142,7 @@ function onButtonClick() {
     .content-wrapper > :first-child {
         margin-top: 0 !important;
     }
-    .el-table,
+    .el-table__body-wrapper,
     input {
         font-family: var(--code-font-family);
     }

@@ -131,6 +131,10 @@ hr {
     margin: 80px 0 0 0;
 }
 
+code {
+    font-family: var(--code-font-family);
+}
+
 .mask {
     position: absolute;
     top: 0;

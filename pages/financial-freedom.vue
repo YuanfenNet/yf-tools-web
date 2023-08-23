@@ -40,7 +40,7 @@
                 </div>
             </el-col>
             <el-col :xs="24" :sm="6">
-                <el-button type="primary" @click="handleButtonClick">计算</el-button>
+                <el-button type="primary" round @click="handleButtonClick">计算</el-button>
             </el-col>
         </el-row>
     </page>
@@ -137,7 +137,7 @@ function handleButtonClick() {
         }
     }
 
-    .el-button--primary {
+    .el-button {
         width: 100%;
     }
     .text-center {

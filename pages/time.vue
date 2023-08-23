@@ -1,37 +1,37 @@
 <template>
     <page header="时间格式转换" class="page-timestamp">
-        <el-row type="flex" align="middle">
+        <el-row align="middle">
             <el-col :span="4"><span class="line-title">选项：</span></el-col>
             <el-col :span="20">
                 <el-checkbox v-model="realTime">实时时间</el-checkbox>
                 <el-checkbox v-model="millisecond">毫秒</el-checkbox>
             </el-col>
         </el-row>
-        <el-row type="flex" align="middle">
+        <el-row align="middle">
             <el-col :span="4"><span class="line-title">时间选择器：</span></el-col>
             <el-col :span="14">
                 <el-date-picker v-model="dateTime" type="datetime" placeholder="选择日期时间" @focus="onInputFocus" />
             </el-col>
             <el-col :span="5" :offset="1">
-                <el-button type="primary" @click="convertDateTime">转换</el-button>
+                <el-button type="primary" round @click="convertDateTime">转换</el-button>
             </el-col>
         </el-row>
-        <el-row type="flex" align="middle">
+        <el-row align="middle">
             <el-col :span="4"><span class="line-title">时间戳：</span></el-col>
             <el-col :span="14">
                 <el-input v-model="timestamp" @focus="onInputFocus" />
             </el-col>
             <el-col :span="5" :offset="1">
-                <el-button type="primary" @click="convertTimestamp">转换</el-button>
+                <el-button type="primary" round @click="convertTimestamp">转换</el-button>
             </el-col>
         </el-row>
-        <el-row type="flex" align="middle">
+        <el-row align="middle">
             <el-col :span="4"><span class="line-title">ISO 8601：</span></el-col>
             <el-col :span="14">
                 <el-input v-model="isoString" @focus="onInputFocus" />
             </el-col>
             <el-col :span="5" :offset="1">
-                <el-button type="primary" @click="convertIsoString">转换</el-button>
+                <el-button type="primary" round @click="convertIsoString">转换</el-button>
             </el-col>
         </el-row>
     </page>
@@ -129,13 +129,9 @@ function convertIsoString() {
     .el-date-editor {
         width: 100%;
     }
-    .button-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        .el-button {
-            margin: 0;
-        }
+    .el-button {
+        margin: 0;
+        width: 100%;
     }
     .text-center {
         text-align: center;
