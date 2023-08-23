@@ -5,7 +5,7 @@
             <el-col :xs="{ span: 24 }" :sm="{ span: 5 }">
                 <div class="flex-wrapper slider">
                     <span class="text">长度</span>
-                    <el-slider v-model="length" :min="4" />
+                    <el-slider v-model="length" :min="8" :max="64" />
                     <span class="text">{{ length }}位</span>
                 </div>
             </el-col>
@@ -59,7 +59,6 @@ watch(copied, (value) => {
 })
 
 watch([length, upperLetterChecked, lowerLetterChecked, numberChecked, symbolChecked, symbols], (newValues, oldValues) => {
-    console.log(newValues, oldValues)
     if (newValues[4] && oldValues[5].length > 0 && newValues[5].length === 0) {
         symbolChecked.value = false
     } else if (!newValues[4] && oldValues[5].length === 0 && newValues[5].length > 0) {
@@ -175,7 +174,7 @@ function containsChar(a: string, b: string) {
             }
             .el-slider {
                 flex: 1;
-                margin: 0 10px;
+                margin: 0 12px;
             }
         }
         &.checkbox {
