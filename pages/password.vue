@@ -4,21 +4,25 @@
             <span v-for="char in password" class="char" :class="getCharClass(char)">{{ char }}</span>
         </div>
         <el-row class="controls-row">
-            <el-col :xs="{ span: 24 }" :sm="{ span: 5 }">
+            <el-col :xs="{ span: 12 }" :sm="{ span: 4 }" :lg="{ span: 6 }">
                 <div class="flex-wrapper slider">
                     <span class="text">长度</span>
                     <el-slider v-model="length" :min="8" :max="128" />
                     <span class="text">{{ length }}位</span>
                 </div>
             </el-col>
-            <el-col :xs="{ span: 24 }" :sm="{ span: 13 }">
+            <el-col :xs="{ span: 12 }" :sm="{ span: 5 }" :lg="{ span: 3 }">
+                <div class="flex-wrapper ignore-checkbox">
+                    <el-tooltip content="0oO1l|" placement="top">
+                        <el-checkbox v-model="ignoreConfusableCharacters">忽略易混淆字符</el-checkbox>
+                    </el-tooltip>
+                </div>
+            </el-col>
+            <el-col :xs="{ span: 24 }" :sm="{ span: 9 }">
                 <div class="flex-wrapper checkbox">
                     <el-checkbox v-model="upperLetterChecked">大写字母</el-checkbox>
                     <el-checkbox v-model="lowerLetterChecked">小写字母</el-checkbox>
                     <el-checkbox v-model="numberChecked">数字</el-checkbox>
-                    <el-tooltip content="0oO1l|" placement="top">
-                        <el-checkbox v-model="ignoreConfusableCharacters">忽略易混淆字符</el-checkbox>
-                    </el-tooltip>
                 </div>
             </el-col>
             <el-col :xs="{ span: 24 }" :sm="{ span: 6 }">
@@ -158,19 +162,17 @@ function containsChar(a: string, b: string) {
         border: 1px solid var(--el-border-color);
         padding: 15px;
         border-radius: var(--el-input-border-radius, var(--el-border-radius-base));
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        word-break: break-all;
+        text-align: center;
         user-select: text;
-        letter-spacing: 3px;
         text-align: center;
         font-size: 24px;
         font-family: 'Courier Prime Bits', 'Courier New', monospace;
         min-height: 56px;
+        letter-spacing: 4px;
+        word-break: break-all;
         .char {
             line-height: 32px;
+
             &.char-digits {
                 color: var(--el-color-primary);
             }
@@ -234,6 +236,13 @@ function containsChar(a: string, b: string) {
             align-items: center;
             justify-content: flex-end;
         }
+        &.ignore-checkbox {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-left: 15px;
+        }
     }
     .btn-wrapper {
         display: flex;
@@ -250,6 +259,10 @@ function containsChar(a: string, b: string) {
         .flex-wrapper {
             &.checkbox {
                 justify-content: space-between;
+            }
+            &.ignore-checkbox {
+                justify-content: flex-end;
+                margin-left: 0;
             }
         }
     }
