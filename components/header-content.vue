@@ -10,7 +10,7 @@
                 :aria-checked="isDark"
                 @click="() => toggleDark()"
             />
-            <div class="description">做最好用的小工具</div>
+            <div class="description">做精致好用的小工具</div>
         </div>
     </div>
 </template>
