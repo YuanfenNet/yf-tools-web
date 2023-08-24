@@ -25,7 +25,7 @@
                 class="file-upload-wrapper"
                 drag
             >
-                <i class="el-icon-upload" />
+                <el-icon class="el-icon--upload"><ElIconUploadFilled /></el-icon>
                 <div class="el-upload__text">
                     <div>将文件拖到此处，或<em>点击上传</em></div>
                     <div class="el-upload__tip">文件不会上传至服务器，请放心使用</div>
@@ -33,10 +33,10 @@
             </el-upload>
             <div v-if="dataType === DataType.file && currentFile" class="file-preview">
                 <div class="file-status">
-                    <i class="el-icon-document" />
+                    <el-icon class="el-icon--document"><ElIconDocument /></el-icon>
                     <div class="file-name-row">
                         <span class="file-name">{{ currentFile.name }}</span>
-                        <i class="el-icon-upload-success el-icon-circle-check" />
+                        <el-icon class="el-icon--upload-success"><ElIconCircleCheck /></el-icon>
                     </div>
                 </div>
             </div>
@@ -205,9 +205,6 @@ function clear() {
                         flex-direction: column;
                         align-items: center;
                         justify-content: center;
-                        .el-icon-upload {
-                            margin-top: 0;
-                        }
                     }
                 }
             }
@@ -225,20 +222,20 @@ function clear() {
                     justify-content: center;
                     font-size: 14px;
 
-                    .el-icon-document {
+                    .el-icon--document {
                         font-size: 50px;
-                        color: #909399;
+                        color: var(--el-text-color-regular);
                     }
                     .file-name-row {
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         .file-name {
-                            color: #606266;
+                            color: var(--el-text-color-regular);
                             margin: 20px 10px;
                         }
-                        .el-icon-upload-success {
-                            color: #67c23a;
+                        .el-icon--upload-success {
+                            color: var(--el-color-success);
                         }
                     }
                 }

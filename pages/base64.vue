@@ -18,7 +18,7 @@
                 class="image-upload-wrapper"
                 drag
             >
-                <i class="el-icon-upload" />
+                <el-icon class="el-icon--upload"><ElIconUploadFilled /></el-icon>
                 <div class="el-upload__text">
                     <div>将文件拖到此处，或<em>点击上传</em></div>
                     <div class="el-upload__tip">图片不会上传至服务器，请放心使用</div>
@@ -28,14 +28,14 @@
         </div>
         <div class="center-area">
             <el-button type="primary" round @click="encode">
-                <i class="el-icon-arrow-right el-icon--left" />
+                <ElIcon><ElIconArrowRight /></ElIcon>
                 <span>编码</span>
-                <i class="el-icon-arrow-right el-icon--right" />
+                <ElIcon><ElIconArrowRight /></ElIcon>
             </el-button>
             <el-button type="primary" round @click="decode">
-                <i class="el-icon-arrow-left el-icon--left" />
+                <ElIcon><ElIconArrowLeft /></ElIcon>
                 <span>解码</span>
-                <i class="el-icon-arrow-left el-icon--right" />
+                <ElIcon><ElIconArrowLeft /></ElIcon>
             </el-button>
             <el-button type="primary" round @click="clear">
                 <span>清空</span>
@@ -159,9 +159,6 @@ function clear() {
                         flex-direction: column;
                         align-items: center;
                         justify-content: center;
-                        .el-icon-upload {
-                            margin-top: 0;
-                        }
                     }
                 }
             }
@@ -184,6 +181,9 @@ function clear() {
             .el-button {
                 margin: 20px 0;
                 width: 100%;
+                span {
+                    margin: 0 6px;
+                }
             }
         }
     }
