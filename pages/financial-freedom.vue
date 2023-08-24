@@ -47,8 +47,8 @@
 </template>
 
 <script setup lang="ts">
-const init = ref(100000)
-const addition = ref(100000)
+const init = ref(1000000)
+const addition = ref(500000)
 const rate = ref(4)
 const goal = ref(10000000)
 const years = ref(0)
