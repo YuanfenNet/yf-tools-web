@@ -1,25 +1,49 @@
 <template>
-    <Page header="图片转 PDF (WIP)" class="page-image2pdf">
-        <ElRow class="controls-wrapper">
-            <ElCol :xs="24" :sm="8" :lg="6">
-                <el-text class="mx-1">大小：</el-text>
-                <el-select v-model="pageFormat" placeholder="大小">
-                    <el-option v-for="item in pageFormatOptions" :key="item.key" :label="item.label" :value="item" />
-                </el-select>
+    <Page header="图片转 PDF" class="page-image2pdf">
+        <ElRow class="controls-wrapper" justify="space-between" :gutter="20">
+            <ElCol :xs="24" :sm="10" :lg="8">
+                <div class="select-item">
+                    <el-text class="mx-1">大小：</el-text>
+                    <el-select v-model="pageFormat" placeholder="大小">
+                        <el-option
+                            v-for="item in pageFormatOptions"
+                            :key="item.key"
+                            :label="item.label"
+                            :value="item"
+                            :disabled="item.disabled"
+                        />
+                    </el-select>
+                </div>
             </ElCol>
-            <ElCol :xs="24" :sm="8" :lg="6">
-                <el-text class="mx-1">方向：</el-text>
-                <el-select v-model="pageOrientation" placeholder="方向">
-                    <el-option v-for="item in pageOrientationOptions" :key="item.key" :label="item.label" :value="item" />
-                </el-select>
+            <ElCol :xs="24" :sm="7" :lg="6">
+                <div class="select-item">
+                    <el-text class="mx-1">方向：</el-text>
+                    <el-select v-model="pageOrientation" placeholder="方向" class="page-orientation-select">
+                        <el-option
+                            v-for="item in pageOrientationOptions"
+                            :key="item.key"
+                            :label="item.label"
+                            :value="item"
+                            :disabled="item.disabled"
+                        />
+                    </el-select>
+                </div>
             </ElCol>
-            <ElCol :xs="24" :sm="8" :lg="6">
-                <el-text class="mx-1">边距：</el-text>
-                <el-select v-model="pageMargin" placeholder="页面距">
-                    <el-option v-for="item in pageMarginOptions" :key="item.key" :label="item.label" :value="item" />
-                </el-select>
+            <ElCol :xs="24" :sm="7" :lg="6">
+                <div class="select-item">
+                    <el-text class="mx-1">边距：</el-text>
+                    <el-select v-model="pageMargin" placeholder="页面距" class="page-margin-select">
+                        <el-option
+                            v-for="item in pageMarginOptions"
+                            :key="item.key"
+                            :label="item.label"
+                            :value="item"
+                            :disabled="item.disabled"
+                        />
+                    </el-select>
+                </div>
             </ElCol>
-            <ElCol :xs="24" :sm="24" :lg="6">
+            <ElCol :xs="24" :sm="24" :lg="4">
                 <ElButton type="primary" round :disabled="!hasFile" @click="onStartClick">开始合成</ElButton>
             </ElCol>
         </ElRow>
@@ -76,30 +100,38 @@
 </template>
 
 <script setup lang="ts">
-import { jsPDF } from 'jspdf'
+import { jsPDF, jsPDFOptions } from 'jspdf'
 import { Sortable } from 'sortablejs-vue3'
 import type { SortableEvent } from 'sortablejs'
 import type { UploadFile, UploadInstance } from 'element-plus'
-import { jsPDFOptions } from 'jspdf'
-import FullWidth from 'layouts/full-width.vue'
-import { listenerCount } from 'process'
 
 type OptionType<T> = {
     key: string
     label: string
     value: T
+    disabled?: boolean
 }
 
-const allPageFormats: Array<OptionType<jsPDFOptions['format']>> = [
-    {
-        key: 'page-format-a4',
-        label: 'A4 (210mm×297mm)',
-        value: [210, 297],
-    },
+const allPageFormats: Array<OptionType<number[] | undefined>> = [
     {
         key: 'page-format-auto',
         label: '自动 (和图片大小一致)',
         value: undefined,
+    },
+    {
+        key: 'page-format-a3',
+        label: 'A3 (420mm×297mm)',
+        value: [420, 297],
+    },
+    {
+        key: 'page-format-a4',
+        label: 'A4 (297mm×210mm)',
+        value: [297, 210],
+    },
+    {
+        key: 'page-format-a5',
+        label: 'A5 (210mm×148mm)',
+        value: [210, 148],
     },
 ]
 
@@ -127,6 +159,36 @@ const allPageMargins: Array<OptionType<number>> = [
         label: '无边距',
         value: 0,
     },
+    {
+        key: 'page-margin-5',
+        label: '5mm',
+        value: 5,
+    },
+    {
+        key: 'page-margin-10',
+        label: '10mm',
+        value: 10,
+    },
+    {
+        key: 'page-margin-15',
+        label: '15mm',
+        value: 15,
+    },
+    {
+        key: 'page-margin-20',
+        label: '20mm',
+        value: 20,
+    },
+    {
+        key: 'page-margin-25',
+        label: '25mm',
+        value: 25,
+    },
+    {
+        key: 'page-margin-30',
+        label: '30mm',
+        value: 30,
+    },
 ]
 
 const pageFormatOptions = ref(allPageFormats)
@@ -136,9 +198,9 @@ const fileList = ref<Array<UploadFile>>([])
 const uploadRef = ref<UploadInstance>()
 const previewVisible = ref(false)
 const initialPreviewIndex = ref(0)
-const pageFormat = ref(allPageFormats[0])
-const pageOrientation = ref(allPageOrientations[0])
-const pageMargin = ref(allPageMargins[0])
+const pageFormat = ref(allPageFormats.find((f) => f.key === 'page-format-a4')!)
+const pageOrientation = ref(allPageOrientations.find((o) => o.key === 'page-orientation-auto')!)
+const pageMargin = ref(allPageMargins.find((m) => m.key === 'page-margin-0')!)
 
 const hasFile = computed(() => {
     if (fileList.value.length > 0) {
@@ -158,16 +220,14 @@ async function onStartClick() {
     const pdfOptions: jsPDFOptions = {}
     const { width: firstImgWidth, height: firstImgHeight } = await getImageDimensions(fileList.value[0].url)
 
-    if (pageFormat.value.value === undefined) {
+    if (pageFormat.value.key === 'page-format-auto') {
         // 自适应大小的情况，使用 px 和图片大小作为页面大小，自动方向
-
         pdfOptions.unit = 'px'
         pdfOptions.hotfixes = ['px_scaling']
         pdfOptions.format = [firstImgWidth, firstImgHeight]
         pdfOptions.orientation = getPageOrientation(pageOrientation.value.value, firstImgWidth, firstImgHeight)
     } else {
         // 固定页面大小
-
         pdfOptions.unit = 'mm'
         pdfOptions.format = pageFormat.value.value
         pdfOptions.orientation = getPageOrientation(pageOrientation.value.value, firstImgWidth, firstImgHeight)
@@ -183,8 +243,9 @@ async function onStartClick() {
             pdf!.addPage(pdfOptions.format, pdfOptions.orientation)
         }
         const { offsetLeft, offsetTop, maxWidth, maxHeight } = getImageContainSize(
-            pdfOptions.format,
+            pdfOptions.format!,
             pdfOptions.orientation,
+            pageMargin.value.value,
             imgWidth,
             imgHeight
         )
@@ -203,23 +264,29 @@ function getPageOrientation(orientation: jsPDFOptions['orientation'], width: num
     return orientation
 }
 
-function getImageContainSize(pageFormat: Array<number>, orientation: jsPDFOptions['orientation'], imgWidth: number, imgHeight: number) {
-    const pageWidth = orientation === 'landscape' ? Math.max(...pageFormat) : Math.min(...pageFormat)
-    const pageHeight = orientation === 'landscape' ? Math.min(...pageFormat) : Math.max(...pageFormat)
-    const pageAspectRatio = pageWidth / pageHeight
+function getImageContainSize(
+    format: Array<number>,
+    orientation: jsPDFOptions['orientation'],
+    margin: number,
+    imgWidth: number,
+    imgHeight: number
+) {
+    const pageContentWidth = (orientation === 'landscape' ? Math.max(...format) : Math.min(...format)) - 2 * margin
+    const pageContentHeight = (orientation === 'landscape' ? Math.min(...format) : Math.max(...format)) - 2 * margin
+    const pageAspectRatio = pageContentWidth / pageContentHeight
     const imgAspectRatio = imgWidth / imgHeight
     let maxWidth, maxHeight, offsetLeft, offsetTop
 
     if (pageAspectRatio >= imgAspectRatio) {
-        maxHeight = pageHeight
+        maxHeight = pageContentHeight
         maxWidth = maxHeight * imgAspectRatio
-        offsetLeft = (pageWidth - maxWidth) / 2
-        offsetTop = 0
+        offsetLeft = (pageContentWidth - maxWidth) / 2 + margin
+        offsetTop = margin
     } else {
-        maxWidth = pageWidth
+        maxWidth = pageContentWidth
         maxHeight = maxWidth / imgAspectRatio
-        offsetLeft = 0
-        offsetTop = (pageHeight - maxHeight) / 2
+        offsetLeft = margin
+        offsetTop = (pageContentHeight - maxHeight) / 2 + margin
     }
     return { offsetLeft, offsetTop, maxWidth, maxHeight }
 }
@@ -257,9 +324,9 @@ watch(fileList, (newValue) => {
 
 watch(pageFormat, (newValue) => {
     if (newValue.key === 'page-format-auto') {
-        pageOrientationOptions.value = allPageOrientations.filter((o) => o.key === 'page-orientation-auto')
+        pageOrientationOptions.value = allPageOrientations.map((o) => (o.key === 'page-orientation-auto' ? o : { ...o, disabled: true }))
         pageOrientation.value = allPageOrientations.filter((o) => o.key === 'page-orientation-auto')[0]
-        pageMarginOptions.value = allPageMargins.filter((o) => o.key === 'page-margin-0')
+        pageMarginOptions.value = allPageMargins.map((o) => (o.key === 'page-margin-0' ? o : { ...o, disabled: true }))
         pageMargin.value = allPageMargins.filter((o) => o.key === 'page-margin-0')[0]
     } else {
         pageOrientationOptions.value = allPageOrientations
@@ -293,6 +360,14 @@ onBeforeUnmount(() => {
             margin-bottom: 20px;
             .el-button {
                 width: 100%;
+            }
+            .select-item {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                .el-select {
+                    flex: 1;
+                }
             }
         }
     }
