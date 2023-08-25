@@ -23,7 +23,10 @@
         "eslint-plugin-prettier": "^3.4.0",
         "js-base64": "^3.6.1",
         "jsonlint-mod": "^1.7.6",
+        "jspdf": "^2.5.1",
         "luxon": "^2.0.2",
+        "sortablejs": "^1.15.0",
+        "sortablejs-vue3": "^1.2.9",
         "vue-codemirror": "^6.1.1",
         "vue-drag-zone": "^2.0.0-rc1",
         "vue-json-viewer": "^3.0.4"
