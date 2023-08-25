@@ -1,5 +1,5 @@
 <template>
-    <Page header="图片转 PDF" class="page-image2pdf">
+    <Page header="图片合成 PDF" class="page-image2pdf">
         <ElRow class="controls-wrapper" justify="space-between" :gutter="20">
             <ElCol :xs="24" :sm="10" :lg="8">
                 <div class="select-item">
@@ -335,11 +335,11 @@ watch(pageFormat, (newValue) => {
 })
 
 useHead({
-    title: '图片转 PDF',
+    title: '图片合成 PDF',
     meta: [
         {
             name: 'description',
-            content: '在线图片转PDF格式，图片拼接PDF',
+            content: '在线图片转PDF格式，图片拼接PDF，图片合成PDF',
         },
     ],
 })

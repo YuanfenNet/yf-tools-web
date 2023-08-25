@@ -8,7 +8,7 @@
             </template>
             <el-row>
                 <NuxtLink class="tool-link" to="/image2pdf">
-                    <ElButton type="primary" size="large" plain round>图片转 PDF</ElButton>
+                    <ElButton type="primary" size="large" plain round>图片合成 PDF</ElButton>
                 </NuxtLink>
                 <NuxtLink class="tool-link" to="/json">
                     <ElButton type="primary" size="large" plain round>JSON 解析&格式化</ElButton>
@@ -40,12 +40,6 @@
                 </div>
             </template>
             <ul class="todo-list">
-                <li>
-                    <div class="todo-item">
-                        图片转 PDF
-                        <el-tag size="small" type="" effect="plain" round>计划 2023Q3 完成</el-tag>
-                    </div>
-                </li>
                 <li>
                     <div class="todo-item">
                         视频和 GIF 格式转换
