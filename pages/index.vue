@@ -7,6 +7,9 @@
                 </div>
             </template>
             <el-row>
+                <NuxtLink class="tool-link" to="/image2pdf">
+                    <ElButton type="primary" size="large" plain round>图片转 PDF</ElButton>
+                </NuxtLink>
                 <NuxtLink class="tool-link" to="/json">
                     <ElButton type="primary" size="large" plain round>JSON 解析&格式化</ElButton>
                 </NuxtLink>
