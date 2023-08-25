@@ -26,3 +26,23 @@ export function filterString(inputString: string, charactersToExclude: string): 
     const regexPattern = new RegExp(`[${charactersToExclude}]`, 'g')
     return inputString.replace(regexPattern, '')
 }
+
+export function getImageDimensions(dataUrl?: string): Promise<{ width: number; height: number }> {
+    return new Promise((resolve, reject) => {
+        if (!dataUrl) {
+            reject(new Error('dataUrl 为空'))
+        } else {
+            const img = new Image()
+
+            img.onload = function () {
+                resolve({ width: img.width, height: img.height })
+            }
+
+            img.onerror = function () {
+                reject(new Error('无法加载图像'))
+            }
+
+            img.src = dataUrl
+        }
+    })
+}

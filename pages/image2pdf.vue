@@ -1,13 +1,25 @@
 <template>
     <Page header="图片转 PDF (WIP)" class="page-image2pdf">
         <ElRow class="controls-wrapper">
-            <ElCol :xs="24" :sm="18">
-                <el-text class="mx-1">纸张大小：</el-text>
-                <el-select v-model="pageSize" placeholder="纸张大小">
-                    <el-option v-for="item in pageSizes" :key="item.value" :label="item.label" :value="item.value" />
+            <ElCol :xs="24" :sm="8" :lg="6">
+                <el-text class="mx-1">大小：</el-text>
+                <el-select v-model="pageFormat" placeholder="大小">
+                    <el-option v-for="item in pageFormatOptions" :key="item.key" :label="item.label" :value="item" />
                 </el-select>
             </ElCol>
-            <ElCol :xs="24" :sm="6">
+            <ElCol :xs="24" :sm="8" :lg="6">
+                <el-text class="mx-1">方向：</el-text>
+                <el-select v-model="pageOrientation" placeholder="方向">
+                    <el-option v-for="item in pageOrientationOptions" :key="item.key" :label="item.label" :value="item" />
+                </el-select>
+            </ElCol>
+            <ElCol :xs="24" :sm="8" :lg="6">
+                <el-text class="mx-1">边距：</el-text>
+                <el-select v-model="pageMargin" placeholder="页面距">
+                    <el-option v-for="item in pageMarginOptions" :key="item.key" :label="item.label" :value="item" />
+                </el-select>
+            </ElCol>
+            <ElCol :xs="24" :sm="24" :lg="6">
                 <ElButton type="primary" round :disabled="!hasFile" @click="onStartClick">开始合成</ElButton>
             </ElCol>
         </ElRow>
@@ -68,22 +80,65 @@ import { jsPDF } from 'jspdf'
 import { Sortable } from 'sortablejs-vue3'
 import type { SortableEvent } from 'sortablejs'
 import type { UploadFile, UploadInstance } from 'element-plus'
+import { jsPDFOptions } from 'jspdf'
+import FullWidth from 'layouts/full-width.vue'
+import { listenerCount } from 'process'
 
-const pageSizes = [
+type OptionType<T> = {
+    key: string
+    label: string
+    value: T
+}
+
+const allPageFormats: Array<OptionType<jsPDFOptions['format']>> = [
     {
-        label: 'A4 (297mm×210mm)',
-        value: 'A4',
+        key: 'page-format-a4',
+        label: 'A4 (210mm×297mm)',
+        value: [210, 297],
     },
     {
+        key: 'page-format-auto',
         label: '自动 (和图片大小一致)',
-        value: 'Auto',
+        value: undefined,
     },
 ]
+
+const allPageOrientations: Array<OptionType<jsPDFOptions['orientation']>> = [
+    {
+        key: 'page-orientation-auto',
+        label: '自动',
+        value: undefined,
+    },
+    {
+        key: 'page-orientation-portrait',
+        label: '纵向',
+        value: 'portrait',
+    },
+    {
+        key: 'page-orientation-landscape',
+        label: '横向',
+        value: 'landscape',
+    },
+]
+
+const allPageMargins: Array<OptionType<number>> = [
+    {
+        key: 'page-margin-0',
+        label: '无边距',
+        value: 0,
+    },
+]
+
+const pageFormatOptions = ref(allPageFormats)
+const pageOrientationOptions = ref(allPageOrientations)
+const pageMarginOptions = ref(allPageMargins)
 const fileList = ref<Array<UploadFile>>([])
 const uploadRef = ref<UploadInstance>()
 const previewVisible = ref(false)
 const initialPreviewIndex = ref(0)
-const pageSize = ref(pageSizes[0])
+const pageFormat = ref(allPageFormats[0])
+const pageOrientation = ref(allPageOrientations[0])
+const pageMargin = ref(allPageMargins[0])
 
 const hasFile = computed(() => {
     if (fileList.value.length > 0) {
@@ -100,21 +155,73 @@ const previewImageUrlList = computed(() => {
 })
 
 async function onStartClick() {
-    const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'mm',
-        format: [210, 297],
-    })
-    let pageNumber = 0
-    for (const file of fileList.value) {
-        if (pageNumber > 0) {
-            pdf.addPage()
-        }
-        const dataUrl = await getDataURL(file.raw)
-        pdf.addImage(dataUrl, 'JPEG', 0, 0, pdf.internal.pageSize.getWidth(), pdf.internal.pageSize.getHeight())
-        pageNumber += 1
+    const pdfOptions: jsPDFOptions = {}
+    const { width: firstImgWidth, height: firstImgHeight } = await getImageDimensions(fileList.value[0].url)
+
+    if (pageFormat.value.value === undefined) {
+        // 自适应大小的情况，使用 px 和图片大小作为页面大小，自动方向
+
+        pdfOptions.unit = 'px'
+        pdfOptions.hotfixes = ['px_scaling']
+        pdfOptions.format = [firstImgWidth, firstImgHeight]
+        pdfOptions.orientation = getPageOrientation(pageOrientation.value.value, firstImgWidth, firstImgHeight)
+    } else {
+        // 固定页面大小
+
+        pdfOptions.unit = 'mm'
+        pdfOptions.format = pageFormat.value.value
+        pdfOptions.orientation = getPageOrientation(pageOrientation.value.value, firstImgWidth, firstImgHeight)
     }
-    pdf.save()
+    const pdf = new jsPDF(pdfOptions)
+    let isFirstPage = true
+    for (const file of fileList.value) {
+        const dataUrl = await getDataURL(file.raw)
+        const { width: imgWidth, height: imgHeight } = await getImageDimensions(dataUrl)
+        pdfOptions.orientation = getPageOrientation(pageOrientation.value.value, imgWidth, imgHeight)
+        pdfOptions.format = pageFormat.value.value === undefined ? [imgWidth, imgHeight] : pdfOptions.format
+        if (!isFirstPage) {
+            pdf!.addPage(pdfOptions.format, pdfOptions.orientation)
+        }
+        const { offsetLeft, offsetTop, maxWidth, maxHeight } = getImageContainSize(
+            pdfOptions.format,
+            pdfOptions.orientation,
+            imgWidth,
+            imgHeight
+        )
+
+        pdf!.addImage(dataUrl, offsetLeft, offsetTop, maxWidth, maxHeight)
+
+        isFirstPage = false
+    }
+    pdf!.save()
+}
+
+function getPageOrientation(orientation: jsPDFOptions['orientation'], width: number, height: number): jsPDFOptions['orientation'] {
+    if (!orientation) {
+        return height > width ? 'portrait' : 'landscape'
+    }
+    return orientation
+}
+
+function getImageContainSize(pageFormat: Array<number>, orientation: jsPDFOptions['orientation'], imgWidth: number, imgHeight: number) {
+    const pageWidth = orientation === 'landscape' ? Math.max(...pageFormat) : Math.min(...pageFormat)
+    const pageHeight = orientation === 'landscape' ? Math.min(...pageFormat) : Math.max(...pageFormat)
+    const pageAspectRatio = pageWidth / pageHeight
+    const imgAspectRatio = imgWidth / imgHeight
+    let maxWidth, maxHeight, offsetLeft, offsetTop
+
+    if (pageAspectRatio >= imgAspectRatio) {
+        maxHeight = pageHeight
+        maxWidth = maxHeight * imgAspectRatio
+        offsetLeft = (pageWidth - maxWidth) / 2
+        offsetTop = 0
+    } else {
+        maxWidth = pageWidth
+        maxHeight = maxWidth / imgAspectRatio
+        offsetLeft = 0
+        offsetTop = (pageHeight - maxHeight) / 2
+    }
+    return { offsetLeft, offsetTop, maxWidth, maxHeight }
 }
 
 function onSortEnd(event: SortableEvent) {
@@ -146,6 +253,18 @@ watch(fileList, (newValue) => {
             file.url = URL.createObjectURL(file.raw!)
         }
     })
+})
+
+watch(pageFormat, (newValue) => {
+    if (newValue.key === 'page-format-auto') {
+        pageOrientationOptions.value = allPageOrientations.filter((o) => o.key === 'page-orientation-auto')
+        pageOrientation.value = allPageOrientations.filter((o) => o.key === 'page-orientation-auto')[0]
+        pageMarginOptions.value = allPageMargins.filter((o) => o.key === 'page-margin-0')
+        pageMargin.value = allPageMargins.filter((o) => o.key === 'page-margin-0')[0]
+    } else {
+        pageOrientationOptions.value = allPageOrientations
+        pageMarginOptions.value = allPageMargins
+    }
 })
 
 useHead({
