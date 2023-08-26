@@ -1,5 +1,10 @@
 <template>
     <Page header="图片合成 PDF" class="page-image2pdf">
+        <div class="notecard">
+            <p>你是否遇到过使用在线合成 PDF 工具时图片质量变差？页面大小不可调？页面边距不可调？合成速度很慢？完美的工具要付费？</p>
+            <p>遇到那就对了，我就是因为遇到这个问题，所以自己撸了一个免费的。</p>
+            <p>基于 <code>jsPDF</code> 实现的纯前端图片合成 PDF，无需上传服务端，超快速，超安全。</p>
+        </div>
         <ElRow class="controls-wrapper" justify="space-between" :gutter="20">
             <ElCol :xs="24" :sm="10" :lg="8">
                 <div class="select-item">
@@ -339,7 +344,7 @@ useHead({
     meta: [
         {
             name: 'description',
-            content: '在线图片转PDF格式，图片拼接PDF，图片合成PDF',
+            content: '在线图片转PDF格式，图片拼接PDF，图片合成PDF，纯前端实现，超快速',
         },
     ],
 })
