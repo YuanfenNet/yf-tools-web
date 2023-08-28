@@ -8,8 +8,8 @@
         <ElRow class="controls-wrapper" justify="space-between" :gutter="20">
             <ElCol :xs="24" :sm="10" :lg="8">
                 <div class="select-item">
-                    <el-text class="mx-1">大小：</el-text>
-                    <el-select v-model="pageFormat" placeholder="大小">
+                    <el-text class="mx-1">页面大小：</el-text>
+                    <el-select v-model="pageFormat" placeholder="页面大小">
                         <el-option
                             v-for="item in pageFormatOptions"
                             :key="item.key"
@@ -22,8 +22,8 @@
             </ElCol>
             <ElCol :xs="24" :sm="7" :lg="6">
                 <div class="select-item">
-                    <el-text class="mx-1">方向：</el-text>
-                    <el-select v-model="pageOrientation" placeholder="方向" class="page-orientation-select">
+                    <el-text class="mx-1">页面方向：</el-text>
+                    <el-select v-model="pageOrientation" placeholder="页面方向" class="page-orientation-select">
                         <el-option
                             v-for="item in pageOrientationOptions"
                             :key="item.key"
@@ -36,8 +36,8 @@
             </ElCol>
             <ElCol :xs="24" :sm="7" :lg="6">
                 <div class="select-item">
-                    <el-text class="mx-1">边距：</el-text>
-                    <el-select v-model="pageMargin" placeholder="页面距" class="page-margin-select">
+                    <el-text class="mx-1">页面边距：</el-text>
+                    <el-select v-model="pageMargin" placeholder="页面边距" class="page-margin-select">
                         <el-option
                             v-for="item in pageMarginOptions"
                             :key="item.key"
