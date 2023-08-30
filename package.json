@@ -16,7 +16,7 @@
         "@codemirror/lang-json": "^6.0.1",
         "@codemirror/language": "^6.9.0",
         "@lezer/highlight": "^1.1.6",
-        "@sentry/tracing": "^7.64.0",
+        "@sentry/browser": "^7.64.0",
         "@sentry/vue": "^7.64.0",
         "@vueuse/core": "^10.3.0",
         "@vueuse/nuxt": "^10.3.0",

@@ -1,6 +1,6 @@
 // plugins/sentry.client.ts
 import * as Sentry from '@sentry/vue'
-import { BrowserTracing } from '@sentry/tracing'
+import { BrowserTracing } from '@sentry/browser'
 import { Router } from 'vue-router'
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -10,8 +10,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     Sentry.init({
         app: [vueApp],
         dsn: 'https://9c0e9d7fe201779dd8063288b28f48d6@o4505389542866944.ingest.sentry.io/4505779553042432',
-        environment: process.dev ? 'development' : 'production',
-        enabled: !process.dev,
+        environment: process.env.APP_ENV === 'prd' ? 'production' : 'development',
+        enabled: process.env.APP_ENV === 'prd',
         integrations: [
             new BrowserTracing({
                 routingInstrumentation: Sentry.vueRouterInstrumentation(vueRouter),
@@ -24,12 +24,10 @@ export default defineNuxtPlugin((nuxtApp) => {
             hooks: ['activate', 'mount', 'update'],
         },
         beforeSend(event, hint) {
-            // Check if it is an exception, and if so, log it.
             if (event.exception) {
                 // eslint-disable-next-line no-console
                 console.error(`[Exeption handled by Sentry]: (${hint.originalException})`, { event, hint })
             }
-            // Continue sending to Sentry
             return event
         },
     })
