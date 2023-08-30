@@ -27,22 +27,50 @@ export function filterString(inputString: string, charactersToExclude: string): 
     return inputString.replace(regexPattern, '')
 }
 
-export function getImageDimensions(dataUrl?: string): Promise<{ width: number; height: number }> {
+export function loadImage(url: string | undefined): Promise<HTMLImageElement> {
     return new Promise((resolve, reject) => {
-        if (!dataUrl) {
-            reject(new Error('dataUrl 为空'))
+        if (!url) {
+            reject(new Error('url 为空'))
         } else {
-            const img = new Image()
-
+            var img = new Image()
             img.onload = function () {
-                resolve({ width: img.width, height: img.height })
+                resolve(img)
             }
-
             img.onerror = function () {
-                reject(new Error('无法加载图像'))
+                reject(new Error('加载图片失败'))
             }
-
-            img.src = dataUrl
+            img.src = url
         }
+    })
+}
+
+export function getImageDimensions(url: string | undefined): Promise<{ width: number; height: number }> {
+    return new Promise((resolve, reject) => {
+        loadImage(url)
+            .then((img) => {
+                resolve({ width: img.width, height: img.height })
+            })
+            .catch((e) => {
+                reject(e)
+            })
+    })
+}
+
+export function rotateImage(url: string | undefined, type: string = 'image/jpeg', degree: number = 0): Promise<string> {
+    return new Promise((resolve, reject) => {
+        loadImage(url)
+            .then((img) => {
+                const canvas = document.createElement('canvas')
+                const ctx = canvas.getContext('2d')!
+                canvas.width = img.height
+                canvas.height = img.width
+                ctx.translate(canvas.width / 2, canvas.height / 2)
+                ctx.rotate((degree * Math.PI) / 180)
+                ctx.drawImage(img, -img.width / 2, -img.height / 2)
+                resolve(canvas.toDataURL(type))
+            })
+            .catch((e) => {
+                reject(e)
+            })
     })
 }
