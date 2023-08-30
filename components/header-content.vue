@@ -37,6 +37,8 @@ function toggleDark() {
             width: 24px;
             height: 24px;
             margin-right: 10px;
+            border-radius: 50%;
+            border: 1px solid var(--el-color-primary);
         }
         .title {
             font-size: 20px;
