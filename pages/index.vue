@@ -88,8 +88,6 @@ useHead({
 </script>
 
 <style lang="scss">
-@use '~/assets/scss/variables.scss' as *;
-
 .page-home {
     .el-card {
         margin-bottom: 20px;

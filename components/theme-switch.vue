@@ -27,11 +27,10 @@
     box-sizing: border-box;
     background: var(--bg-color-mute);
     cursor: pointer;
-    transition: border-color var(--el-transition-duration),
-        background-color var(--el-transition-duration);
+    transition: border-color var(--el-transition-duration), background-color var(--el-transition-duration);
 
     &:hover {
-        border-color: var(--el-border-color-lighter);
+        border-color: var(--el-color-primary);
     }
 
     &__action {
@@ -42,8 +41,8 @@
         background-color: var(--el-bg-color);
         transform: translateX(0);
         color: var(--el-text-color-regular);
-        transition: border-color var(--el-transition-duration),
-            background-color var(--el-transition-duration), transform var(--el-transition-duration);
+        transition: border-color var(--el-transition-duration), background-color var(--el-transition-duration),
+            transform var(--el-transition-duration);
 
         .dark & {
             transform: translateX(20px);

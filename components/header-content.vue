@@ -5,11 +5,7 @@
             <div class="title">猿奋工具箱</div>
         </NuxtLink>
         <div class="right">
-            <ThemeToggler
-                aria-label="切换暗色主题"
-                :aria-checked="isDark"
-                @click="() => toggleDark()"
-            />
+            <ThemeToggler aria-label="切换暗色主题" :aria-checked="isDark" @click="() => toggleDark()" />
             <div class="description">做精致好用的小工具</div>
         </div>
     </div>
@@ -28,8 +24,6 @@ function toggleDark() {
 </script>
 
 <style lang="scss">
-@use '~/assets/scss/variables.scss' as *;
-
 .header-content {
     padding: 10px;
     display: flex;
@@ -46,9 +40,10 @@ function toggleDark() {
         }
         .title {
             font-size: 20px;
-            color: #fff;
+            color: var(--el-text-color-primary);
             flex-shrink: 0;
             margin-right: 10px;
+            font-weight: bold;
         }
     }
     .right {
@@ -57,7 +52,7 @@ function toggleDark() {
         flex-shrink: 0;
         .description {
             font-size: 12px;
-            color: #fff;
+            color: var(--el-text-color-primary);
             margin-left: 20px;
         }
     }

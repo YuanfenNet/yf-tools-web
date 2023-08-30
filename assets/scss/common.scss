@@ -1,4 +1,12 @@
-@use '~/assets/scss/variables.scss' as *;
+:root {
+    --bg-color-mute: #f2f2f2;
+    --code-font-family: Menlo, Consolas, 'Courier Prime', 'Courier New', monospace;
+    --footer-height: 60px;
+}
+
+.dark {
+    --bg-color-mute: #2c2c2c;
+}
 
 html {
     font-family: var(--el-font-family);
@@ -9,6 +17,7 @@ html {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
+    background: var(--el-bg-color-page);
 }
 
 *,
@@ -24,38 +33,43 @@ html {
     justify-content: flex-start;
     align-items: center;
     position: relative;
-    padding-bottom: $footer-height;
+    padding-bottom: var(--footer-height);
+    background: var(--el-bg-color-page);
     .header {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 4;
         width: 100%;
-        border-bottom: $border;
-        background-color: $color-main;
+        border-bottom: 1px solid var(--el-border-color);
+        background: var(--el-bg-color);
+        box-shadow: var(--el-box-shadow-light);
     }
     .body-container {
         width: 100%;
-        padding: 10px;
+        padding: 70px 10px 10px 10px;
         .el-page-header__content {
             font-weight: bold;
         }
     }
     .footer {
-        height: $footer-height;
-        background-color: #35373b;
+        height: var(--footer-height);
+        background: var(--el-bg-color);
+        border-top: 1px solid var(--el-border-color);
         flex-direction: column;
+        box-shadow: var(--el-box-shadow-light);
         h6 {
-            color: $color-primary-text-white;
+            color: var(--el-text-color-primary);
             padding: 0 10px;
             font-size: 12px;
             a {
-                color: $color-primary-text-white;
-                &:hover {
-                    color: $color-primary-text-white;
-                }
+                color: var(--el-text-color-primary);
             }
         }
     }
 }
 a {
-    color: $color-main;
+    color: var(--el-color-primary);
     background-color: transparent;
     text-decoration: none;
     outline: none;
@@ -127,7 +141,7 @@ h6 {
 hr {
     height: 1px;
     border: none;
-    border-top: $border;
+    border-top: 1px solid var(--el-border-color);
     margin: 80px 0 0 0;
 }
 
