@@ -32,7 +32,7 @@ export function loadImage(url: string | undefined): Promise<HTMLImageElement> {
         if (!url) {
             reject(new Error('url 为空'))
         } else {
-            var img = new Image()
+            const img = new Image()
             img.onload = function () {
                 resolve(img)
             }

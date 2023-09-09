@@ -1,7 +1,7 @@
 <template>
     <page header="随机密码生成" class="page-password">
         <div class="result">
-            <span v-for="char in password" class="char" :class="getCharClass(char)">{{ char }}</span>
+            <span v-for="(char, index) in password" :key="index" class="char" :class="getCharClass(char)">{{ char }}</span>
         </div>
         <el-row class="controls-row">
             <el-col :xs="{ span: 12 }" :sm="{ span: 4 }" :lg="{ span: 6 }">

@@ -14,7 +14,9 @@
 
 .dark-icon,
 .light-icon {
-    transition: color var(--el-transition-duration), opacity var(--el-transition-duration);
+    transition:
+        color var(--el-transition-duration),
+        opacity var(--el-transition-duration);
 }
 
 .light-icon {

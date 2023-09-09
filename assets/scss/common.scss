@@ -173,5 +173,7 @@ code {
     font-family: Courier Prime Bits;
     font-style: normal;
     font-weight: 400;
-    src: url(/fonts/courier-prime-bits-v1.woff2) format('woff2'), url(/fonts/courier-prime-bits-v1.woff) format('woff');
+    src:
+        url(/fonts/courier-prime-bits-v1.woff2) format('woff2'),
+        url(/fonts/courier-prime-bits-v1.woff) format('woff');
 }

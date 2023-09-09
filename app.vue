@@ -8,10 +8,7 @@
 useHead({
     title: '猿奋工具箱',
     titleTemplate: '%s - 猿奋工具箱',
-    meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-    ],
+    meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }],
     link: [
         {
             rel: 'apple-touch-icon',

@@ -1,12 +1,5 @@
 module.exports = {
-    root: true,
-    env: {
-        browser: true,
-        node: true,
-    },
     extends: ['@nuxtjs/eslint-config-typescript', 'plugin:nuxt/recommended', 'prettier'],
-    plugins: ['prettier'],
-    // add your custom rules here
     rules: {
         'vue/html-indent': [
             'error',
@@ -19,7 +12,7 @@ module.exports = {
                 ignores: [],
             },
         ],
-        'vue/script-setup-uses-vars': 'off',
+        'vue/multi-word-component-names': 'off',
         'vue/singleline-html-element-content-newline': 'off',
         'vue/html-self-closing': [
             'error',
@@ -29,7 +22,8 @@ module.exports = {
                 },
             },
         ],
-        'no-unused-vars': 'off',
         '@typescript-eslint/no-unused-vars': ['warn'],
+        'vue/no-unused-vars': ['warn'],
+        'new-cap': ['warn'],
     },
 }

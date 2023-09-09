@@ -27,7 +27,9 @@
     box-sizing: border-box;
     background: var(--bg-color-mute);
     cursor: pointer;
-    transition: border-color var(--el-transition-duration), background-color var(--el-transition-duration);
+    transition:
+        border-color var(--el-transition-duration),
+        background-color var(--el-transition-duration);
 
     &:hover {
         border-color: var(--el-color-primary);
@@ -41,7 +43,9 @@
         background-color: var(--el-bg-color);
         transform: translateX(0);
         color: var(--el-text-color-regular);
-        transition: border-color var(--el-transition-duration), background-color var(--el-transition-duration),
+        transition:
+            border-color var(--el-transition-duration),
+            background-color var(--el-transition-duration),
             transform var(--el-transition-duration);
 
         .dark & {

@@ -10,7 +10,9 @@
         "postinstall": "nuxt prepare",
         "version": "git add . && git commit -m \"v$npm_package_version\"",
         "postversion": "git tag $npm_package_version && git push && git push --tags",
-        "deploy": "yarn version --no-git-tag-version"
+        "deploy": "yarn version --no-git-tag-version",
+        "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore --cache",
+        "format": "prettier --write --cache ."
     },
     "dependencies": {
         "@codemirror/lang-json": "^6.0.1",
@@ -34,22 +36,33 @@
         "vue-json-viewer": "^3.0.4"
     },
     "devDependencies": {
+        "@commitlint/cli": "^17.7.1",
+        "@commitlint/config-conventional": "^17.7.0",
         "@element-plus/nuxt": "^1.0.5",
         "@nuxt/content": "^2.8.2",
         "@nuxt/devtools": "latest",
         "@nuxtjs/color-mode": "^3.3.0",
+        "@nuxtjs/eslint-config-typescript": "^12.1.0",
+        "@nuxtjs/eslint-module": "^4.1.0",
         "@sentry/vite-plugin": "^2.7.1",
-        "@types/codemirror": "^5.60.10",
         "@types/crypto-js": "^4.1.2",
         "@types/luxon": "^3.3.2",
         "@types/node": "^18.17.15",
         "@types/sortablejs": "^1.15.2",
         "element-plus": "^2.3.12",
+        "eslint": "^8.49.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-nuxt": "^4.0.0",
+        "husky": "^8.0.3",
+        "lint-staged": "^14.0.1",
         "nuxt": "^3.7.1",
         "nuxt-gtag": "^1.0.0",
         "nuxt-simple-sitemap": "^3.2.7",
         "prettier": "^3.0.3",
         "sass": "^1.66.1",
         "sass-loader": "^13.3.2"
+    },
+    "lint-staged": {
+        "*.{vue,js,ts,md}": "eslint --fix"
     }
 }

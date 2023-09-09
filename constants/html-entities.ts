@@ -5514,7 +5514,7 @@ const htmlEntities: { [key: string]: HtmlEntity } = {
     },
     '&lrm;': {
         codepoints: [8206],
-        characters: '\u200e',
+        characters: '\u200E',
     },
     '&lrtri;': {
         codepoints: [8895],
@@ -7326,7 +7326,7 @@ const htmlEntities: { [key: string]: HtmlEntity } = {
     },
     '&rlm;': {
         codepoints: [8207],
-        characters: '\u200f',
+        characters: '\u200F',
     },
     '&rmoust;': {
         codepoints: [9137],
@@ -7590,11 +7590,11 @@ const htmlEntities: { [key: string]: HtmlEntity } = {
     },
     '&shy': {
         codepoints: [173],
-        characters: '\u00ad',
+        characters: '\u00AD',
     },
     '&shy;': {
         codepoints: [173],
-        characters: '\u00ad',
+        characters: '\u00AD',
     },
     '&sigma;': {
         codepoints: [963],
@@ -8922,11 +8922,11 @@ const htmlEntities: { [key: string]: HtmlEntity } = {
     },
     '&zwj;': {
         codepoints: [8205],
-        characters: '\u200d',
+        characters: '\u200D',
     },
     '&zwnj;': {
         codepoints: [8204],
-        characters: '\u200c',
+        characters: '\u200C',
     },
 }
 

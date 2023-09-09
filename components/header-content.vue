@@ -15,7 +15,7 @@
 const color = useColorMode()
 
 const isDark = computed(() => {
-    color.value === 'dark'
+    return color.value === 'dark'
 })
 
 function toggleDark() {

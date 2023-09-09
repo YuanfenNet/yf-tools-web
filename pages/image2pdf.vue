@@ -98,8 +98,8 @@
         <ElImageViewer
             v-if="previewVisible"
             :url-list="previewImageUrlList"
-            @close="previewVisible = false"
             :initial-index="initialPreviewIndex"
+            @close="previewVisible = false"
         />
     </Page>
 </template>

@@ -10,7 +10,15 @@ export default defineNuxtConfig({
         },
     },
 
-    modules: ['@element-plus/nuxt', '@nuxt/content', '@nuxtjs/color-mode', '@vueuse/nuxt', 'nuxt-gtag', 'nuxt-simple-sitemap'],
+    modules: [
+        '@element-plus/nuxt',
+        '@nuxt/content',
+        '@nuxtjs/color-mode',
+        '@nuxtjs/eslint-module',
+        '@vueuse/nuxt',
+        'nuxt-gtag',
+        'nuxt-simple-sitemap',
+    ],
 
     content: {
         markdown: {
@@ -25,6 +33,12 @@ export default defineNuxtConfig({
     gtag: {
         id: 'G-2NCGY88M1Y',
     },
+
+    elementPlus: {
+        importStyle: 'scss',
+        themes: ['dark'],
+    },
+
     vite: {
         css: {
             preprocessorOptions: {
@@ -45,10 +59,6 @@ export default defineNuxtConfig({
                   })
                 : null,
         ],
-    },
-    elementPlus: {
-        importStyle: 'scss',
-        themes: ['dark'],
     },
     /*
      * Sentry needs sourcemaps
