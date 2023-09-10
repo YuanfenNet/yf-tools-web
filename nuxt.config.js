@@ -14,7 +14,7 @@ export default defineNuxtConfig({
         '@element-plus/nuxt',
         '@nuxt/content',
         '@nuxtjs/color-mode',
-        '@nuxtjs/eslint-module',
+        // '@nuxtjs/eslint-module',
         '@vueuse/nuxt',
         'nuxt-gtag',
         'nuxt-simple-sitemap',

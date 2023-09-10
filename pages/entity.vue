@@ -139,16 +139,9 @@ function onButtonClick() {
 
 <style lang="scss">
 .page-entity {
-    .content-wrapper > :first-child {
-        margin-top: 0 !important;
-    }
     .el-table__body-wrapper,
     input {
         font-family: var(--code-font-family);
-    }
-    h4 {
-        font-weight: bold;
-        margin: 20px 0;
     }
 }
 </style>
