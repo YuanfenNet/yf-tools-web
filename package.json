@@ -13,7 +13,8 @@
         "deploy": "yarn version --no-git-tag-version",
         "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore --cache",
         "format": "prettier --write --cache .",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "commit": "git-cz"
     },
     "dependencies": {
         "@codemirror/lang-json": "^6.0.1",
@@ -39,6 +40,7 @@
     "devDependencies": {
         "@commitlint/cli": "^17.7.1",
         "@commitlint/config-conventional": "^17.7.0",
+        "@commitlint/cz-commitlint": "^17.7.1",
         "@element-plus/nuxt": "^1.0.5",
         "@nuxt/content": "^2.8.2",
         "@nuxt/devtools": "latest",
@@ -50,6 +52,7 @@
         "@types/luxon": "^3.3.2",
         "@types/node": "^18.17.15",
         "@types/sortablejs": "^1.15.2",
+        "commitizen": "^4.3.0",
         "element-plus": "^2.3.12",
         "eslint": "^8.49.0",
         "eslint-config-prettier": "^9.0.0",
@@ -62,6 +65,11 @@
         "prettier": "^3.0.3",
         "sass": "^1.66.1",
         "sass-loader": "^13.3.2"
+    },
+    "config": {
+        "commitizen": {
+            "path": "@commitlint/cz-commitlint"
+        }
     },
     "lint-staged": {
         "*.{vue,js,ts,md}": "eslint --fix"
