@@ -11,7 +11,7 @@
         "version": "git add . && git commit -m \"v$npm_package_version\"",
         "postversion": "git tag $npm_package_version && git push && git push --tags",
         "deploy": "yarn version --no-git-tag-version",
-        "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore --cache",
+        "lint": "eslint . --ext .vue,.js,.ts --fix --ignore-path .gitignore --cache",
         "format": "prettier --write --cache .",
         "prepare": "husky install",
         "commit": "git-cz"
@@ -72,6 +72,6 @@
         }
     },
     "lint-staged": {
-        "*.{vue,js,ts,md}": "eslint --fix"
+        "*.{vue,js,ts}": "eslint --fix"
     }
 }
