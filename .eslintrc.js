@@ -24,6 +24,6 @@ module.exports = {
         ],
         '@typescript-eslint/no-unused-vars': ['warn'],
         'vue/no-unused-vars': ['warn'],
-        'new-cap': ['warn'],
+        'new-cap': 'off',
     },
 }

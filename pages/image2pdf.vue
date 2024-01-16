@@ -73,7 +73,7 @@
             </template>
             <template v-if="fileList.length > 0">
                 <Sortable :list="fileList" item-key="uid" tag="div" class="el-upload-list el-upload-list--picture-card" @end="onSortEnd">
-                    <template #item="{ element, index }">
+                    <template #item="{ element }">
                         <div class="el-upload-list__item" @click.stop="">
                             <img class="el-upload-list__item-thumbnail" :src="element.url" />
                             <span class="el-upload-list__item-actions">
@@ -301,7 +301,7 @@ function onSortEnd(event: SortableEvent) {
 }
 
 function onUploadChange() {
-    console.log('onUploadChange')
+
 }
 
 function onPreview(file: UploadFile) {
