@@ -38,19 +38,20 @@
         "vue-json-viewer": "^3.0.4"
     },
     "devDependencies": {
-        "@commitlint/cli": "^17.8.1",
-        "@commitlint/config-conventional": "^17.8.1",
-        "@commitlint/cz-commitlint": "^17.8.1",
+        "@commitlint/cli": "^18.4.4",
+        "@commitlint/config-conventional": "^18.4.4",
+        "@commitlint/cz-commitlint": "^18.4.4",
         "@element-plus/nuxt": "^1.0.7",
         "@nuxt/content": "^2.10.0",
         "@nuxt/devtools": "latest",
         "@nuxtjs/color-mode": "^3.3.2",
         "@nuxtjs/eslint-config-typescript": "^12.1.0",
         "@nuxtjs/eslint-module": "^4.1.0",
+        "@nuxtjs/sitemap": "^5.0.4",
         "@sentry/vite-plugin": "^2.10.2",
         "@types/crypto-js": "^4.2.1",
         "@types/luxon": "^3.4.1",
-        "@types/node": "^18.19.7",
+        "@types/node": "^20.11.4",
         "@types/sortablejs": "^1.15.7",
         "commitizen": "^4.3.0",
         "element-plus": "^2.5.1",
@@ -58,13 +59,12 @@
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-nuxt": "^4.0.0",
         "husky": "^8.0.3",
-        "lint-staged": "^14.0.1",
+        "lint-staged": "^15.2.0",
         "nuxt": "^3.9.1",
         "nuxt-gtag": "^1.1.2",
-        "nuxt-simple-sitemap": "^3.4.1",
         "prettier": "^3.2.2",
         "sass": "^1.69.7",
-        "sass-loader": "^13.3.3"
+        "sass-loader": "^14.0.0"
     },
     "config": {
         "commitizen": {

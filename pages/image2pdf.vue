@@ -105,10 +105,10 @@
 </template>
 
 <script setup lang="ts">
-import { jsPDF, jsPDFOptions } from 'jspdf'
-import { Sortable } from 'sortablejs-vue3'
-import type { SortableEvent } from 'sortablejs'
-import type { UploadFile, UploadInstance } from 'element-plus'
+import type { UploadFile, UploadInstance } from 'element-plus';
+import { jsPDF, type jsPDFOptions } from 'jspdf';
+import type { SortableEvent } from 'sortablejs';
+import { Sortable } from 'sortablejs-vue3';
 
 type OptionType<T> = {
     key: string

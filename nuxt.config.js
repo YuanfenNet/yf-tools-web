@@ -14,10 +14,10 @@ export default defineNuxtConfig({
         '@element-plus/nuxt',
         '@nuxt/content',
         '@nuxtjs/color-mode',
-        // '@nuxtjs/eslint-module',
+        '@nuxtjs/eslint-module',
+        '@nuxtjs/sitemap',
         '@vueuse/nuxt',
         'nuxt-gtag',
-        'nuxt-simple-sitemap',
     ],
 
     content: {
