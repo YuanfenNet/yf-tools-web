@@ -259,7 +259,12 @@ async function onStartClick() {
 
         isFirstPage = false
     }
-    pdf!.save()
+    if (fileList.value.length === 1) {
+        const fileName = fileList.value[0].name.replace(/\.[^/.]+$/, '') + '.pdf'
+        pdf!.save(fileName)
+    } else {
+        pdf!.save()
+    }
 }
 
 function getPageOrientation(orientation: jsPDFOptions['orientation'], width: number, height: number): jsPDFOptions['orientation'] {
@@ -300,9 +305,7 @@ function onSortEnd(event: SortableEvent) {
     moveItemInArray(fileList.value, event.oldIndex!, event.newIndex!)
 }
 
-function onUploadChange() {
-
-}
+function onUploadChange() {}
 
 function onPreview(file: UploadFile) {
     initialPreviewIndex.value = fileList.value.findIndex((f) => f.uid === file.uid)
