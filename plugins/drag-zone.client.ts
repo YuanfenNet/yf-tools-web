@@ -1,7 +1,7 @@
 import VueDragZone from 'vue-drag-zone'
 
 export default defineNuxtPlugin(() => {
-    return {
-        provide: VueDragZone,
-    }
+  return {
+    provide: VueDragZone,
+  }
 })
