@@ -126,66 +126,57 @@ async function handleExpandeDepthChange() {
   .el-card__body {
     padding: 0;
   }
+  .content-wrapper {
+    min-width: 900px;
 
-  .zone {
-    width: 100%;
-    height: calc(100vh - 200px);
-    display: flex;
-    justify-content: space-between;
-
-    .v-codemirror {
-      .cm-scroller {
-        font-family: var(--code-font-family);
-        font-size: 14px;
-      }
-    }
-    .handle {
-      width: 1px;
-      background-color: var(--el-border-color-light);
-    }
-    .content {
-      width: calc((100% - 1px) / 2);
-      overflow-y: auto;
+    .zone {
+      width: 100%;
+      height: calc(100vh - 200px);
       display: flex;
-      flex-direction: column;
-      justify-content: stretch;
+      justify-content: space-between;
 
-      .toolbox {
-        padding: 5px 15px;
-        border-bottom: 1px solid var(--el-border-color-light);
-        display: flex;
-        align-items: center;
-        .el-checkbox {
-          margin-right: 10px;
+      .v-codemirror {
+        .cm-scroller {
+          font-family: var(--code-font-family);
+          font-size: 14px;
         }
+      }
+      .handle {
+        width: 1px;
+        background-color: var(--el-border-color-light);
+      }
+      .content {
+        width: calc((100% - 1px) / 2);
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
 
-        .slider {
+        .toolbox {
+          padding: 5px 15px;
+          border-bottom: 1px solid var(--el-border-color-light);
           display: flex;
           align-items: center;
-          width: 200px;
-          margin-right: 10px;
-          .text {
-            font-size: 14px;
-            color: var(--el-text-color-regular);
-            font-weight: 500;
+          .el-checkbox {
+            margin-right: 10px;
           }
-          .el-slider {
-            flex: 1;
-            margin: 0 10px;
+
+          .slider {
+            display: flex;
+            align-items: center;
+            width: 200px;
+            margin-right: 10px;
+            .text {
+              font-size: 14px;
+              color: var(--el-text-color-regular);
+              font-weight: 500;
+            }
+            .el-slider {
+              flex: 1;
+              margin: 0 10px;
+            }
           }
         }
-      }
-    }
-  }
-}
-@media only screen and (max-width: 700px) {
-  .page-json {
-    .zone {
-      flex-direction: column;
-      height: auto;
-      .content {
-        width: 100%;
-        height: calc(100vh - 180px);
       }
     }
   }

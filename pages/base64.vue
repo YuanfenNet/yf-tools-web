@@ -127,6 +127,7 @@ function clear() {
 <style lang="scss">
 .page-base64 {
   .content-wrapper {
+    min-width: 900px;
     display: flex;
     align-items: stretch;
     .left-area,
@@ -152,6 +153,7 @@ function clear() {
         margin-bottom: 10px;
         height: 30px;
         .label {
+          min-width: 60px;
           font-size: 14px;
           margin-right: 10px;
           font-weight: bold;

@@ -165,6 +165,7 @@ function clear() {
 <style lang="scss">
 .page-hash {
   .content-wrapper {
+    min-width: 900px;
     display: flex;
     align-items: stretch;
     .left-area,
@@ -194,7 +195,6 @@ function clear() {
           font-size: 14px;
           margin-right: 10px;
           font-weight: bold;
-          display: flex;
         }
         .el-input {
           width: auto;
