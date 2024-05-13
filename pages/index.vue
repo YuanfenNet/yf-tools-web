@@ -75,7 +75,7 @@ useHead({
         <li>
           <div class="todo-item">
             艺术二维码生成
-            <el-tag size="small" type="" effect="plain" round>
+            <el-tag size="small" type="primary" effect="plain" round>
               计划 2023Q3 完成
             </el-tag>
           </div>
@@ -83,7 +83,7 @@ useHead({
         <li>
           <div class="todo-item">
             视频和 GIF 格式转换
-            <el-tag size="small" type="" effect="plain" round>
+            <el-tag size="small" type="primary" effect="plain" round>
               计划 2023Q3 完成
             </el-tag>
           </div>
@@ -91,7 +91,7 @@ useHead({
         <li>
           <div class="todo-item">
             Font2svg
-            <el-tag size="small" type="" effect="plain" round>
+            <el-tag size="small" type="primary" effect="plain" round>
               计划 2023Q4 完成
             </el-tag>
           </div>
