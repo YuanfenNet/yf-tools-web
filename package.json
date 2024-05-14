@@ -30,6 +30,7 @@
     "jsonlint-mod": "^1.7.6",
     "jspdf": "^2.5.1",
     "luxon": "^3.4.4",
+    "mediainfo.js": "^0.2.2",
     "sortablejs": "^1.15.2",
     "sortablejs-vue3": "^1.2.11",
     "vue-codemirror": "^6.1.1",
@@ -61,7 +62,8 @@
     "nuxt": "^3.11.2",
     "nuxt-gtag": "^2.0.5",
     "sass": "^1.77.0",
-    "sass-loader": "^14.2.1"
+    "sass-loader": "^14.2.1",
+    "vite-plugin-static-copy": "^1.0.4"
   },
   "config": {
     "commitizen": {

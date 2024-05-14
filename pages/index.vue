@@ -63,6 +63,11 @@ useHead({
             财富自由计算器
           </ElButton>
         </NuxtLink>
+        <NuxtLink class="tool-link" to="/metadata">
+          <ElButton type="primary" size="large" plain round>
+            音视频元数据解析
+          </ElButton>
+        </NuxtLink>
       </el-row>
     </el-card>
     <el-card>

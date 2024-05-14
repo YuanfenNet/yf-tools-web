@@ -115,7 +115,6 @@ function clear() {
         :auto-upload="false"
         :show-file-list="false"
         :on-change="fileUpload"
-        action=""
         class="file-upload-wrapper"
         drag
       >

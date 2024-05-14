@@ -81,7 +81,6 @@ function clear() {
         :auto-upload="false"
         :show-file-list="false"
         :on-change="imageUpload"
-        action=""
         accept="image/*"
         class="image-upload-wrapper"
         drag

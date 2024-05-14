@@ -1,7 +1,10 @@
+import path from 'node:path'
 import { sentryVitePlugin } from '@sentry/vite-plugin'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  ssr: false,
   css: ['~/assets/scss/common.scss'],
   nitro: {
     prerender: {
@@ -64,6 +67,14 @@ export default defineNuxtConfig({
           org: 'yuanfen',
         })
         : null,
+      viteStaticCopy({
+        targets: [
+          {
+            src: path.resolve(__dirname, 'node_modules', 'mediainfo.js', 'dist', 'MediaInfoModule.wasm'),
+            dest: '',
+          },
+        ],
+      }),
     ],
   },
   /*
