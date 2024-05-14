@@ -1,10 +1,11 @@
-import path from 'node:path'
 import { sentryVitePlugin } from '@sentry/vite-plugin'
-import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 export default defineNuxtConfig({
+  site: {
+    url: 'https://tools.yuanfen.net',
+  },
   devtools: { enabled: true },
-  ssr: false,
+  ssr: true,
   css: ['~/assets/scss/common.scss'],
   nitro: {
     prerender: {
@@ -60,21 +61,11 @@ export default defineNuxtConfig({
       // Setup sentry error reporting with source maps
       import.meta.env.APP_ENV === 'prd'
         ? sentryVitePlugin({
-          include: '.nuxt/dist',
-          ignore: ['node_modules', 'nuxt.config.ts'],
           authToken: '910f03f1a685822eee3c9918bdc5240fbbab0397dbb9fe0223fdb6627117cb77',
           project: 'yf-tools-web',
           org: 'yuanfen',
         })
         : null,
-      viteStaticCopy({
-        targets: [
-          {
-            src: path.resolve(__dirname, 'node_modules', 'mediainfo.js', 'dist', 'MediaInfoModule.wasm'),
-            dest: '',
-          },
-        ],
-      }),
     ],
   },
   /*

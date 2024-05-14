@@ -32,7 +32,9 @@ function onExceed(files: any) {
 
 async function mediaUpload(file: any) {
   if (!mediaInfo) {
-    mediaInfo = await MediaInfoFactory()
+    mediaInfo = await MediaInfoFactory({
+      locateFile: () => '/mediainfo.js@0.2.2/MediaInfoModule.wasm',
+    })
   }
   getMetadata(mediaInfo, file.raw).then((result: MediaInfoType) => {
     metadata.value = result.media
