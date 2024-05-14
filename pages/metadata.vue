@@ -52,6 +52,16 @@ function objectToKeyValueArray(obj: { [key: string]: any }) {
 
   return result
 }
+
+useHead({
+  title: '媒体文件元数据解析',
+  meta: [
+    {
+      name: 'description',
+      content: '在线解析媒体文件元数据，无需上传文件，极速使用',
+    },
+  ],
+})
 </script>
 
 <template>
