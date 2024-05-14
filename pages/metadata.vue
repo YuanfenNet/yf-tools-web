@@ -53,14 +53,14 @@ function objectToKeyValueArray(obj: { [key: string]: any }) {
 </script>
 
 <template>
-  <page header="音视频元数据解析" class="page-metadata">
+  <page header="媒体文件元数据解析" class="page-metadata">
     <el-upload
       ref="uploadRef"
       :auto-upload="false"
       :show-file-list="true"
       :on-change="mediaUpload"
       :limit="1"
-      accept="audio/*,video/*"
+      accept="image/*,audio/*,video/*,.mkv"
       class="media-upload"
       drag
       @exceed="onExceed"
