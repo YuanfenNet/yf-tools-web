@@ -1,5 +1,3 @@
-import { sentryVitePlugin } from '@sentry/vite-plugin'
-
 export default defineNuxtConfig({
   site: {
     url: 'https://tools.yuanfen.net',
@@ -57,22 +55,6 @@ export default defineNuxtConfig({
         },
       },
     },
-    plugins: [
-      // Setup sentry error reporting with source maps
-      import.meta.env.APP_ENV === 'prd'
-        ? sentryVitePlugin({
-          authToken: '910f03f1a685822eee3c9918bdc5240fbbab0397dbb9fe0223fdb6627117cb77',
-          project: 'yf-tools-web',
-          org: 'yuanfen',
-        })
-        : null,
-    ],
-  },
-  /*
-     * Sentry needs sourcemaps
-     */
-  sourcemap: {
-    client: true,
-    server: true,
+    plugins: [],
   },
 })
