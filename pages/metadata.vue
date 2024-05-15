@@ -5,6 +5,7 @@ import type { UploadInstance, UploadRawFile } from 'element-plus'
 
 const metadata = ref<MediaType>()
 const uploadRef = ref<UploadInstance>()
+const loading = ref(false)
 let mediaInfo: MediaInfo
 
 function getMetadata(mi: MediaInfo, file: File) {
@@ -31,6 +32,7 @@ function onExceed(files: any) {
 }
 
 async function mediaUpload(file: any) {
+  loading.value = true
   if (!mediaInfo) {
     mediaInfo = await MediaInfoFactory({
       locateFile: () => '/mediainfo.js@0.2.2/MediaInfoModule.wasm',
@@ -38,6 +40,7 @@ async function mediaUpload(file: any) {
   }
   getMetadata(mediaInfo, file.raw).then((result: MediaInfoType) => {
     metadata.value = result.media
+    loading.value = false
   })
 }
 
@@ -87,7 +90,7 @@ useHead({
         </div>
       </div>
     </el-upload>
-    <div v-if="metadata" class="metadata-result">
+    <div v-if="!loading && metadata" class="metadata-result">
       <div v-for="track in metadata.track" :key="track['@type']" class="metadata-track">
         <h2 class="metadata-track-type">
           {{ track['@type'] }}
@@ -103,6 +106,12 @@ useHead({
         </el-table>
       </div>
     </div>
+    <loader v-if="loading">
+      <div class="loading-text">
+        <div>解析中……</div>
+        <div>通常在几秒内完成，部分文件需要解析较久</div>
+      </div>
+    </loader>
   </page>
 </template>
 
@@ -118,6 +127,18 @@ useHead({
         width: 100%;
         margin-bottom: 20px;
       }
+    }
+  }
+  .loading-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--el-text-color-secondary);
+    div {
+      margin-top: 10px;
     }
   }
 }
