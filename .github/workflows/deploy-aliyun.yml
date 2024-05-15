@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Deploy to Aliyun
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
 
 jobs:
   build-and-push-image:
+    name: Build & push docker image
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
