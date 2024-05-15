@@ -127,7 +127,9 @@ useHead({
 <style lang="scss">
 .page-home {
   .el-card {
-    margin-bottom: 20px;
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
     .card-header {
       h4 {
         font-weight: bold;

@@ -134,7 +134,7 @@ function clear() {
       flex: 1;
       display: flex;
       flex-direction: column;
-      height: calc(100vh - 240px);
+      height: calc(100vh - 143px - var(--header-height) - var(--footer-height));
       input {
         width: 120px;
       }

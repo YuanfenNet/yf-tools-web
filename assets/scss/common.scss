@@ -1,6 +1,7 @@
 :root {
   --bg-color-mute: #f2f2f2;
   --code-font-family: Menlo, Consolas, 'Courier Prime', 'Courier New', monospace;
+  --header-height: 64px;
   --footer-height: 60px;
 }
 
@@ -162,7 +163,7 @@ code {
   }
   .body-container {
     width: 100%;
-    padding: 70px 10px 10px 10px;
+    padding: calc(var(--header-height) + 20px) 10px 20px 10px;
     .el-page-header__content {
       font-weight: bold;
     }

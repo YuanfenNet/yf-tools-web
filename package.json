@@ -19,6 +19,7 @@
   "dependencies": {
     "@codemirror/lang-json": "^6.0.1",
     "@codemirror/language": "^6.10.1",
+    "@icon-park/vue-next": "^1.4.2",
     "@lezer/highlight": "^1.2.0",
     "@sentry/browser": "^7.114.0",
     "@sentry/vue": "^7.114.0",

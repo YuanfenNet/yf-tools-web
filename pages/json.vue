@@ -131,7 +131,7 @@ async function handleExpandeDepthChange() {
 
     .zone {
       width: 100%;
-      height: calc(100vh - 200px);
+      height: calc(100vh - 103px - var(--header-height) - var(--footer-height));
       display: flex;
       justify-content: space-between;
 

@@ -19,17 +19,21 @@ function toggleDark() {
       </div>
     </NuxtLink>
     <div class="right">
-      <ThemeToggler aria-label="切换暗色主题" :aria-checked="isDark" @click="() => toggleDark()" />
       <div class="description">
         做精致好用的小工具
       </div>
+      <a target="_blank" class="link-github" href="https://github.com/YuanfenNet/yf-tools-web">
+        <span class="icon-github" />
+      </a>
+      <ThemeToggler aria-label="切换暗色主题" :aria-checked="isDark" @click="() => toggleDark()" />
     </div>
   </div>
 </template>
 
 <style lang="scss">
 .header-content {
-  padding: 10px;
+  padding: 0 10px;
+  height: var(--header-height);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -59,7 +63,21 @@ function toggleDark() {
     .description {
       font-size: 12px;
       color: var(--el-text-color-primary);
-      margin-left: 20px;
+      margin-right: 20px;
+    }
+    .link-github {
+      width: 20px;
+      height: 20px;
+      margin-right: 20px;
+      .icon-github {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-color: var(--el-text-color-primary);
+        mask-image: url(@/assets/img/github.svg);
+        mask-size: 100% 100%;
+        mask-repeat: no-repeat;
+      }
     }
   }
 }
