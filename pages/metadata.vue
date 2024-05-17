@@ -86,7 +86,7 @@ useHead({
       <div class="el-upload__text">
         <div>将文件拖到此处，或<em>点击上传</em></div>
         <div class="el-upload__tip">
-          图片不会上传至服务器，请放心使用
+          文件不会上传至服务器，请放心使用
         </div>
       </div>
     </el-upload>

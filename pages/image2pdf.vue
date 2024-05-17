@@ -343,7 +343,7 @@ onBeforeUnmount(() => {
         <div class="el-upload__text">
           <div>将需要转换的图片拖到此处，或<em>点击此处上传</em></div>
           <div class="el-upload__tip">
-            图片不会上传至服务器，请放心使用
+            文件不会上传至服务器，请放心使用
           </div>
         </div>
       </template>
