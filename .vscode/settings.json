@@ -32,11 +32,9 @@
     "typescript",
     "typescriptreact",
     "vue",
-    "yaml"
+    "yaml",
+    "scss"
   ],
   // Disable prettier
-  // "prettier.enable": false,
-  "[scss]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  "prettier.enable": false
 }

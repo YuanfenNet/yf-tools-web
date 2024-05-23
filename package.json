@@ -58,7 +58,8 @@
     "nuxt": "^3.11.2",
     "nuxt-gtag": "^2.0.5",
     "sass": "^1.77.0",
-    "sass-loader": "^14.2.1"
+    "sass-loader": "^14.2.1",
+    "vite-plugin-eslint2": "^4.4.0"
   },
   "config": {
     "commitizen": {

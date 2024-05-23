@@ -1,5 +1,6 @@
 .DS_Store
 .nuxt
 .output
+.eslintcache
 dist
 node_modules
