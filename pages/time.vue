@@ -40,7 +40,7 @@ function convertFromDateTime() {
   if (dateTime.value) {
     if (millisecond.value) {
       timestamp.value = DateTime.fromJSDate(dateTime.value).toMillis().toString()
-      isoString.value = DateTime.fromJSDate(dateTime.value).toISO()
+      isoString.value = DateTime.fromJSDate(dateTime.value).toISO() || ''
     }
     else {
       timestamp.value = Math.floor(DateTime.fromJSDate(dateTime.value).toSeconds()).toString()

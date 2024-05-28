@@ -47,7 +47,9 @@ export default defineNuxtConfig({
     importStyle: 'scss',
     themes: ['dark'],
   },
-
+  typescript: {
+    typeCheck: true,
+  },
   vite: {
     css: {
       preprocessorOptions: {
