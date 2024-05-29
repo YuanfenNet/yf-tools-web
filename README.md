@@ -23,6 +23,7 @@
 - [HTML 实体转换](https://tools.yuanfen.net/entity)
 - [财富自由计算器](https://tools.yuanfen.net/financial-freedom)
 - [媒体文件元数据解析](https://tools.yuanfen.net/metadata)
+- [User Agent 解析](https://tools.yuanfen.net/user-agent)
 
 ## License
 

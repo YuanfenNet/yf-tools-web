@@ -29,7 +29,7 @@ watch(() => props.jsonString, () => {
     errorMessage.value = e.message
     jsonData.value = ''
   }
-})
+}, { immediate: true })
 </script>
 
 <template>

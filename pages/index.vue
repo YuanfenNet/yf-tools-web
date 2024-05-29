@@ -68,6 +68,11 @@ useHead({
             媒体文件元数据解析
           </ElButton>
         </NuxtLink>
+        <NuxtLink class="tool-link" to="/user-agent">
+          <ElButton type="primary" size="large" plain round>
+            User Agent 解析
+          </ElButton>
+        </NuxtLink>
       </el-row>
     </el-card>
     <el-card>

@@ -110,7 +110,7 @@ async function handleExpandeDepthChange() {
           </el-checkbox>
         </div>
         <json-viewer
-          v-if="visible"
+          v-if="visible && jsonString"
           :json-string="jsonString"
           :sort="sort"
           :preview-mode="previewMode"

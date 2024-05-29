@@ -31,6 +31,7 @@
     "mediainfo.js": "^0.2.2",
     "sortablejs": "^1.15.2",
     "sortablejs-vue3": "^1.2.11",
+    "ua-parser-js": "^1.0.38",
     "vue-codemirror": "^6.1.1",
     "vue-json-viewer": "^3.0.4"
   },
@@ -49,6 +50,7 @@
     "@types/luxon": "^3.4.2",
     "@types/node": "^20.12.11",
     "@types/sortablejs": "^1.15.8",
+    "@types/ua-parser-js": "^0.7.39",
     "commitizen": "^4.3.0",
     "element-plus": "^2.7.2",
     "eslint": "^8.57.0",
