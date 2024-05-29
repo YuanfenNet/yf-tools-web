@@ -73,6 +73,11 @@ useHead({
             User Agent 解析
           </ElButton>
         </NuxtLink>
+        <NuxtLink class="tool-link" to="/webcam-recorder">
+          <ElButton type="primary" size="large" plain round>
+            摄像头录制
+          </ElButton>
+        </NuxtLink>
       </el-row>
     </el-card>
     <el-card>

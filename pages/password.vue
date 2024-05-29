@@ -60,7 +60,7 @@ function handleSymbolsInputChange(e: string) {
 }
 
 function getCharClass(char: string) {
-  if (/[0-9]/.test(char)) {
+  if (/\d/.test(char)) {
     return 'char-digits'
   }
   else if (/[a-z]/.test(char)) {
