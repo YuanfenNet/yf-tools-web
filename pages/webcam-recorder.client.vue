@@ -13,6 +13,16 @@ let reader: ReadableStreamDefaultReader<Uint8Array>
 let writer: WritableStreamDefaultWriter<Uint8Array>
 let outputStream: ReadableStream<Uint8Array>
 
+useHead({
+  title: '摄像头录制 MP4',
+  meta: [
+    {
+      name: 'description',
+      content: '在线调用系统摄像头录制 MP4 视频，基于 mediaDevices.getUserMedia 和 WebAV 库实现',
+    },
+  ],
+})
+
 async function onStartButtonClick() {
   const recodeMS = mediaStream.clone()
   recorder = new AVRecorder(recodeMS, {
@@ -85,7 +95,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <page header="摄像头录制" class="page-webcam-recorder">
+  <page header="摄像头录制 MP4" class="page-webcam-recorder">
     <div class="box-container">
       <div class="video-container">
         <video ref="videoRef" autoplay class="video" />

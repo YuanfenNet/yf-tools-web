@@ -75,7 +75,7 @@ useHead({
         </NuxtLink>
         <NuxtLink class="tool-link" to="/webcam-recorder">
           <ElButton type="primary" size="large" plain round>
-            摄像头录制
+            摄像头录制 MP4
           </ElButton>
         </NuxtLink>
       </el-row>
