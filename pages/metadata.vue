@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import MediaInfoFactory from 'mediainfo.js'
-import type { MediaInfo, MediaInfoType, MediaType, ReadChunkFunc } from 'mediainfo.js'
+import type { Media, MediaInfo, MediaInfoResult, ReadChunkFunc } from 'mediainfo.js'
 import type { UploadInstance, UploadRawFile } from 'element-plus'
 
-const metadata = ref<MediaType>()
+const metadata = ref<Media>()
 const uploadRef = ref<UploadInstance>()
 const loading = ref(false)
 let mediaInfo: MediaInfo
@@ -35,10 +35,10 @@ async function mediaUpload(file: any) {
   loading.value = true
   if (!mediaInfo) {
     mediaInfo = await MediaInfoFactory({
-      locateFile: () => '/mediainfo.js@0.2.2/MediaInfoModule.wasm',
+      locateFile: () => '/mediainfo.js@0.3.1/MediaInfoModule.wasm',
     })
   }
-  getMetadata(mediaInfo, file.raw).then((result: MediaInfoType) => {
+  getMetadata(mediaInfo, file.raw).then((result: MediaInfoResult) => {
     metadata.value = result.media
     loading.value = false
   })

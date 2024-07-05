@@ -45,8 +45,8 @@ dependencies:
     specifier: ^3.4.4
     version: 3.4.4
   mediainfo.js:
-    specifier: ^0.2.2
-    version: 0.2.2
+    specifier: ^0.3.1
+    version: 0.3.1
   sortablejs:
     specifier: ^1.15.2
     version: 1.15.2
@@ -7619,9 +7619,9 @@ packages:
     resolution: {integrity: sha512-Lf+9+2r+Tdp5wXDXC4PcIBjTDtq4UKjCPMQhKIuzpJNW0b96kVqSwW0bT7FhRSfmAiFYgP+SCRvdrDozfh0U5w==}
     dev: true
 
-  /mediainfo.js@0.2.2:
-    resolution: {integrity: sha512-QcENCakwRDmZwn9yZxidtZc5n3EhA8rXlU2swGtEB6Uzg91DqpRgTnvOOjKKYL4IhtgGlVifAefGMlWj6tPwjg==}
-    engines: {node: '>=14.16'}
+  /mediainfo.js@0.3.1:
+    resolution: {integrity: sha512-qUehPOCsqmEn0SmTaEOTgyaIiN9LZrDFYyDibsx2rpe8QaxWA+Dzr/fPMTMaHDt5L6J4Jm7pmcEhREN0N0ewrA==}
+    engines: {node: '>=18.0.0'}
     hasBin: true
     dependencies:
       yargs: 17.7.2
