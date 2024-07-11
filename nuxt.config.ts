@@ -1,4 +1,13 @@
 export default defineNuxtConfig({
+  app: {
+    head: {
+      script: [{
+        'defer': true,
+        'data-domain': 'yuanfen.net',
+        'src': 'https://plausible.yuanfen.net:5443/js/script.js',
+      }],
+    },
+  },
   site: {
     url: 'https://tools.yuanfen.net',
   },
