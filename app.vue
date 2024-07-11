@@ -23,6 +23,11 @@ useHead({
     },
     { rel: 'manifest', href: '/img/favicon/site.webmanifest' },
   ],
+  script: [{
+    'defer': true,
+    'data-domain': 'tools.yuanfen.net',
+    'src': 'https://plausible.yuanfen.net:5443/js/script.js',
+  }],
 })
 </script>
 
