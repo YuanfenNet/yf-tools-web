@@ -12,6 +12,4 @@ COPY . /app
 
 RUN pnpm build
 
-EXPOSE 8888
-
 ENTRYPOINT ["node", ".output/server/index.mjs"]
