@@ -1,0 +1,19 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-push-image:
+    name: Build & push docker image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the Docker image
+        run: |
+          echo "${{ secrets.DOCKER_REGISTRY_PASSWORD }}" | docker login ${{ secrets.DOCKER_REGISTRY }} -u ${{ secrets.DOCKER_REGISTRY_USER }} --password-stdin
+          docker build -t ${{ secrets.DOCKER_REGISTRY_IMAGE_NAME }} .
+          docker push ${{ secrets.DOCKER_REGISTRY_IMAGE_NAME }}

@@ -2,6 +2,7 @@
   "name": "yf-tools-web",
   "version": "2.0.0",
   "private": true,
+  "packageManager": "pnpm@9.12.2",
   "scripts": {
     "dev": "nuxt dev -o",
     "build": "nuxt build",
