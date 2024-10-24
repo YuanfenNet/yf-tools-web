@@ -91,16 +91,13 @@ useHead({
           <div class="todo-item">
             Font2svg
             <el-tag size="small" type="primary" effect="plain" round>
-              计划 2024Q3 完成
+              计划 2024Q4 完成
             </el-tag>
           </div>
         </li>
         <li>
           <div class="todo-item">
             视频和 GIF 格式转换
-            <el-tag size="small" type="primary" effect="plain" round>
-              计划 2024Q4 完成
-            </el-tag>
           </div>
         </li>
         <li>
